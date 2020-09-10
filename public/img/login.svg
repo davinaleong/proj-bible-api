@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 468 501" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:1.41421;">
+    <g transform="matrix(1.84098,0,0,1.50883,-24.3519,-196.268)">
+        <rect x="13.228" y="130.079" width="254.213" height="332.045" style="fill:rgb(227,242,253);"/>
+    </g>
+    <g transform="matrix(0.548177,0,0,0.548177,28.345,231.718)">
+        <path d="M420.717,217.486C475.952,217.486 520.717,172.72 520.717,117.486C520.717,62.251 475.952,17.486 420.717,17.486C365.483,17.486 320.718,62.251 320.718,117.486C320.718,172.72 365.483,217.486 420.717,217.486ZM490.717,242.485L477.671,242.485C460.327,250.454 441.03,254.985 420.717,254.985C400.405,254.985 381.187,250.454 363.764,242.485L350.718,242.485C292.749,242.485 245.718,289.517 245.718,347.486L245.718,379.985C245.718,400.688 262.515,417.485 283.218,417.485L558.217,417.485C578.92,417.485 595.717,400.688 595.717,379.985L595.717,347.486C595.717,289.517 548.686,242.485 490.717,242.485Z" style="fill:rgb(144,202,249);fill-rule:nonzero;"/>
+    </g>
+    <g transform="matrix(1,0,0,1,-144.244,-66.1298)">
+        <text x="293.842px" y="215.931px" style="font-family:'FontAwesome5Pro-Solid', 'Font Awesome 5 Pro';font-weight:900;font-size:125px;fill:rgb(144,164,174);"></text>
+    </g>
+    <g transform="matrix(0.0933423,-0.995634,0.995634,0.0933423,-113.939,544.549)">
+        <text x="294.358px" y="226.297px" style="font-family:'FontAwesome5Pro-Solid', 'Font Awesome 5 Pro';font-weight:900;font-size:83.333px;fill:rgb(207,216,220);"></text>
+    </g>
+    <g transform="matrix(0.986263,0.165181,-0.165181,0.986263,-3.40127,-11.9485)">
+        <text x="341.333px" y="147.926px" style="font-family:'FontAwesome5Pro-Solid', 'Font Awesome 5 Pro';font-weight:900;font-size:83.333px;fill:rgb(207,216,220);"></text>
+    </g>
+</svg>
