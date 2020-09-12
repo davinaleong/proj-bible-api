@@ -19,7 +19,7 @@
     <link href="{{ asset('css/sb-admin-2.min.css') }}" rel="stylesheet">
 
     <!-- Custom Stylesheet -->
-    <link href="{{ asset('css/work-log.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/bible-api.css') }}" rel="stylesheet">
 
     @yield('styles')
 
