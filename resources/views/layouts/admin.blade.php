@@ -46,7 +46,7 @@
             <div class="container-fluid">
 
                 @include('partials.breadcrumb')
-                    
+
                 <!-- Page Heading -->
                 @yield('content')
 

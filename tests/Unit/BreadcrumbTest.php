@@ -17,4 +17,23 @@ class BreadcrumbTest extends TestCase
             ]
         ], Breadcrumb::items());
     }
+
+    /** @test */
+    public function can_add_items()
+    {
+        $this->assertEquals([
+            [
+                'label' => 'Dashboard',
+                'href' => route('dashboard')
+            ], [
+                'label' => 'Profile',
+                'active' => true
+            ]
+        ], Breadcrumb::items([
+            [
+                'label' => 'Profile',
+                'active' => true
+            ]
+        ]));
+    }
 }
