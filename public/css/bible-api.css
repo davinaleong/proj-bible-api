@@ -1,0 +1,22 @@
+.clickable:hover {
+  cursor: pointer;
+  border-color: #4e73df;
+}
+
+.bg-login-image {
+  background: url("./../img/login.svg");
+  background-position: center;
+  background-size: cover;
+}
+
+.bg-register-image {
+  background: url("./../img/register.svg");
+  background-position: center;
+  background-size: cover;
+}
+
+.bg-password-image {
+  background: url("./../img/forgot-password.svg");
+  background-position: center;
+  background-size: cover;
+}
