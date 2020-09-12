@@ -30,5 +30,5 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function() {
         ]);
     })->name('dashboard');
 
-    Route::get('/profile/{user}', 'App\Http\Controllers\UserController@show');
+    Route::get('/profile/{user}', 'App\Http\Controllers\UserController@show')->name('users.show');
 });
