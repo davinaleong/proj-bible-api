@@ -20,10 +20,15 @@ Route::get('/', function () {
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function() {
     Route::get('/dashboard', function () {
-        return view('dashboard');
+        return view('dashboard', [
+            'breadcrumb' => [
+                [
+                    'label' => 'Dashboard',
+                    'active' => true
+                ]
+            ]
+        ]);
     })->name('dashboard');
 
-    Route::middleware([IsAdmin::class])->group(function() {
-       Route::get('/users', 'App\Http\Controllers\UserController@index');
-    });
+    Route::get('/profile/{user}', 'App\Http\Controllers\UserController@show');
 });
