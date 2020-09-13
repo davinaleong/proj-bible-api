@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Breadcrumb;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -64,6 +65,32 @@ class UserController extends Controller
 
         return redirect()
             ->route('users.show', ['user' => $user])
-            ->with('message', 'Unable to update profile.');
+            ->withErrors('Unable to update profile.');
+    }
+
+    public function changePassword(User $user)
+    {
+        extract(request()->validate([
+            'password' => 'required|min:8',
+            'new_password' => 'required|min:8',
+            'confirm_new_password' => 'required|min:8|same:new_password'
+        ]));
+
+        if (!Hash::check($password, $user->password)) {
+            return redirect()
+                ->route('users.edit', ['user' => $user])
+                ->withErrors('Password is incorrect');
+        }
+
+        $user->password = Hash::make($new_password);
+        if ($user->save()) {
+            return redirect()
+                ->route('users.show', ['user' => $user])
+                ->with('message', 'Password changed.');
+        }
+
+        return redirect()
+            ->route('users.show', ['user' => $user])
+            ->withErrors('Unable to change password.');
     }
 }

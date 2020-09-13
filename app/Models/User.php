@@ -26,7 +26,6 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
-        'role_id',
         'email',
         'password',
     ];
@@ -50,7 +49,6 @@ class User extends Authenticatable
      */
     protected $casts = [
         'id' => 'integer',
-        'role_id' => 'integer',
         'email_verified_at' => 'datetime',
     ];
 

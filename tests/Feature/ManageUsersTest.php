@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Hash;
 use Tests\TestCase;
 
 class ManageUsersTest extends TestCase
@@ -24,6 +25,10 @@ class ManageUsersTest extends TestCase
             ->assertRedirect('login');
 
         $this->patch('/profile/1')
+            ->assertStatus(302)
+            ->assertRedirect('login');
+
+        $this->patch('/profile/1/change-password')
             ->assertStatus(302)
             ->assertRedirect('login');
     }
@@ -86,5 +91,197 @@ class ManageUsersTest extends TestCase
             ->assertSessionHasErrors([
                 'name' => 'The name field is required.'
             ]);
+    }
+
+    /** @test */
+    public function user_can_change_password()
+    {
+        $old_password = 'password';
+        $new_password = 'new password';
+
+        $user = User::factory()->create([
+            'password' => Hash::make($old_password)
+        ]);
+
+        $this->actingAs($user)
+            ->patch("/profile/{$user->id}/change-password", [
+                'password' => $old_password,
+                'new_password' => $new_password,
+                'confirm_new_password' => $new_password
+            ])
+            ->assertStatus(302)
+            ->assertRedirect(route('users.show', ['user' => $user]))
+            ->assertSessionHas([
+                'message' => 'Password changed.'
+            ]);
+    }
+
+    /** @test */
+    public function change_password_password_field_is_required()
+    {
+        $old_password = 'password';
+        $new_password = 'new password';
+
+        $user = User::factory()->create([
+            'password' => Hash::make($old_password)
+        ]);
+
+        $this->actingAs($user)
+            ->patch("/profile/{$user->id}/change-password", [
+                'password' => '',
+                'new_password' => $new_password,
+                'confirm_new_password' => $new_password
+            ])
+            ->assertSessionHasErrors([
+                'password' => 'The password field is required.'
+            ]);
+    }
+
+    /** @test */
+    public function change_password_password_field_must_be_at_least_8_characters_long()
+    {
+        $old_password = 'pass';
+        $new_password = 'new password';
+
+        $user = User::factory()->create([
+            'password' => Hash::make($old_password)
+        ]);
+
+        $this->actingAs($user)
+            ->patch("/profile/{$user->id}/change-password", [
+                'password' => $old_password,
+                'new_password' => $new_password,
+                'confirm_new_password' => $new_password
+            ])
+            ->assertSessionHasErrors([
+                'password' => 'The password must be at least 8 characters.'
+            ]);
+    }
+
+    /** @test */
+    public function change_password_new_password_field_is_required()
+    {
+        $old_password = 'password';
+        $new_password = 'new password';
+
+        $user = User::factory()->create([
+            'password' => Hash::make($old_password)
+        ]);
+
+        $this->actingAs($user)
+            ->patch("/profile/{$user->id}/change-password", [
+                'password' => $old_password,
+                'new_password' => '',
+                'confirm_new_password' => $new_password
+            ])
+            ->assertSessionHasErrors([
+                'new_password' => 'The new password field is required.'
+            ]);
+    }
+
+    /** @test */
+    public function change_password_new_password_field_must_be_at_least_8_characters_long()
+    {
+        $old_password = 'password';
+        $new_password = 'new';
+
+        $user = User::factory()->create([
+            'password' => Hash::make($old_password)
+        ]);
+
+        $this->actingAs($user)
+            ->patch("/profile/{$user->id}/change-password", [
+                'password' => $old_password,
+                'new_password' => $new_password,
+                'confirm_new_password' => $new_password
+            ])
+            ->assertSessionHasErrors([
+                'new_password' => 'The new password must be at least 8 characters.'
+            ]);
+    }
+
+    /** @test */
+    public function change_password_confirm_new_password_field_is_required()
+    {
+        $old_password = 'password';
+        $new_password = 'new password';
+
+        $user = User::factory()->create([
+            'password' => Hash::make($old_password)
+        ]);
+
+        $this->actingAs($user)
+            ->patch("/profile/{$user->id}/change-password", [
+                'password' => $old_password,
+                'new_password' => $new_password,
+                'confirm_new_password' => ''
+            ])
+            ->assertSessionHasErrors([
+                'confirm_new_password' => 'The confirm new password field is required.'
+            ]);
+    }
+
+    /** @test */
+    public function change_password_confirm_new_password_field_must_be_at_least_8_characters_long()
+    {
+        $old_password = 'password';
+        $new_password = 'new password';
+        $confirm_new_password = 'new';
+
+        $user = User::factory()->create([
+            'password' => Hash::make($old_password)
+        ]);
+
+        $this->actingAs($user)
+            ->patch("/profile/{$user->id}/change-password", [
+                'password' => $old_password,
+                'new_password' => $new_password,
+                'confirm_new_password' => $confirm_new_password
+            ])
+            ->assertSessionHasErrors([
+                'confirm_new_password' => 'The confirm new password must be at least 8 characters.'
+            ]);
+    }
+
+    /** @test */
+    public function change_password_new_password_must_be_same_as_confirm_new_password()
+    {
+        $old_password = 'password';
+        $new_password = 'new password';
+        $confirm_new_password = 'confirm new password';
+
+        $user = User::factory()->create([
+            'password' => Hash::make($old_password)
+        ]);
+
+        $this->actingAs($user)
+            ->patch("/profile/{$user->id}/change-password", [
+                'password' => $old_password,
+                'new_password' => $new_password,
+                'confirm_new_password' => $confirm_new_password
+            ])
+            ->assertSessionHasErrors([
+                'confirm_new_password' => 'The confirm new password and new password must match.'
+            ]);
+    }
+
+    /** @test */
+    public function change_password_password_must_be_the_same()
+    {
+        $old_password = 'password';
+        $different_password = 'password1';
+        $new_password = 'new password';
+
+        $user = User::factory()->create([
+            'password' => Hash::make($old_password)
+        ]);
+
+        $this->actingAs($user)
+            ->patch("/profile/{$user->id}/change-password", [
+                'password' => $different_password,
+                'new_password' => $new_password,
+                'confirm_new_password' => $new_password
+            ])
+            ->assertSessionHasErrors();
     }
 }
