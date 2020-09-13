@@ -31,4 +31,6 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function() {
     })->name('dashboard');
 
     Route::get('/profile/{user}', 'App\Http\Controllers\UserController@show')->name('users.show');
+    Route::get('/profile/{user}/edit', 'App\Http\Controllers\UserController@edit')->name('users.edit');
+    Route::patch('/profile/{user}', 'App\Http\Controllers\UserController@update')->name('users.update');
 });

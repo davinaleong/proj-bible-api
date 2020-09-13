@@ -47,6 +47,9 @@
 
                 @include('partials.breadcrumb')
 
+                @include('partials.message-alert')
+                @include('partials.error-alert')
+
                 <!-- Page Heading -->
                 @yield('content')
 

@@ -16,7 +16,16 @@ class ManageUsersTest extends TestCase
     public function guests_cannot_access_endpoints()
     {
         $this->get('/profile/1')
-            ->assertStatus(302);
+            ->assertStatus(302)
+            ->assertRedirect('login');
+
+        $this->get('/profile/1/edit')
+            ->assertStatus(302)
+            ->assertRedirect('login');
+
+        $this->patch('/profile/1')
+            ->assertStatus(302)
+            ->assertRedirect('login');
     }
 
     /** @test */
@@ -26,6 +35,10 @@ class ManageUsersTest extends TestCase
 
         $this->actingAs($user)
             ->get("/profile/{$user->id}")
+            ->assertOk();
+
+        $this->actingAs($user)
+            ->get("/profile/{$user->id}/edit")
             ->assertOk();
     }
 
@@ -39,5 +52,27 @@ class ManageUsersTest extends TestCase
             ->assertStatus(302)
             ->assertRedirect('dashboard')
             ->assertSessionHas('message', 'You can only view your own profile.');
+
+        $this->actingAs($users[0])
+            ->get("/profile/{$users[1]->id}/edit")
+            ->assertStatus(302)
+            ->assertRedirect('dashboard')
+            ->assertSessionHas('message', 'You can only edit your own profile.');
+    }
+
+    /** @test */
+    public function user_can_update_own_profile()
+    {
+        $user = User::factory()->create();
+
+        $this->actingAs($user)
+            ->patch("/profile/{$user->id}", ['name' => 'John Doe'])
+            ->assertStatus(302)
+            ->assertRedirect(route('users.show', ['user' => $user]))
+            ->assertSessionHas('message', 'Profile updated.');
+
+        $this->assertDatabaseHas('users', [
+            'name' => 'John Doe'
+        ]);
     }
 }
