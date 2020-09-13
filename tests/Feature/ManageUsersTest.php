@@ -75,4 +75,16 @@ class ManageUsersTest extends TestCase
             'name' => 'John Doe'
         ]);
     }
+
+    /** @test */
+    public function update_profile_name_field_required()
+    {
+        $user = User::factory()->create();
+
+        $this->actingAs($user)
+            ->patch("/profile/{$user->id}", ['name' => ''])
+            ->assertSessionHasErrors([
+                'name' => 'The name field is required.'
+            ]);
+    }
 }
