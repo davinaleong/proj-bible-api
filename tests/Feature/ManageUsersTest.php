@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Models\Log;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -78,6 +79,13 @@ class ManageUsersTest extends TestCase
 
         $this->assertDatabaseHas('users', [
             'name' => 'John Doe'
+        ]);
+
+        $this->assertDatabaseHas('logs', [
+           'user_id' => $user->id,
+           'source' => Log::$TABLE_USERS,
+           'source_id' => $user->id,
+           'message' => 'User updated profile.'
         ]);
     }
 
