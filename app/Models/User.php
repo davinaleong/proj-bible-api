@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Events\UserCreated;
+use App\Events\UserUpdated;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -60,4 +62,14 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    protected $dispatchesEvents = [
+        'created' => UserCreated::class,
+        'updated' => UserUpdated::class
+    ];
+
+    public function logs()
+    {
+        return $this->hasMany('App\Models\Log');
+    }
 }
