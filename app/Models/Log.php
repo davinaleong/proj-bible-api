@@ -18,4 +18,9 @@ class Log extends Model
 
     public static $TABLE_USERS = 'users';
     public static $TABLE_LOGS = 'logs';
+
+    public function user()
+    {
+        return $this->belongsTo('App\Models\User');
+    }
 }
