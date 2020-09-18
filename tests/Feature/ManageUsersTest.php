@@ -85,7 +85,7 @@ class ManageUsersTest extends TestCase
            'user_id' => $user->id,
            'source' => Log::$TABLE_USERS,
            'source_id' => $user->id,
-           'message' => 'User updated profile.'
+           'message' => 'User updated.'
         ]);
     }
 
@@ -122,6 +122,13 @@ class ManageUsersTest extends TestCase
             ->assertSessionHas([
                 'message' => 'Password changed.'
             ]);
+
+        $this->assertDatabaseHas('logs', [
+            'user_id' => $user->id,
+            'source' => Log::$TABLE_USERS,
+            'source_id' => $user->id,
+            'message' => 'User updated.'
+        ]);
     }
 
     /** @test */

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Events\UserCreated;
 use App\Events\UserUpdated;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -63,6 +64,7 @@ class User extends Authenticatable
     ];
 
     protected $dispatchesEvents = [
+        'created' => UserCreated::class,
         'updated' => UserUpdated::class
     ];
 
