@@ -13,6 +13,7 @@
 
     <!-- Divider -->
     <hr class="sidebar-divider">
+    
 
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">

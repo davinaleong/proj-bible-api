@@ -26,7 +26,6 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
-        'role_id',
         'email',
         'password',
     ];
@@ -50,7 +49,6 @@ class User extends Authenticatable
      */
     protected $casts = [
         'id' => 'integer',
-        'role_id' => 'integer',
         'email_verified_at' => 'datetime',
     ];
 
@@ -62,14 +60,4 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
-
-    /**
-     * Get the associated role of the user.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function role()
-    {
-        return $this->belongsTo('App\Models\Role');
-    }
 }
