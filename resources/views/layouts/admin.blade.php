@@ -19,7 +19,7 @@
     <link href="{{ asset('css/sb-admin-2.min.css') }}" rel="stylesheet">
 
     <!-- Custom Stylesheet -->
-    <link href="{{ asset('css/work-log.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/bible-api.css') }}" rel="stylesheet">
 
     @yield('styles')
 
@@ -35,13 +35,20 @@
     <!-- End of Sidebar -->
 
     <!-- Content Wrapper -->
-    <div id="content-wrapper" class="d-flex flex-column pt-3">
+    <div id="content-wrapper" class="d-flex flex-column">
 
         <!-- Main Content -->
         <div id="content">
 
+            @include ('partials.topbar')
+
             <!-- Begin Page Content -->
             <div class="container-fluid">
+
+                @include('partials.breadcrumb')
+
+                @include('partials.message-alert')
+                @include('partials.error-alert')
 
                 <!-- Page Heading -->
                 @yield('content')
