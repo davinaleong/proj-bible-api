@@ -27,11 +27,13 @@ class LogUserCreated
      */
     public function handle(UserCreated $event)
     {
-        Log::create([
-            'user_id' => auth()->user()->id,
-            'source' => Log::$TABLE_USERS,
-            'source_id' => $event->user->id,
-            'message' => 'User created.'
-        ]);
+        if(auth()->user()) {
+            Log::create([
+                'user_id' => auth()->user()->id,
+                'source' => Log::$TABLE_USERS,
+                'source_id' => $event->user->id,
+                'message' => 'User created.'
+            ]);
+        }
     }
 }
