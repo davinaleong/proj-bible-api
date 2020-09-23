@@ -40,7 +40,7 @@ class UserController extends Controller
             'breadcrumb' => Breadcrumb::items([
                 [
                     'label' => 'Profile',
-                    'href' => route('users.show', ['user' => $user])
+                    'href' => route('user.show', ['user' => $user])
                 ], [
                     'label' => 'Edit',
                     'active' => true

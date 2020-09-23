@@ -21,7 +21,7 @@
                 <button type="submit" class="btn btn-primary">
                     Submit <i class="fas fa-check"></i>
                 </button>
-                <a href="{{ route('users.show', ['user' => $user]) }}" class="btn btn-outline-secondary">
+                <a href="{{ route('user.show', ['user' => $user]) }}" class="btn btn-outline-secondary">
                     Cancel <i class="fas fa-ban"></i>
                 </a>
             </form>
