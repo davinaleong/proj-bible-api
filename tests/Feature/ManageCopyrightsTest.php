@@ -13,6 +13,61 @@ class ManageCopyrightsTest extends TestCase
     use RefreshDatabase;
 
     /** @test */
+    public function guest_cannot_access_routes()
+    {
+        $this->get(route('copyright.index'))
+            ->assertStatus(302)
+            ->assertRedirect('login');
+
+        $this->get(route('copyright.create'))
+            ->assertStatus(302)
+            ->assertRedirect('login');
+
+        $this->post(route('copyright.store'))
+            ->assertStatus(302)
+            ->assertRedirect('login');
+
+        $this->get(route('copyright.show', ['copyright' => 1]))
+            ->assertStatus(302)
+            ->assertRedirect('login');
+
+        $this->get(route('copyright.edit', ['copyright' => 1]))
+            ->assertStatus(302)
+            ->assertRedirect('login');
+
+        $this->patch(route('copyright.update', ['copyright' => 1]))
+            ->assertStatus(302)
+            ->assertRedirect('login');
+
+        $this->delete(route('copyright.destroy', ['copyright' => 1]))
+            ->assertStatus(302)
+            ->assertRedirect('login');
+    }
+
+    /** @test */
+    public function user_can_access_endpoints()
+    {
+        $user = User::factory()->create();
+
+        $this->actingAs($user)
+            ->get(route('copyright.index'))
+            ->assertOk();
+
+        $this->actingAs($user)
+            ->get(route('copyright.create'))
+            ->assertOk();
+
+        $copyright = Copyright::factory()->create();
+        $this->actingAs($user)
+            ->get(route('copyright.show', ['copyright' => $copyright]))
+            ->assertOk();
+
+        $this->actingAs($user)
+            ->get(route('copyright.edit', ['copyright' => $copyright]))
+            ->assertOk();
+    }
+
+    /** @test */
     public function user_can_create_a_copyright()
     {
         $user = User::factory()->create();
