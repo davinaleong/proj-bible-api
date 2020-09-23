@@ -5,7 +5,7 @@
         <div class="col-6">
             <h1 class="h3">Update Profile</h1>
 
-            <form method="POST" action="{{ route('users.update', ['user' => $user]) }}">
+            <form method="POST" action="{{ route('user.update', ['user' => $user]) }}">
                 @csrf
                 @method('PATCH')
                 <div class="form-group">
@@ -30,7 +30,7 @@
         <div class="col-6">
             <h1 class="h3">Change Password</h1>
 
-            <form method="POST" action="{{ route('users.change-password', ['user' => $user]) }}">
+            <form method="POST" action="{{ route('user.change-password', ['user' => $user]) }}">
                 @csrf
                 @method('PATCH')
                 <div class="form-group">

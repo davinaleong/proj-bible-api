@@ -1,0 +1,26 @@
+@extends('layouts.admin')
+
+@section('content')
+    <form method="post" action="{{ route('copyright.store') }}">
+        @csrf
+
+        <div class="form-group">
+            <label>Creator</label>
+            <p class="form-control-plaintext">{{ auth()->user()->email }}</p>
+        </div>
+
+        <div class="form-group">
+            <label for="name">Name <span class="text-danger">*</span></label>
+            <input type="text" name="name" class="form-control" required>
+        </div>
+
+        <div class="form-group">
+            <label for="text">Copyright Text <span class="text-danger">*</span></label>
+            <textarea name="text" class="form-control" rows="4" required></textarea>
+        </div>
+
+        <p class="text-danger">* required</p>
+        <button type="submit" class="btn btn-primary">Submit <i class="fas fa-check"></i></button>
+        <a href="{{ route('copyright.index') }}" class="btn btn-outline-secondary">Cancel <i class="fas fa-ban"></i></a>
+    </form>
+@endsection

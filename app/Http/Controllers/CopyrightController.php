@@ -10,20 +10,30 @@ class CopyrightController extends Controller
 {
     public function index()
     {
-        return view('copyrights.index', [
+        return view('copyright.index', [
             'breadcrumb' => Breadcrumb::items([
                 [
                     'label' => 'Copyrights',
                     'active' => true
                 ]
             ]),
-            'copyrights' => Copyright::all()
+            'copyrights' => Copyright::orderBy('name')->get()
         ]);
     }
 
     public function create()
     {
-        //
+        return view('copyright.create', [
+            'breadcrumb' => Breadcrumb::items([
+                [
+                    'label' => 'Copyrights',
+                    'href' => route('copyright.index')
+                ], [
+                    'label' => 'Create',
+                    'active' => true
+                ]
+            ])
+        ]);
     }
 
     public function store()
