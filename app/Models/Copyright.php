@@ -19,4 +19,9 @@ class Copyright extends Model
     {
         return $this->belongsTo('App\Models\User');
     }
+
+    public function getUserName()
+    {
+        return $this->user ? $this->user->name : '';
+    }
 }

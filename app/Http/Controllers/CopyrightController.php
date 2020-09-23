@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Breadcrumb;
 use App\Models\Copyright;
 use Illuminate\Http\Request;
 
@@ -9,7 +10,15 @@ class CopyrightController extends Controller
 {
     public function index()
     {
-        //
+        return view('copyrights.index', [
+            'breadcrumb' => Breadcrumb::items([
+                [
+                    'label' => 'Copyrights',
+                    'active' => true
+                ]
+            ]),
+            'copyrights' => Copyright::all()
+        ]);
     }
 
     public function create()

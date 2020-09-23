@@ -21,4 +21,15 @@ class CopyrightTest extends TestCase
 
         $this->assertEquals($user->id, $copyright->user->id);
     }
+
+    /** @test */
+    public function get_user_name()
+    {
+        $user = User::factory()->create();
+        $copyright = Copyright::factory()->create([
+            'user_id' => $user->id
+        ]);
+
+        $this->assertEquals($user->name, $copyright->getUserName());
+    }
 }
