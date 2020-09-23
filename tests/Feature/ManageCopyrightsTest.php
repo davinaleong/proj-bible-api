@@ -111,4 +111,28 @@ class ManageCopyrightsTest extends TestCase
                 'text' => 'The text field is required.'
             ]);
     }
+
+    /** @test */
+    public function user_can_edit_a_copyright()
+    {
+        $user = User::factory()->create();
+        $copyright = Copyright::factory()->create();
+        $updated_copyright = Copyright::factory()->make();
+
+        $this->actingAs($user)
+            ->patch(route('copyright.update', ['copyright' => $copyright]), [
+                'name' => $updated_copyright->name,
+                'text' => $updated_copyright->text
+            ])
+            ->assertRedirect(route('copyright.store', ['copyright' => $copyright]))
+            ->assertSessionHasErrors('message', 'Copyright updated.');
+
+        $this->assertDatabaseHas('copyrights', [
+            'name' => $updated_copyright->name,
+            'text' => $updated_copyright->text
+        ]);
+    }
+
+    /** @test */
+    // TODO: test negative cases for update copyright
 }
