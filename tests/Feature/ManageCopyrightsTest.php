@@ -40,9 +40,7 @@ class ManageCopyrightsTest extends TestCase
         $copyright = Copyright::factory()->make();
 
         $this->actingAs($user)
-            ->post(route('copyright.store'), [
-                'text' => $copyright->text
-            ])
+            ->post(route('copyright.store'))
             ->assertSessionHasErrors([
                 'name' => 'The name field is required.'
             ]);
