@@ -124,8 +124,8 @@ class ManageCopyrightsTest extends TestCase
                 'name' => $updated_copyright->name,
                 'text' => $updated_copyright->text
             ])
-            ->assertRedirect(route('copyright.store', ['copyright' => $copyright]))
-            ->assertSessionHasErrors('message', 'Copyright updated.');
+            ->assertRedirect(route('copyright.show', ['copyright' => $copyright]))
+            ->assertSessionHas('message', 'Copyright updated.');
 
         $this->assertDatabaseHas('copyrights', [
             'name' => $updated_copyright->name,
@@ -134,5 +134,25 @@ class ManageCopyrightsTest extends TestCase
     }
 
     /** @test */
-    // TODO: test negative cases for update copyright
+    public function update_user_throws_error_when_data_criteria_not_met()
+    {
+        $user = User::factory()->create();
+        $copyright = Copyright::factory()->create();
+        $updated_copyright = Copyright::factory()->make();
+
+        $this->actingAs($user)
+            ->put(route('copyright.update', ['copyright' => $copyright]), [
+                'name' => ''
+            ])
+            ->assertSessionHasErrors([
+                'name' => 'The name field is required'
+            ]);
+
+        $this->actingAs($user)
+            ->patch(route('copyright.update', ['copyright' => $copyright]), [
+                'name' => $updated_copyright->name,
+                'text' => ''
+            ])
+            ->assertSessionHasErrors();
+    }
 }

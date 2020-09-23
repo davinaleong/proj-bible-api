@@ -91,7 +91,7 @@ class ManageUsersTest extends TestCase
     }
 
     /** @test */
-    public function update_profile_throws_error_when_data_criteria_not_met()
+    public function update_profile_name_field_is_required()
     {
         $user = User::factory()->create();
 

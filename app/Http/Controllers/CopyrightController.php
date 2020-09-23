@@ -38,10 +38,7 @@ class CopyrightController extends Controller
 
     public function store()
     {
-        $attributes = request()->validate([
-            'name' => 'required',
-            'text' => 'required'
-        ]);
+        $attributes = request()->validate($this->rules());
 
         $attributes['user_id'] = auth()->user()->id;
 
@@ -69,16 +66,46 @@ class CopyrightController extends Controller
 
     public function edit(Copyright $copyright)
     {
-        //
+        return view('copyright.edit', [
+            'breadcrumb' => Breadcrumb::items([
+                [
+                    'label' => 'Copyrights',
+                    'href' => route('copyright.index')
+                ], [
+                    'label' => 'ID: ' . $copyright->id,
+                    'href' => route('copyright.show', ['copyright' => $copyright])
+                ], [
+                    'label' => 'Edit',
+                    'active' => true
+                ]
+            ]),
+            'copyright' => $copyright
+        ]);
     }
 
     public function update(Copyright $copyright)
     {
-        //
+        extract(request()->validate($this->rules()));
+
+        $copyright->name = $name;
+        $copyright->text = $text;
+        $copyright->save();
+
+        return redirect()
+            ->route('copyright.show', ['copyright' => $copyright])
+            ->with('message', 'Copyright updated.');
     }
 
     public function destroy(Copyright $copyright)
     {
         //
+    }
+
+    private function rules()
+    {
+        return [
+            'name' => 'required',
+            'text' => 'required'
+        ];
     }
 }

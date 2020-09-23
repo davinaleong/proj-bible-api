@@ -3,8 +3,9 @@
 @section('content')
     <div class="card shadow">
         <div class="card-body">
-            <form method="post" action="{{ route('copyright.store') }}">
+            <form method="post" action="{{ route('copyright.update', ['copyright' => $copyright]) }}">
                 @csrf
+                @method('PATCH')
 
                 <div class="form-group">
                     <label>Creator</label>
@@ -13,17 +14,24 @@
 
                 <div class="form-group">
                     <label for="name">Name <span class="text-danger">*</span></label>
-                    <input type="text" name="name" class="form-control" value="{{ old('name') }}" required>
+                    <input type="text"
+                           name="name"
+                           class="form-control"
+                           value="{{ old('name') ? old('name') : $copyright->name }}"
+                           required>
                 </div>
 
                 <div class="form-group">
                     <label for="text">Copyright Text <span class="text-danger">*</span></label>
-                    <textarea name="text" class="form-control" rows="4" required>{{ old('text') }}</textarea>
+                    <textarea name="text"
+                              class="form-control"
+                              rows="4"
+                              required>{{ old('text') ? old('text') : $copyright->text }}</textarea>
                 </div>
 
                 <p class="text-danger">* required</p>
                 <button type="submit" class="btn btn-primary">Submit <i class="fas fa-check"></i></button>
-                <a href="{{ route('copyright.index') }}" class="btn btn-outline-secondary">Cancel <i class="fas fa-ban"></i></a>
+                <a href="{{ route('copyright.show', ['copyright' => $copyright]) }}" class="btn btn-outline-secondary">Cancel <i class="fas fa-ban"></i></a>
             </form>
         </div>
     </div>
