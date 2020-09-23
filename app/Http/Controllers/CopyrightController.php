@@ -53,7 +53,18 @@ class CopyrightController extends Controller
 
     public function show(Copyright $copyright)
     {
-        //
+        return view('copyright.show', [
+            'breadcrumb' => Breadcrumb::items([
+                [
+                    'label' => 'Copyrights',
+                    'href' => route('copyright.index')
+                ], [
+                    'label' => 'ID: ' . $copyright->id,
+                    'active' => true
+                ]
+            ]),
+            'copyright' => $copyright
+        ]);
     }
 
     public function edit(Copyright $copyright)
