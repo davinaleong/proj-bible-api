@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CopyrightController;
+use App\Http\Controllers\TranslationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,10 +32,12 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function() {
         ]);
     })->name('dashboard');
 
-    Route::get('/profile/{user}', [UserController::class, 'show'])->name('user.show');
-    Route::get('/profile/{user}/edit', [UserController::class, 'edit'])->name('user.edit');
-    Route::patch('/profile/{user}', [UserController::class, 'update'])->name('user.update');
-    Route::patch('/profile/{user}/change-password', [UserController::class, 'changePassword'])->name('user.change-password');
+    Route::get('/profile/{user}', [UserController::class, 'show'])->name('users.show');
+    Route::get('/profile/{user}/edit', [UserController::class, 'edit'])->name('users.edit');
+    Route::patch('/profile/{user}', [UserController::class, 'update'])->name('users.update');
+    Route::patch('/profile/{user}/change-password', [UserController::class, 'changePassword'])->name('users.change-password');
 
-    Route::resource('copyright', CopyrightController::class);
+    Route::resource('copyrights', CopyrightController::class);
+
+    Route::resource('translations', TranslationController::class);
 });

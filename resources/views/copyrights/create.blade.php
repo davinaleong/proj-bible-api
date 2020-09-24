@@ -3,7 +3,7 @@
 @section('content')
     <div class="card shadow">
         <div class="card-body">
-            <form method="post" action="{{ route('copyright.store') }}">
+            <form method="post" action="{{ route('copyrights.store') }}">
                 @csrf
 
                 <div class="form-group">
@@ -23,7 +23,7 @@
 
                 <p class="text-danger">* required</p>
                 <button type="submit" class="btn btn-primary">Submit <i class="fas fa-check"></i></button>
-                <a href="{{ route('copyright.index') }}" class="btn btn-outline-secondary">Cancel <i class="fas fa-ban"></i></a>
+                <a href="{{ route('copyrights.index') }}" class="btn btn-outline-secondary">Cancel <i class="fas fa-ban"></i></a>
             </form>
         </div>
     </div>

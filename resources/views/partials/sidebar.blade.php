@@ -19,8 +19,8 @@
         </a>
         <div id="collapseCopyright" class="collapse" aria-labelledby="headingCopyright" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item" href="{{ route('copyright.index') }}">Copyrights</a>
-                <a class="collapse-item" href="{{ route('copyright.create') }}">Create</a>
+                <a class="collapse-item" href="{{ route('copyrights.index') }}">Copyrights</a>
+                <a class="collapse-item" href="{{ route('copyrights.create') }}">Create</a>
             </div>
         </div>
     </li>

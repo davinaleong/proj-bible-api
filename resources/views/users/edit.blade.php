@@ -5,7 +5,7 @@
         <div class="col-6">
             <h1 class="h3">Update Profile</h1>
 
-            <form method="POST" action="{{ route('user.update', ['user' => $user]) }}">
+            <form method="POST" action="{{ route('users.update', ['user' => $user]) }}">
                 @csrf
                 @method('PATCH')
                 <div class="form-group">
@@ -21,7 +21,7 @@
                 <button type="submit" class="btn btn-primary">
                     Submit <i class="fas fa-check"></i>
                 </button>
-                <a href="{{ route('user.show', ['user' => $user]) }}" class="btn btn-outline-secondary">
+                <a href="{{ route('users.show', ['user' => $user]) }}" class="btn btn-outline-secondary">
                     Cancel <i class="fas fa-ban"></i>
                 </a>
             </form>
@@ -30,7 +30,7 @@
         <div class="col-6">
             <h1 class="h3">Change Password</h1>
 
-            <form method="POST" action="{{ route('user.change-password', ['user' => $user]) }}">
+            <form method="POST" action="{{ route('users.change-password', ['user' => $user]) }}">
                 @csrf
                 @method('PATCH')
                 <div class="form-group">

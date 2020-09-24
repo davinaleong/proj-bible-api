@@ -5,7 +5,7 @@
 
     <p>Email: <strong>{{ $user->email }}</strong></p>
 
-    <a href="{{ route('user.edit', ['user' => $user]) }}" class="btn btn-primary">
+    <a href="{{ route('users.edit', ['user' => $user]) }}" class="btn btn-primary">
         Edit <i class="fas fa-pen"></i>
     </a>
 @endsection
