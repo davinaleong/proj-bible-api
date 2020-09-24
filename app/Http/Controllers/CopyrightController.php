@@ -40,7 +40,8 @@ class CopyrightController extends Controller
     {
         $attributes = request()->validate($this->rules());
 
-        $attributes['user_id'] = auth()->user()->id;
+        $attributes['created_by'] = auth()->user()->id;
+        $attributes['updated_by'] = null;
         $copyright = Copyright::create($attributes);
 
         return redirect()
@@ -89,6 +90,7 @@ class CopyrightController extends Controller
 
         $copyright->name = $attributes['name'];
         $copyright->text = $attributes['text'];
+        $copyright->updated_by = auth()->user()->id;
         $copyright->save();
 
         return redirect()

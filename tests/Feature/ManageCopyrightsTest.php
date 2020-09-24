@@ -58,7 +58,10 @@ class ManageCopyrightsTest extends TestCase
             ->get(route('copyright.create'))
             ->assertOk();
 
-        $copyright = Copyright::factory()->create();
+        $copyright = Copyright::factory()->create([
+            'created_by' => $user->id,
+            'updated_by' => $user->id
+        ]);
         $this->actingAs($user)
             ->get(route('copyright.show', ['copyright' => $copyright]))
             ->assertOk();
@@ -83,9 +86,10 @@ class ManageCopyrightsTest extends TestCase
             ->assertSessionHas('message', 'Copyright created.');
 
         $this->assertDatabaseHas('copyrights', [
-            'user_id' => $user->id,
             'name' => $copyright->name,
-            'text' => $copyright->text
+            'text' => $copyright->text,
+            'created_by' => $user->id,
+            'updated_by' => null
         ]);
 
         $this->assertDatabaseHas('logs', [
@@ -123,11 +127,13 @@ class ManageCopyrightsTest extends TestCase
     /** @test */
     public function user_can_edit_a_copyright()
     {
-        $user = User::factory()->create();
-        $copyright = Copyright::factory()->create();
+        $users = User::factory()->count(2)->create();
+        $copyright = Copyright::factory()->create([
+            'created_by' => $users[0]->id
+        ]);
         $updated_copyright = Copyright::factory()->make();
 
-        $this->actingAs($user)
+        $this->actingAs($users[1])
             ->patch(route('copyright.update', ['copyright' => $copyright]), [
                 'name' => $updated_copyright->name,
                 'text' => $updated_copyright->text
@@ -137,11 +143,14 @@ class ManageCopyrightsTest extends TestCase
 
         $this->assertDatabaseHas('copyrights', [
             'name' => $updated_copyright->name,
-            'text' => $updated_copyright->text
+            'text' => $updated_copyright->text,
+            'created_by' => $users[0]->id,
+            'updated_by' => $users[1]->id
+
         ]);
 
         $this->assertDatabaseHas('logs', [
-            'user_id' => $user->id,
+            'user_id' => $users[1]->id,
             'source' => Log::$TABLE_COPYRIGHTS,
             'source_id' => $copyright->id,
             'message' => 'Copyright updated.'

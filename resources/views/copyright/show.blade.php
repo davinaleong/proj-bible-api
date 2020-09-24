@@ -9,7 +9,8 @@
         </div>
         <div class="card-body">
             <p>Text: {!! nl2br($copyright->text) !!}</p>
-            <p>Creator: {{ $copyright->getUserName() }}</p>
+            <p>Creator: {{ $copyright->getCreatorName() }}</p>
+            <p>Updater: {{ $copyright->getUpdaterName() }}</p>
 
             <a href="{{ route('copyright.edit', ['copyright' => $copyright]) }}" class="btn btn-primary">Edit <i class="fas fa-pen"></i></a>
         </div>

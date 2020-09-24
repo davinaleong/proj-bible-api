@@ -12,9 +12,10 @@ class Copyright extends Model
     use HasFactory;
 
     protected $fillable = [
-        'user_id',
         'name',
-        'text'
+        'text',
+        'created_by',
+        'updated_by'
     ];
 
     protected $dispatchesEvents = [
@@ -22,13 +23,23 @@ class Copyright extends Model
         'updated' => CopyrightUpdated::class
     ];
 
-    public function user()
+    public function creator()
     {
-        return $this->belongsTo('App\Models\User');
+        return $this->belongsTo('App\Models\User', 'created_by');
     }
 
-    public function getUserName()
+    public function updater()
     {
-        return $this->user ? $this->user->name : '';
+        return $this->belongsTo('App\Models\User', 'updated_by');
+    }
+
+    public function getCreatorName()
+    {
+        return $this->creator ? $this->creator->name : '';
+    }
+
+    public function getUpdaterName()
+    {
+        return $this->updater ? $this->updater->name : '';
     }
 }

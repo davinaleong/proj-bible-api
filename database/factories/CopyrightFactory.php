@@ -25,9 +25,10 @@ class CopyrightFactory extends Factory
     public function definition()
     {
         return [
-            'user_id' => User::factory(),
             'name' => $this->faker->name,
-            'text' => $this->faker->sentence
+            'text' => $this->faker->sentence,
+            'created_by' => User::factory()->create(),
+            'updated_by' => User::factory()->create(),
         ];
     }
 }

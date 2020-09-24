@@ -15,9 +15,10 @@ class CreateCopyrightTable extends Migration
     {
         Schema::create('copyrights', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained('users');
             $table->string('name');
             $table->string('text');
+            $table->foreignId('created_by')->nullable()->constrained('users');
+            $table->foreignId('updated_by')->nullable()->constrained('users');
             $table->timestamps();
         });
     }

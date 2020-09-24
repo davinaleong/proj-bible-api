@@ -8,7 +8,7 @@
 
                 <div class="form-group">
                     <label>Creator</label>
-                    <p class="form-control-plaintext">{{ auth()->user()->email }}</p>
+                    <p class="form-control-plaintext">{{ auth()->user()->name }}</p>
                 </div>
 
                 <div class="form-group">

@@ -13,7 +13,8 @@
                     </div>
                     <div class="card-body">
                         <p>{{ $copyright->text }}</p>
-                        <p>Creator: {{ $copyright->getUserName() }}</p>
+                        <p>Creator: {{ $copyright->getCreatorName() }}</p>
+                        <p>Updater: {{ $copyright->getUpdaterName() }}</p>
                     </div>
                 </div>
             </div>

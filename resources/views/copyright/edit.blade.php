@@ -9,7 +9,12 @@
 
                 <div class="form-group">
                     <label>Creator</label>
-                    <p class="form-control-plaintext">{{ auth()->user()->email }}</p>
+                    <p class="form-control-plaintext">{{ $copyright->getCreatorName() }}</p>
+                </div>
+
+                <div class="form-group">
+                    <label>Updater</label>
+                    <p class="form-control-plaintext">{{ $copyright->getUpdaterName() }}</p>
                 </div>
 
                 <div class="form-group">
