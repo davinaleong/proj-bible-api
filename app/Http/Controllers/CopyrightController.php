@@ -85,10 +85,10 @@ class CopyrightController extends Controller
 
     public function update(Copyright $copyright)
     {
-        extract(request()->validate($this->rules()));
+        $attributes = request()->validate($this->rules());
 
-        $copyright->name = $name;
-        $copyright->text = $text;
+        $copyright->name = $attributes['name'];
+        $copyright->text = $attributes['text'];
         $copyright->save();
 
         return redirect()

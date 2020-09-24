@@ -156,11 +156,11 @@ class ManageCopyrightsTest extends TestCase
         $updated_copyright = Copyright::factory()->make();
 
         $this->actingAs($user)
-            ->put(route('copyright.update', ['copyright' => $copyright]), [
+            ->patch(route('copyright.update', ['copyright' => $copyright]), [
                 'name' => ''
             ])
             ->assertSessionHasErrors([
-                'name' => 'The name field is required'
+                'name' => 'The name field is required.'
             ]);
 
         $this->actingAs($user)
@@ -168,6 +168,8 @@ class ManageCopyrightsTest extends TestCase
                 'name' => $updated_copyright->name,
                 'text' => ''
             ])
-            ->assertSessionHasErrors();
+            ->assertSessionHasErrors([
+                'text' => 'The text field is required.'
+            ]);
     }
 }
