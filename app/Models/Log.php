@@ -18,9 +18,10 @@ class Log extends Model
 
     public static $TABLE_USERS = 'users';
     public static $TABLE_LOGS = 'logs';
+    public static $TABLE_COPYRIGHTS = 'copyrights';
 
     public function user()
     {
-        return $this->belongsTo('App\Models\User');
+        return $this->belongsTo('App\Models\User', 'user_id');
     }
 }

@@ -11,9 +11,19 @@
     <!-- Divider -->
     <hr class="sidebar-divider my-0">
 
-    <!-- Divider -->
-    <hr class="sidebar-divider">
-    
+    <!-- Nav Item - Events Collapse Menu -->
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseCopyright" aria-expanded="true" aria-controls="collapseCopyright">
+            <i class="fas fa-fw fa-copyright"></i>
+            <span>Copyrights</span>
+        </a>
+        <div id="collapseCopyright" class="collapse" aria-labelledby="headingCopyright" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <a class="collapse-item" href="{{ route('copyright.index') }}">Copyrights</a>
+                <a class="collapse-item" href="{{ route('copyright.create') }}">Create</a>
+            </div>
+        </div>
+    </li>
 
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">

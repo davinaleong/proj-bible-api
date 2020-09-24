@@ -27,11 +27,13 @@ class LogUserUpdated
      */
     public function handle(UserUpdated $event)
     {
-        Log::create([
-            'user_id' => auth()->user()->id,
-            'source' => Log::$TABLE_USERS,
-            'source_id' => $event->user->id,
-            'message' => 'User updated.'
-        ]);
+        if (auth()->user()) {
+            Log::create([
+                'user_id' => auth()->user()->id,
+                'source' => Log::$TABLE_USERS,
+                'source_id' => $event->user->id,
+                'message' => 'User updated.'
+            ]);
+        }
     }
 }

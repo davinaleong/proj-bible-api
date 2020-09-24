@@ -19,6 +19,6 @@ class LogTest extends TestCase
             'user_id' => $user->id
         ]);
 
-        $this->assertEquals($user->id, $log->user->id);
+        $this->assertEquals($log->user_id, $log->user->id);
     }
 }

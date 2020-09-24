@@ -17,19 +17,19 @@ class ManageUsersTest extends TestCase
     /** @test */
     public function guests_cannot_access_endpoints()
     {
-        $this->get('/profile/1')
+        $this->get(route('user.show', ['user' => 1]))
             ->assertStatus(302)
             ->assertRedirect('login');
 
-        $this->get('/profile/1/edit')
+        $this->get(route('user.edit', ['user' => 1]))
             ->assertStatus(302)
             ->assertRedirect('login');
 
-        $this->patch('/profile/1')
+        $this->patch(route('user.update', ['user' => 1]))
             ->assertStatus(302)
             ->assertRedirect('login');
 
-        $this->patch('/profile/1/change-password')
+        $this->patch(route('user.change-password', ['user' => 1]))
             ->assertStatus(302)
             ->assertRedirect('login');
     }
@@ -37,14 +37,15 @@ class ManageUsersTest extends TestCase
     /** @test */
     public function user_can_access_endpoints()
     {
+        $this->withoutExceptionHandling();
         $user = User::factory()->create();
 
         $this->actingAs($user)
-            ->get("/profile/{$user->id}")
+            ->get(route('user.show', ['user' => $user]))
             ->assertOk();
 
         $this->actingAs($user)
-            ->get("/profile/{$user->id}/edit")
+            ->get(route('user.show', ['user' => $user]))
             ->assertOk();
     }
 
@@ -54,13 +55,13 @@ class ManageUsersTest extends TestCase
         $users = User::factory(2)->create();
 
         $this->actingAs($users[0])
-            ->get("/profile/{$users[1]->id}")
+            ->get(route('user.show', ['user' => $users[1]]))
             ->assertStatus(302)
             ->assertRedirect('dashboard')
             ->assertSessionHas('message', 'You can only view your own profile.');
 
         $this->actingAs($users[0])
-            ->get("/profile/{$users[1]->id}/edit")
+            ->get(route('user.edit', ['user' => $users[1]]))
             ->assertStatus(302)
             ->assertRedirect('dashboard')
             ->assertSessionHas('message', 'You can only edit your own profile.');
@@ -72,9 +73,9 @@ class ManageUsersTest extends TestCase
         $user = User::factory()->create();
 
         $this->actingAs($user)
-            ->patch("/profile/{$user->id}", ['name' => 'John Doe'])
+            ->patch(route('user.update', ['user' => $user]), ['name' => 'John Doe'])
             ->assertStatus(302)
-            ->assertRedirect(route('users.show', ['user' => $user]))
+            ->assertRedirect(route('user.show', ['user' => $user]))
             ->assertSessionHas('message', 'Profile updated.');
 
         $this->assertDatabaseHas('users', [
@@ -90,12 +91,12 @@ class ManageUsersTest extends TestCase
     }
 
     /** @test */
-    public function update_profile_name_field_required()
+    public function update_profile_name_field_is_required()
     {
         $user = User::factory()->create();
 
         $this->actingAs($user)
-            ->patch("/profile/{$user->id}", ['name' => ''])
+            ->patch(route('user.update', ['user' => $user]), ['name' => ''])
             ->assertSessionHasErrors([
                 'name' => 'The name field is required.'
             ]);
@@ -112,13 +113,13 @@ class ManageUsersTest extends TestCase
         ]);
 
         $this->actingAs($user)
-            ->patch("/profile/{$user->id}/change-password", [
+            ->patch(route('user.change-password', ['user' => $user]), [
                 'password' => $old_password,
                 'new_password' => $new_password,
                 'confirm_new_password' => $new_password
             ])
             ->assertStatus(302)
-            ->assertRedirect(route('users.show', ['user' => $user]))
+            ->assertRedirect(route('user.show', ['user' => $user]))
             ->assertSessionHas([
                 'message' => 'Password changed.'
             ]);
@@ -142,7 +143,7 @@ class ManageUsersTest extends TestCase
         ]);
 
         $this->actingAs($user)
-            ->patch("/profile/{$user->id}/change-password", [
+            ->patch(route('user.change-password', ['user' => $user]), [
                 'password' => '',
                 'new_password' => $new_password,
                 'confirm_new_password' => $new_password
@@ -163,7 +164,7 @@ class ManageUsersTest extends TestCase
         ]);
 
         $this->actingAs($user)
-            ->patch("/profile/{$user->id}/change-password", [
+            ->patch(route('user.change-password', ['user' => $user]), [
                 'password' => $old_password,
                 'new_password' => $new_password,
                 'confirm_new_password' => $new_password
@@ -184,7 +185,7 @@ class ManageUsersTest extends TestCase
         ]);
 
         $this->actingAs($user)
-            ->patch("/profile/{$user->id}/change-password", [
+            ->patch(route('user.change-password', ['user' => $user]), [
                 'password' => $old_password,
                 'new_password' => '',
                 'confirm_new_password' => $new_password
@@ -205,7 +206,7 @@ class ManageUsersTest extends TestCase
         ]);
 
         $this->actingAs($user)
-            ->patch("/profile/{$user->id}/change-password", [
+            ->patch(route('user.change-password', ['user' => $user]), [
                 'password' => $old_password,
                 'new_password' => $new_password,
                 'confirm_new_password' => $new_password
@@ -226,7 +227,7 @@ class ManageUsersTest extends TestCase
         ]);
 
         $this->actingAs($user)
-            ->patch("/profile/{$user->id}/change-password", [
+            ->patch(route('user.change-password', ['user' => $user]), [
                 'password' => $old_password,
                 'new_password' => $new_password,
                 'confirm_new_password' => ''
@@ -248,7 +249,7 @@ class ManageUsersTest extends TestCase
         ]);
 
         $this->actingAs($user)
-            ->patch("/profile/{$user->id}/change-password", [
+            ->patch(route('user.change-password', ['user' => $user]), [
                 'password' => $old_password,
                 'new_password' => $new_password,
                 'confirm_new_password' => $confirm_new_password
@@ -270,7 +271,7 @@ class ManageUsersTest extends TestCase
         ]);
 
         $this->actingAs($user)
-            ->patch("/profile/{$user->id}/change-password", [
+            ->patch(route('user.change-password', ['user' => $user]), [
                 'password' => $old_password,
                 'new_password' => $new_password,
                 'confirm_new_password' => $confirm_new_password
@@ -292,7 +293,7 @@ class ManageUsersTest extends TestCase
         ]);
 
         $this->actingAs($user)
-            ->patch("/profile/{$user->id}/change-password", [
+            ->patch(route('user.change-password', ['user' => $user]), [
                 'password' => $different_password,
                 'new_password' => $new_password,
                 'confirm_new_password' => $new_password
