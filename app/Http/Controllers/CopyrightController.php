@@ -100,7 +100,11 @@ class CopyrightController extends Controller
 
     public function destroy(Copyright $copyright)
     {
-        //
+        $copyright->delete();
+
+        return redirect()
+            ->route('copyright.index')
+            ->with('message', 'Copyright deleted.');
     }
 
     private function rules()

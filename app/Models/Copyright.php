@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Events\CopyrightCreated;
+use App\Events\CopyrightDeleted;
 use App\Events\CopyrightUpdated;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -20,7 +21,8 @@ class Copyright extends Model
 
     protected $dispatchesEvents = [
         'created' => CopyrightCreated::class,
-        'updated' => CopyrightUpdated::class
+        'updated' => CopyrightUpdated::class,
+        'deleted' => CopyrightDeleted::class
     ];
 
     public function creator()

@@ -3,10 +3,12 @@
 namespace App\Providers;
 
 use App\Events\CopyrightCreated;
+use App\Events\CopyrightDeleted;
 use App\Events\CopyrightUpdated;
 use App\Events\UserCreated;
 use App\Events\UserUpdated;
 use App\Listeners\LogCopyrightCreated;
+use App\Listeners\LogCopyrightDeleted;
 use App\Listeners\LogCopyrightUpdated;
 use App\Listeners\LogUserCreated;
 use App\Listeners\LogUserUpdated;
@@ -37,6 +39,9 @@ class EventServiceProvider extends ServiceProvider
         ],
         CopyrightUpdated::class => [
             LogCopyrightUpdated::class
+        ],
+        CopyrightDeleted::class => [
+            LogCopyrightDeleted::class
         ]
     ];
 

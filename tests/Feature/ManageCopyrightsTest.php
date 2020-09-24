@@ -181,4 +181,25 @@ class ManageCopyrightsTest extends TestCase
                 'text' => 'The text field is required.'
             ]);
     }
+
+    /** @test */
+    public function user_can_delete_a_copyright()
+    {
+        $user = User::factory()->create();
+        $copyright = Copyright::factory()->create();
+
+        $this->actingAs($user)
+            ->delete(route('copyright.destroy', ['copyright' => $copyright]))
+            ->assertRedirect(route('copyright.index'))
+            ->assertSessionHas('message', 'Copyright deleted.');
+
+        $this->assertDatabaseMissing('copyrights', $copyright->jsonSerialize());
+
+        $this->assertDatabaseHas('logs', [
+            'user_id' => $user->id,
+            'source' => Log::$TABLE_COPYRIGHTS,
+            'source_id' => $copyright->id,
+            'message' => 'Copyright deleted.'
+        ]);
+    }
 }
