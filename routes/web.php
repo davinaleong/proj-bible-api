@@ -1,7 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Middleware\IsAdmin;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\CopyrightController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,8 +31,10 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function() {
         ]);
     })->name('dashboard');
 
-    Route::get('/profile/{user}', 'App\Http\Controllers\UserController@show')->name('users.show');
-    Route::get('/profile/{user}/edit', 'App\Http\Controllers\UserController@edit')->name('users.edit');
-    Route::patch('/profile/{user}', 'App\Http\Controllers\UserController@update')->name('users.update');
-    Route::patch('/profile/{user}/change-password', 'App\Http\Controllers\UserController@changePassword')->name('users.change-password');
+    Route::get('/profile/{user}', [UserController::class, 'show'])->name('user.show');
+    Route::get('/profile/{user}/edit', [UserController::class, 'edit'])->name('user.edit');
+    Route::patch('/profile/{user}', [UserController::class, 'update'])->name('user.update');
+    Route::patch('/profile/{user}/change-password', [UserController::class, 'changePassword'])->name('user.change-password');
+
+    Route::resource('copyright', CopyrightController::class);
 });

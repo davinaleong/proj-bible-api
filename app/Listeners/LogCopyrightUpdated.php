@@ -2,12 +2,11 @@
 
 namespace App\Listeners;
 
-use App\Events\UserCreated;
 use App\Models\Log;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 
-class LogUserCreated
+class LogCopyrightUpdated
 {
     /**
      * Create the event listener.
@@ -25,14 +24,14 @@ class LogUserCreated
      * @param  object  $event
      * @return void
      */
-    public function handle(UserCreated $event)
+    public function handle($event)
     {
         if(auth()->user()) {
             Log::create([
                 'user_id' => auth()->user()->id,
-                'source' => Log::$TABLE_USERS,
-                'source_id' => $event->user->id,
-                'message' => 'User created.'
+                'source' => Log::$TABLE_COPYRIGHTS,
+                'source_id' => $event->copyright->id,
+                'message' => 'Copyright updated.'
             ]);
         }
     }
