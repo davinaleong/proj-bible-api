@@ -41,8 +41,8 @@ class CopyrightController extends Controller
         $attributes = request()->validate($this->rules());
 
         $attributes['user_id'] = auth()->user()->id;
-
         $copyright = Copyright::create($attributes);
+
         return redirect()
             ->route('copyright.show', ['copyright' => $copyright])
             ->with('message', 'Copyright created.');

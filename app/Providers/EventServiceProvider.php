@@ -2,8 +2,12 @@
 
 namespace App\Providers;
 
+use App\Events\CopyrightCreated;
+use App\Events\CopyrightUpdated;
 use App\Events\UserCreated;
 use App\Events\UserUpdated;
+use App\Listeners\LogCopyrightCreated;
+use App\Listeners\LogCopyrightUpdated;
 use App\Listeners\LogUserCreated;
 use App\Listeners\LogUserUpdated;
 use Illuminate\Auth\Events\Registered;
@@ -27,6 +31,12 @@ class EventServiceProvider extends ServiceProvider
         ],
         UserUpdated::class => [
             LogUserUpdated::class
+        ],
+        CopyrightCreated::class => [
+            LogCopyrightCreated::class
+        ],
+        CopyrightUpdated::class => [
+            LogCopyrightUpdated::class
         ]
     ];
 

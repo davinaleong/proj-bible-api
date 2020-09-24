@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use App\Models\Copyright;
+use App\Models\Log;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -86,10 +87,17 @@ class ManageCopyrightsTest extends TestCase
             'name' => $copyright->name,
             'text' => $copyright->text
         ]);
+
+        $this->assertDatabaseHas('logs', [
+            'user_id' => $user->id,
+            'source' => Log::$TABLE_COPYRIGHTS,
+            'source_id' => 1,
+            'message' => 'Copyright created.'
+        ]);
     }
 
     /** @test */
-    public function create_user_throws_error_when_data_criteria_not_met()
+    public function create_copyright_throws_error_when_data_criteria_not_met()
     {
         $user = User::factory()->create();
         $copyright = Copyright::factory()->make();
@@ -131,10 +139,17 @@ class ManageCopyrightsTest extends TestCase
             'name' => $updated_copyright->name,
             'text' => $updated_copyright->text
         ]);
+
+        $this->assertDatabaseHas('logs', [
+            'user_id' => $user->id,
+            'source' => Log::$TABLE_COPYRIGHTS,
+            'source_id' => $copyright->id,
+            'message' => 'Copyright updated.'
+        ]);
     }
 
     /** @test */
-    public function update_user_throws_error_when_data_criteria_not_met()
+    public function update_copyright_throws_error_when_data_criteria_not_met()
     {
         $user = User::factory()->create();
         $copyright = Copyright::factory()->create();
