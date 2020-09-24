@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Breadcrumb;
+use App\Models\Copyright;
+use App\Models\Translation;
 use Illuminate\Http\Request;
 
 class TranslationController extends Controller
@@ -13,7 +16,15 @@ class TranslationController extends Controller
      */
     public function index()
     {
-        //
+        return view('translations.index', [
+            'breadcrumb' => Breadcrumb::items([
+                [
+                    'label' => 'Translations',
+                    'active' => true
+                ]
+            ]),
+            'translations' => Translation::orderBy('name')->get()
+        ]);
     }
 
     /**
@@ -23,7 +34,18 @@ class TranslationController extends Controller
      */
     public function create()
     {
-        //
+        return view('translations.create', [
+            'breadcrumb' => Breadcrumb::items([
+                [
+                    'label' => 'Translations',
+                    'href' => route('translations.index')
+                ], [
+                    'label' => 'Create',
+                    'active' => true
+                ]
+            ]),
+            'copyrights' => Copyright::orderBy('name')->get()
+        ]);
     }
 
     /**
@@ -32,9 +54,17 @@ class TranslationController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store()
     {
-        //
+        $attributes = request()->validate($this->rules());
+
+        $attributes['created_by'] = auth()->user()->id;
+        $attributes['updated_by'] = null;
+        $translation = Translation::create($attributes);
+
+        return redirect()
+            ->route('translations.show', ['translation' => $translation])
+            ->with('message', 'Translation created.');
     }
 
     /**
@@ -43,7 +73,7 @@ class TranslationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Translation $translation)
     {
         //
     }
@@ -54,7 +84,7 @@ class TranslationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Translation $translation)
     {
         //
     }
@@ -66,7 +96,7 @@ class TranslationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Translation $translation)
     {
         //
     }
@@ -77,8 +107,17 @@ class TranslationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Translation $translation)
     {
         //
+    }
+
+    private function rules()
+    {
+        return [
+            'name' => 'required',
+            'abbr' => 'required',
+            'copyright_id' => 'required|exists:copyrights,id'
+        ];
     }
 }

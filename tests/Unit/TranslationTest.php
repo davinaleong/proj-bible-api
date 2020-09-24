@@ -88,13 +88,13 @@ class TranslationTest extends TestCase
     }
 
     /** @test */
-    public function get_copyright_name()
+    public function get_copyright_text()
     {
         $copyright = Copyright::factory()->create();
         $translation = Translation::factory()->create([
             'copyright_id' => $copyright->id
         ]);
 
-        $this->assertEquals($copyright->name, $translation->getCopyrightName());
+        $this->assertEquals($copyright->text, $translation->getCopyrightText());
     }
 }
