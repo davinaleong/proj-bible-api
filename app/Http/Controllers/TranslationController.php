@@ -92,7 +92,7 @@ class TranslationController extends Controller
         $attributes = request()->validate($this->rules(true, $translation->abbr));
 
         $translation->name = $attributes['name'];
-        $translation->text = $attributes['text'];
+        $translation->abbr = $attributes['abbr'];
         $translation->copyright_id = $attributes['copyright_id'];
         $translation->updated_by = auth()->user()->id;
         $translation->save();
