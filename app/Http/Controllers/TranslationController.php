@@ -69,7 +69,22 @@ class TranslationController extends Controller
 
     public function edit(Translation $translation)
     {
-        //
+        return view('translations.edit', [
+            'breadcrumb' => Breadcrumb::items([
+                [
+                    'label' => 'Translations',
+                    'href' => route('translations.index')
+                ], [
+                    'label' => 'ID: ' . $translation->id,
+                    'href' => route('translations.show', ['translation' => $translation])
+                ], [
+                    'label' => 'Edit',
+                    'active' => true
+                ]
+            ]),
+            'translation' => $translation,
+            'copyrights' => Copyright::orderBy('name')->get()
+        ]);
     }
 
     public function update(Translation $translation)
