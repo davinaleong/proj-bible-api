@@ -146,7 +146,6 @@ class ManageCopyrightsTest extends TestCase
             'text' => $updated_copyright->text,
             'created_by' => $users[0]->id,
             'updated_by' => $users[1]->id
-
         ]);
 
         $this->assertDatabaseHas('logs', [

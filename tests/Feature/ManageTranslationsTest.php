@@ -75,7 +75,6 @@ class ManageTranslationsTest extends TestCase
     /** @test */
     public function user_can_create_a_translation()
     {
-        $this->withoutExceptionHandling();
         $user = User::factory()->create();
         $translation = Translation::factory()->make();
 
@@ -149,6 +148,94 @@ class ManageTranslationsTest extends TestCase
 
         $this->actingAs($user)
             ->post(route('translations.store'), [
+                'name' => $translation->name,
+                'abbr' => $translation->abbr,
+                'copyright_id' => 3
+            ])
+            ->assertSessionHasErrors([
+                'copyright_id' => "The selected copyright id is invalid."
+            ]);
+    }
+
+    /** @test */
+    public function user_can_edit_a_translation()
+    {
+        $users = User::factory()->count(2)->create();
+        $translation = Translation::factory()->create([
+            'created_by' => $users[0]->id
+        ]);
+        $updated_translation = translation::factory()->make();
+
+        $this->actingAs($users[1])
+            ->patch(route('translations.update', ['translation' => $translation]), [
+                'name' => $updated_translation->name,
+                'abbr' => $updated_translation->abbr,
+                'copyright_id' => $translation->copyright_id
+            ])
+            ->assertRedirect(route('translations.show', ['translation' => $translation]))
+            ->assertSessionHas('message', 'Translation updated.');
+
+        $this->assertDatabaseHas('translations', [
+            'name' => $updated_translation->name,
+            'abbr' => $updated_translation->abbr,
+            'copyright_id' => $translation->copyright_id,
+            'created_by' => $users[0]->id,
+            'updated_by' => $users[1]->id
+        ]);
+
+        $this->assertDatabaseHas('logs', [
+            'user_id' => $users[1]->id,
+            'source' => Log::$TABLE_TRANSLATIONS,
+            'source_id' => $translation->id,
+            'message' => 'Translation updated.'
+        ]);
+    }
+
+    /** @test */
+    public function update_translation_throws_error_when_data_criteria_not_met()
+    {
+        $user = User::factory()->create();
+        $translation = Translation::factory()->create();
+
+        $this->actingAs($user)
+            ->post(route('translations.update', ['translation' => $translation]), [
+                'name' => ''
+            ])
+            ->assertSessionHasErrors([
+                'name' => 'The name field is required.'
+            ]);
+
+        $this->actingAs($user)
+            ->post(route('translations.update', ['translation' => $translation]), [
+                'name' => $translation->name,
+                'abbr' => ''
+            ])
+            ->assertSessionHasErrors([
+                'abbr' => 'The abbr field is required.'
+            ]);
+
+        $different_translation = Translation::factory()->create();
+        $this->actingAs($user)
+            ->post(route('translations.update', ['translation' => $translation]), [
+                'name' => $translation->name,
+                'abbr' => $different_translation->abbr
+            ])
+            ->assertSessionHasErrors([
+                'abbr' => 'The abbr has already been taken.'
+            ]);
+
+        $this->actingAs($user)
+            ->post(route('translations.update', ['translation' => $translation]), [
+                'name' => $translation->name,
+                'abbr' => $translation->abbr,
+                'copyright_id' => ''
+            ])
+            ->assertSessionHasErrors([
+                'copyright_id' => 'The copyright id field is required.'
+            ]);
+
+        $this->actingAs($user)
+            ->post(route('translations.update', ['translation' => $translation]), [
                 'name' => $translation->name,
                 'abbr' => $translation->abbr,
                 'copyright_id' => 3

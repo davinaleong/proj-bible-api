@@ -89,7 +89,17 @@ class TranslationController extends Controller
 
     public function update(Translation $translation)
     {
-        //
+        $attributes = request()->validate($this->rules(true, $translation->abbr));
+
+        $translation->name = $attributes['name'];
+        $translation->text = $attributes['text'];
+        $translation->copyright_id = $attributes['copyright_id'];
+        $translation->updated_by = auth()->user()->id;
+        $translation->save();
+
+        return redirect()
+            ->route('translations.show', ['translation' => $translation])
+            ->with('message', 'Translation updated.');
     }
 
     public function destroy(Translation $translation)
@@ -97,13 +107,17 @@ class TranslationController extends Controller
         //
     }
 
-    private function rules($edit = false)
+    private function rules($edit = false, $abbr = '')
     {
         $rules = [
             'name' => 'required',
             'abbr' => 'required|unique:translations,abbr',
             'copyright_id' => 'required|exists:copyrights,id'
         ];
+
+        if ($edit) {
+            $rules['abbr'] = "required|unique:translations,abbr,{$abbr}";
+        }
 
         return $rules;
     }
