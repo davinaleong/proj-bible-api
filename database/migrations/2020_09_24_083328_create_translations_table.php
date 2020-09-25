@@ -16,7 +16,7 @@ class CreateTranslationsTable extends Migration
         Schema::create('translations', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('abbr');
+            $table->string('abbr')->unique();
             $table->foreignId('copyright_id')->constrained('copyrights');
             $table->foreignId('created_by')->nullable()->constrained('users');
             $table->foreignId('updated_by')->nullable()->constrained('users');

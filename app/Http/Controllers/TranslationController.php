@@ -9,11 +9,6 @@ use Illuminate\Http\Request;
 
 class TranslationController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         return view('translations.index', [
@@ -27,11 +22,6 @@ class TranslationController extends Controller
         ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         return view('translations.create', [
@@ -48,12 +38,6 @@ class TranslationController extends Controller
         ]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store()
     {
         $attributes = request()->validate($this->rules());
@@ -67,57 +51,34 @@ class TranslationController extends Controller
             ->with('message', 'Translation created.');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show(Translation $translation)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit(Translation $translation)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Translation $translation)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(Translation $translation)
     {
         //
     }
 
-    private function rules()
+    private function rules($edit = false)
     {
-        return [
+        $rules = [
             'name' => 'required',
-            'abbr' => 'required',
+            'abbr' => 'required|unique:translations,abbr',
             'copyright_id' => 'required|exists:copyrights,id'
         ];
+
+        return $rules;
     }
 }

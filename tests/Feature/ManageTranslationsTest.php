@@ -127,6 +127,16 @@ class ManageTranslationsTest extends TestCase
                 'abbr' => 'The abbr field is required.'
             ]);
 
+        $different_translation = Translation::factory()->create();
+        $this->actingAs($user)
+            ->post(route('translations.store'), [
+                'name' => $translation->name,
+                'abbr' => $different_translation->abbr
+            ])
+            ->assertSessionHasErrors([
+                'abbr' => 'The abbr has already been taken.'
+            ]);
+
         $this->actingAs($user)
             ->post(route('translations.store'), [
                 'name' => $translation->name,
@@ -141,7 +151,7 @@ class ManageTranslationsTest extends TestCase
             ->post(route('translations.store'), [
                 'name' => $translation->name,
                 'abbr' => $translation->abbr,
-                'copyright_id' => 2
+                'copyright_id' => 3
             ])
             ->assertSessionHasErrors([
                 'copyright_id' => "The selected copyright id is invalid."
