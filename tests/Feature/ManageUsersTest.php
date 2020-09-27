@@ -297,7 +297,10 @@ class ManageUsersTest extends TestCase
                 'password' => $different_password,
                 'new_password' => $new_password,
                 'confirm_new_password' => $new_password
-            ])
-            ->assertSessionHasErrors();
+            ]);
+
+        $errors = session('errors');
+        $messages = $errors->getBag('default')->getMessages();
+        $this->assertEquals('Password is incorrect.', $messages[0][0]);
     }
 }

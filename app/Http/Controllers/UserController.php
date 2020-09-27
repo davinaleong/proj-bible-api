@@ -79,7 +79,7 @@ class UserController extends Controller
         if (!Hash::check($password, $user->password)) {
             return redirect()
                 ->route('users.edit', ['user' => $user])
-                ->withErrors('Password is incorrect');
+                ->withErrors('Password is incorrect.');
         }
 
         $user->password = Hash::make($new_password);
