@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('content')
-    <h1>Translations</h1>
+    <h1>Translations <a href="{{ route('translations.create') }}" class="btn btn-primary">Create <i class="fas fa-plus"></i></a></h1>
 
     <div class="row">
         @foreach($translations as $translation)

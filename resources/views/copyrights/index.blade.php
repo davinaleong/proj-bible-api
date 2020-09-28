@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('content')
-    <h1>Copyrights</h1>
+    <h1>Copyrights <a href="{{ route('copyrights.create') }}" class="btn btn-primary">Create <i class="fas fa-plus"></i></a></h1>
 
     <div class="row">
         @foreach($copyrights as $copyright)
