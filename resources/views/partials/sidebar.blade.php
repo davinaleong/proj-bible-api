@@ -13,14 +13,28 @@
 
     <!-- Nav Item - Events Collapse Menu -->
     <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseCopyright" aria-expanded="true" aria-controls="collapseCopyright">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseCopyrights" aria-expanded="true" aria-controls="collapseCopyrights">
             <i class="fas fa-fw fa-copyright"></i>
             <span>Copyrights</span>
         </a>
-        <div id="collapseCopyright" class="collapse" aria-labelledby="headingCopyright" data-parent="#accordionSidebar">
+        <div id="collapseCopyrights" class="collapse" aria-labelledby="headingCopyrights" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item" href="{{ route('copyright.index') }}">Copyrights</a>
-                <a class="collapse-item" href="{{ route('copyright.create') }}">Create</a>
+                <a class="collapse-item" href="{{ route('copyrights.index') }}">Copyrights</a>
+                <a class="collapse-item" href="{{ route('copyrights.create') }}">Create</a>
+            </div>
+        </div>
+    </li>
+
+    <!-- Nav Item - Events Collapse Menu -->
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTranslations" aria-expanded="true" aria-controls="collapseTranslations">
+            <i class="fas fa-fw fa-font"></i>
+            <span>Translations</span>
+        </a>
+        <div id="collapseTranslations" class="collapse" aria-labelledby="headingTranslations" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <a class="collapse-item" href="{{ route('translations.index') }}">Translations</a>
+                <a class="collapse-item" href="{{ route('translations.create') }}">Create</a>
             </div>
         </div>
     </li>

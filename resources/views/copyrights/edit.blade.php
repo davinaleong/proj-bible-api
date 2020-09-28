@@ -3,7 +3,7 @@
 @section('content')
     <div class="card shadow">
         <div class="card-body">
-            <form method="post" action="{{ route('copyright.update', ['copyright' => $copyright]) }}">
+            <form method="post" action="{{ route('copyrights.update', ['copyright' => $copyright]) }}">
                 @csrf
                 @method('PATCH')
 
@@ -36,7 +36,7 @@
 
                 <p class="text-danger">* required</p>
                 <button type="submit" class="btn btn-primary">Submit <i class="fas fa-check"></i></button>
-                <a href="{{ route('copyright.show', ['copyright' => $copyright]) }}" class="btn btn-outline-secondary">Cancel <i class="fas fa-ban"></i></a>
+                <a href="{{ route('copyrights.show', ['copyright' => $copyright]) }}" class="btn btn-outline-secondary">Cancel <i class="fas fa-ban"></i></a>
             </form>
         </div>
     </div>

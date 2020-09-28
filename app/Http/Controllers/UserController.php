@@ -17,7 +17,7 @@ class UserController extends Controller
                 ->with('message', 'You can only view your own profile.');
         }
 
-        return view('user.show', [
+        return view('users.show', [
             'breadcrumb' => Breadcrumb::items([
                 [
                     'label' => 'Profile',
@@ -36,11 +36,11 @@ class UserController extends Controller
                 ->with('message', 'You can only edit your own profile.');
         }
 
-        return view('user.edit', [
+        return view('users.edit', [
             'breadcrumb' => Breadcrumb::items([
                 [
                     'label' => 'Profile',
-                    'href' => route('user.show', ['user' => $user])
+                    'href' => route('users.show', ['user' => $user])
                 ], [
                     'label' => 'Edit',
                     'active' => true
@@ -59,12 +59,12 @@ class UserController extends Controller
         $user->name = $name;
         if ($user->save()) {
             return redirect()
-                ->route('user.show', ['user' => $user])
+                ->route('users.show', ['user' => $user])
                 ->with('message', 'Profile updated.');
         }
 
         return redirect()
-            ->route('user.show', ['user' => $user])
+            ->route('users.show', ['user' => $user])
             ->withErrors('Unable to update profile.');
     }
 
@@ -78,19 +78,19 @@ class UserController extends Controller
 
         if (!Hash::check($password, $user->password)) {
             return redirect()
-                ->route('user.edit', ['user' => $user])
-                ->withErrors('Password is incorrect');
+                ->route('users.edit', ['user' => $user])
+                ->withErrors('Password is incorrect.');
         }
 
         $user->password = Hash::make($new_password);
         if ($user->save()) {
             return redirect()
-                ->route('user.show', ['user' => $user])
+                ->route('users.show', ['user' => $user])
                 ->with('message', 'Password changed.');
         }
 
         return redirect()
-            ->route('user.show', ['user' => $user])
+            ->route('users.show', ['user' => $user])
             ->withErrors('Unable to change password.');
     }
 }
