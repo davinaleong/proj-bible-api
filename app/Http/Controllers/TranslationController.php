@@ -104,7 +104,11 @@ class TranslationController extends Controller
 
     public function destroy(Translation $translation)
     {
-        //
+        $translation->delete();
+
+        return redirect()
+            ->route('translations.index')
+            ->with('message', 'Translation deleted.');
     }
 
     private function rules($edit = false, $abbr = '')

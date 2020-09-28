@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Events\TranslationCreated;
+use App\Events\TranslationDeleted;
 use App\Events\TranslationUpdated;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -21,7 +22,8 @@ class Translation extends Model
 
     protected $dispatchesEvents = [
         'created' => TranslationCreated::class,
-        'updated' => TranslationUpdated::class
+        'updated' => TranslationUpdated::class,
+        'deleted' => TranslationDeleted::class
     ];
 
     public function copyright()

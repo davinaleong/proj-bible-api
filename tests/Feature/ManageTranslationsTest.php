@@ -244,4 +244,25 @@ class ManageTranslationsTest extends TestCase
                 'copyright_id' => "The selected copyright id is invalid."
             ]);
     }
+
+    /** @test */
+    public function user_can_delete_a_translation()
+    {
+        $user = User::factory()->create();
+        $translation = Translation::factory()->create();
+
+        $this->actingAs($user)
+            ->delete(route('translations.destroy', ['translation' => $translation]))
+            ->assertRedirect(route('translations.index'))
+            ->assertSessionHas('message', 'Translation deleted.');
+
+        $this->assertDatabaseMissing('translations', $translation->jsonSerialize());
+
+        $this->assertDatabaseHas('logs', [
+            'user_id' => $user->id,
+            'source' => Log::$TABLE_TRANSLATIONS,
+            'source_id' => $translation->id,
+            'message' => 'Translation deleted.'
+        ]);
+    }
 }
