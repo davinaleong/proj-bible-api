@@ -16,31 +16,31 @@ class ManageCopyrightsTest extends TestCase
     /** @test */
     public function guest_cannot_access_routes()
     {
-        $this->get(route('copyright.index'))
+        $this->get(route('copyrights.index'))
             ->assertStatus(302)
             ->assertRedirect('login');
 
-        $this->get(route('copyright.create'))
+        $this->get(route('copyrights.create'))
             ->assertStatus(302)
             ->assertRedirect('login');
 
-        $this->post(route('copyright.store'))
+        $this->post(route('copyrights.store'))
             ->assertStatus(302)
             ->assertRedirect('login');
 
-        $this->get(route('copyright.show', ['copyright' => 1]))
+        $this->get(route('copyrights.show', ['copyright' => 1]))
             ->assertStatus(302)
             ->assertRedirect('login');
 
-        $this->get(route('copyright.edit', ['copyright' => 1]))
+        $this->get(route('copyrights.edit', ['copyright' => 1]))
             ->assertStatus(302)
             ->assertRedirect('login');
 
-        $this->patch(route('copyright.update', ['copyright' => 1]))
+        $this->patch(route('copyrights.update', ['copyright' => 1]))
             ->assertStatus(302)
             ->assertRedirect('login');
 
-        $this->delete(route('copyright.destroy', ['copyright' => 1]))
+        $this->delete(route('copyrights.destroy', ['copyright' => 1]))
             ->assertStatus(302)
             ->assertRedirect('login');
     }
@@ -51,11 +51,11 @@ class ManageCopyrightsTest extends TestCase
         $user = User::factory()->create();
 
         $this->actingAs($user)
-            ->get(route('copyright.index'))
+            ->get(route('copyrights.index'))
             ->assertOk();
 
         $this->actingAs($user)
-            ->get(route('copyright.create'))
+            ->get(route('copyrights.create'))
             ->assertOk();
 
         $copyright = Copyright::factory()->create([
@@ -63,11 +63,11 @@ class ManageCopyrightsTest extends TestCase
             'updated_by' => $user->id
         ]);
         $this->actingAs($user)
-            ->get(route('copyright.show', ['copyright' => $copyright]))
+            ->get(route('copyrights.show', ['copyright' => $copyright]))
             ->assertOk();
 
         $this->actingAs($user)
-            ->get(route('copyright.edit', ['copyright' => $copyright]))
+            ->get(route('copyrights.edit', ['copyright' => $copyright]))
             ->assertOk();
     }
 
@@ -78,11 +78,11 @@ class ManageCopyrightsTest extends TestCase
         $copyright = Copyright::factory()->make();
 
         $this->actingAs($user)
-            ->post(route('copyright.store'), [
+            ->post(route('copyrights.store'), [
                 'name' => $copyright->name,
                 'text' => $copyright->text
             ])
-            ->assertRedirect(route('copyright.show', ['copyright' => 1]))
+            ->assertRedirect(route('copyrights.show', ['copyright' => 1]))
             ->assertSessionHas('message', 'Copyright created.');
 
         $this->assertDatabaseHas('copyrights', [
@@ -107,7 +107,7 @@ class ManageCopyrightsTest extends TestCase
         $copyright = Copyright::factory()->make();
 
         $this->actingAs($user)
-            ->post(route('copyright.store'), [
+            ->post(route('copyrights.store'), [
                 'name' => ''
             ])
             ->assertSessionHasErrors([
@@ -115,7 +115,7 @@ class ManageCopyrightsTest extends TestCase
             ]);
 
         $this->actingAs($user)
-            ->post(route('copyright.store'), [
+            ->post(route('copyrights.store'), [
                 'name' => $copyright->name,
                 'text' => ''
             ])
@@ -134,11 +134,11 @@ class ManageCopyrightsTest extends TestCase
         $updated_copyright = Copyright::factory()->make();
 
         $this->actingAs($users[1])
-            ->patch(route('copyright.update', ['copyright' => $copyright]), [
+            ->patch(route('copyrights.update', ['copyright' => $copyright]), [
                 'name' => $updated_copyright->name,
                 'text' => $updated_copyright->text
             ])
-            ->assertRedirect(route('copyright.show', ['copyright' => $copyright]))
+            ->assertRedirect(route('copyrights.show', ['copyright' => $copyright]))
             ->assertSessionHas('message', 'Copyright updated.');
 
         $this->assertDatabaseHas('copyrights', [
@@ -146,7 +146,6 @@ class ManageCopyrightsTest extends TestCase
             'text' => $updated_copyright->text,
             'created_by' => $users[0]->id,
             'updated_by' => $users[1]->id
-
         ]);
 
         $this->assertDatabaseHas('logs', [
@@ -165,7 +164,7 @@ class ManageCopyrightsTest extends TestCase
         $updated_copyright = Copyright::factory()->make();
 
         $this->actingAs($user)
-            ->patch(route('copyright.update', ['copyright' => $copyright]), [
+            ->patch(route('copyrights.update', ['copyright' => $copyright]), [
                 'name' => ''
             ])
             ->assertSessionHasErrors([
@@ -173,7 +172,7 @@ class ManageCopyrightsTest extends TestCase
             ]);
 
         $this->actingAs($user)
-            ->patch(route('copyright.update', ['copyright' => $copyright]), [
+            ->patch(route('copyrights.update', ['copyright' => $copyright]), [
                 'name' => $updated_copyright->name,
                 'text' => ''
             ])
@@ -189,8 +188,8 @@ class ManageCopyrightsTest extends TestCase
         $copyright = Copyright::factory()->create();
 
         $this->actingAs($user)
-            ->delete(route('copyright.destroy', ['copyright' => $copyright]))
-            ->assertRedirect(route('copyright.index'))
+            ->delete(route('copyrights.destroy', ['copyright' => $copyright]))
+            ->assertRedirect(route('copyrights.index'))
             ->assertSessionHas('message', 'Copyright deleted.');
 
         $this->assertDatabaseMissing('copyrights', $copyright->jsonSerialize());

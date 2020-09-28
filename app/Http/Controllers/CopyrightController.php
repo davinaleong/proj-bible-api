@@ -10,7 +10,7 @@ class CopyrightController extends Controller
 {
     public function index()
     {
-        return view('copyright.index', [
+        return view('copyrights.index', [
             'breadcrumb' => Breadcrumb::items([
                 [
                     'label' => 'Copyrights',
@@ -23,11 +23,11 @@ class CopyrightController extends Controller
 
     public function create()
     {
-        return view('copyright.create', [
+        return view('copyrights.create', [
             'breadcrumb' => Breadcrumb::items([
                 [
                     'label' => 'Copyrights',
-                    'href' => route('copyright.index')
+                    'href' => route('copyrights.index')
                 ], [
                     'label' => 'Create',
                     'active' => true
@@ -45,17 +45,17 @@ class CopyrightController extends Controller
         $copyright = Copyright::create($attributes);
 
         return redirect()
-            ->route('copyright.show', ['copyright' => $copyright])
+            ->route('copyrights.show', ['copyright' => $copyright])
             ->with('message', 'Copyright created.');
     }
 
     public function show(Copyright $copyright)
     {
-        return view('copyright.show', [
+        return view('copyrights.show', [
             'breadcrumb' => Breadcrumb::items([
                 [
                     'label' => 'Copyrights',
-                    'href' => route('copyright.index')
+                    'href' => route('copyrights.index')
                 ], [
                     'label' => 'ID: ' . $copyright->id,
                     'active' => true
@@ -67,14 +67,14 @@ class CopyrightController extends Controller
 
     public function edit(Copyright $copyright)
     {
-        return view('copyright.edit', [
+        return view('copyrights.edit', [
             'breadcrumb' => Breadcrumb::items([
                 [
                     'label' => 'Copyrights',
-                    'href' => route('copyright.index')
+                    'href' => route('copyrights.index')
                 ], [
                     'label' => 'ID: ' . $copyright->id,
-                    'href' => route('copyright.show', ['copyright' => $copyright])
+                    'href' => route('copyrights.show', ['copyright' => $copyright])
                 ], [
                     'label' => 'Edit',
                     'active' => true
@@ -94,7 +94,7 @@ class CopyrightController extends Controller
         $copyright->save();
 
         return redirect()
-            ->route('copyright.show', ['copyright' => $copyright])
+            ->route('copyrights.show', ['copyright' => $copyright])
             ->with('message', 'Copyright updated.');
     }
 
@@ -103,7 +103,7 @@ class CopyrightController extends Controller
         $copyright->delete();
 
         return redirect()
-            ->route('copyright.index')
+            ->route('copyrights.index')
             ->with('message', 'Copyright deleted.');
     }
 

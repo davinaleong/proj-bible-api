@@ -2,28 +2,34 @@
 
 namespace App\Models;
 
-use App\Events\CopyrightCreated;
-use App\Events\CopyrightDeleted;
-use App\Events\CopyrightUpdated;
+use App\Events\TranslationCreated;
+use App\Events\TranslationDeleted;
+use App\Events\TranslationUpdated;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Copyright extends Model
+class Translation extends Model
 {
     use HasFactory;
 
     protected $fillable = [
         'name',
-        'text',
+        'abbr',
+        'copyright_id',
         'created_by',
         'updated_by'
     ];
 
     protected $dispatchesEvents = [
-        'created' => CopyrightCreated::class,
-        'updated' => CopyrightUpdated::class,
-        'deleted' => CopyrightDeleted::class
+        'created' => TranslationCreated::class,
+        'updated' => TranslationUpdated::class,
+        'deleted' => TranslationDeleted::class
     ];
+
+    public function copyright()
+    {
+        return $this->belongsTo('App\Models\Copyright');
+    }
 
     public function creator()
     {
@@ -35,9 +41,9 @@ class Copyright extends Model
         return $this->belongsTo('App\Models\User', 'updated_by');
     }
 
-    public function translations()
+    public function getCopyrightText()
     {
-        return $this->hasMany('App\Models\Translation');
+        return $this->copyright ? $this->copyright->text : '';
     }
 
     public function getCreatorName()
