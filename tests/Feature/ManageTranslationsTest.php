@@ -198,7 +198,7 @@ class ManageTranslationsTest extends TestCase
         $translation = Translation::factory()->create();
 
         $this->actingAs($user)
-            ->post(route('translations.update', ['translation' => $translation]), [
+            ->patch(route('translations.update', ['translation' => $translation]), [
                 'name' => ''
             ])
             ->assertSessionHasErrors([
@@ -206,7 +206,7 @@ class ManageTranslationsTest extends TestCase
             ]);
 
         $this->actingAs($user)
-            ->post(route('translations.update', ['translation' => $translation]), [
+            ->patch(route('translations.update', ['translation' => $translation]), [
                 'name' => $translation->name,
                 'abbr' => ''
             ])
@@ -216,7 +216,7 @@ class ManageTranslationsTest extends TestCase
 
         $different_translation = Translation::factory()->create();
         $this->actingAs($user)
-            ->post(route('translations.update', ['translation' => $translation]), [
+            ->patch(route('translations.update', ['translation' => $translation]), [
                 'name' => $translation->name,
                 'abbr' => $different_translation->abbr
             ])
@@ -225,7 +225,7 @@ class ManageTranslationsTest extends TestCase
             ]);
 
         $this->actingAs($user)
-            ->post(route('translations.update', ['translation' => $translation]), [
+            ->patch(route('translations.update', ['translation' => $translation]), [
                 'name' => $translation->name,
                 'abbr' => $translation->abbr,
                 'copyright_id' => ''
@@ -235,7 +235,7 @@ class ManageTranslationsTest extends TestCase
             ]);
 
         $this->actingAs($user)
-            ->post(route('translations.update', ['translation' => $translation]), [
+            ->patch(route('translations.update', ['translation' => $translation]), [
                 'name' => $translation->name,
                 'abbr' => $translation->abbr,
                 'copyright_id' => 3
