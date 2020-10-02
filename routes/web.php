@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CopyrightController;
 use App\Http\Controllers\TranslationController;
+use App\Http\Controllers\BookController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,6 +39,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function() {
     Route::patch('/users/{user}/change-password', [UserController::class, 'changePassword'])->name('users.change-password');
 
     Route::resource('copyrights', CopyrightController::class);
-
     Route::resource('translations', TranslationController::class);
+
+    Route::get('/translations/{translation}/books', [BookController::class, 'index'])->name('books.index');
 });
