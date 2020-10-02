@@ -2,12 +2,19 @@
 
 namespace App\Models;
 
+use App\Events\BookCreated;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Book extends Model
 {
     use HasFactory;
+
+    protected $fillable = ['translation_id', 'name', 'abbr', 'number', 'chapter_limit', 'created_by', 'updated_by'];
+
+    protected $dispatchesEvents = [
+        'created' => BookCreated::class
+    ];
 
     public function translation()
     {

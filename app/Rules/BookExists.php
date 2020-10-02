@@ -50,6 +50,6 @@ class BookExists implements Rule
      */
     public function message()
     {
-        return 'The :name book for current translation already exists.';
+        return ':attribute: book for current translation already exists.';
     }
 }
