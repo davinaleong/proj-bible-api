@@ -40,7 +40,7 @@
                     <div class="modal-body">
                         @csrf
                         @method('DELETE')
-                        Are you sure?
+                        Are you sure? This will delete all books, chapters and verses associated with this translation.
                         <br>This action cannot be undone
                     </div>
                     <div class="modal-footer">
