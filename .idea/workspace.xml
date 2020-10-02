@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="aea7a033-8388-4a34-8811-e03be647dd13" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/app/Models/Log.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Log.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/users/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/users/show.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Unit/LogTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Unit/LogTest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -20,11 +19,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/routes/web.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="43" selection-start-line="43" selection-end-line="43" />
+            <state relative-caret-position="145">
+              <caret line="33" lean-forward="true" selection-start-line="33" selection-end-line="33" />
               <folding>
                 <element signature="e#7#44#0#PHP" expanded="true" />
               </folding>
@@ -44,7 +43,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/users/show.blade.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="295">
@@ -91,10 +90,13 @@
       <find>users.show</find>
       <find>copyright.</find>
       <find>user.</find>
+      <find>users`</find>
+      <find>profile</find>
     </findStrings>
     <replaceStrings>
       <replace>copyrights.</replace>
       <replace>users.</replace>
+      <replace>users</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -126,7 +128,6 @@
         <option value="$PROJECT_DIR$/database/factories/TranslationFactory.php" />
         <option value="$PROJECT_DIR$/tests/Unit/CopyrightTest.php" />
         <option value="$PROJECT_DIR$/app/Models/Copyright.php" />
-        <option value="$PROJECT_DIR$/routes/web.php" />
         <option value="$PROJECT_DIR$/tests/Unit/TranslationTest.php" />
         <option value="$PROJECT_DIR$/resources/views/partials/sidebar.blade.php" />
         <option value="$PROJECT_DIR$/app/Events/CreateTranslation.php" />
@@ -154,6 +155,7 @@
         <option value="$PROJECT_DIR$/app/Models/Log.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/UserController.php" />
         <option value="$PROJECT_DIR$/resources/views/users/show.blade.php" />
+        <option value="$PROJECT_DIR$/routes/web.php" />
       </list>
     </option>
   </component>
@@ -399,7 +401,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="67369000" />
+    <option name="totallyTimeSpent" value="67420000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="28" y="39" width="1400" height="768" extended-state="0" />
@@ -790,16 +792,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/web.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="43" selection-start-line="43" selection-end-line="43" />
-          <folding>
-            <element signature="e#7#44#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tests/Unit/UserTest.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="233">
@@ -845,6 +837,16 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="295">
           <caret line="37" column="42" selection-start-line="37" selection-start-column="42" selection-end-line="37" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/web.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="145">
+          <caret line="33" lean-forward="true" selection-start-line="33" selection-end-line="33" />
+          <folding>
+            <element signature="e#7#44#0#PHP" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

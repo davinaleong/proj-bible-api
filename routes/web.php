@@ -32,10 +32,10 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function() {
         ]);
     })->name('dashboard');
 
-    Route::get('/profile/{user}', [UserController::class, 'show'])->name('users.show');
-    Route::get('/profile/{user}/edit', [UserController::class, 'edit'])->name('users.edit');
-    Route::patch('/profile/{user}', [UserController::class, 'update'])->name('users.update');
-    Route::patch('/profile/{user}/change-password', [UserController::class, 'changePassword'])->name('users.change-password');
+    Route::get('/users/{user}', [UserController::class, 'show'])->name('users.show');
+    Route::get('/users/{user}/edit', [UserController::class, 'edit'])->name('users.edit');
+    Route::patch('/users/{user}', [UserController::class, 'update'])->name('users.update');
+    Route::patch('/users/{user}/change-password', [UserController::class, 'changePassword'])->name('users.change-password');
 
     Route::resource('copyrights', CopyrightController::class);
 
