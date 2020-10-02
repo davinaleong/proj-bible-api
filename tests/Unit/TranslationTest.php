@@ -45,7 +45,7 @@ class TranslationTest extends TestCase
     }
 
     /** @test */
-    public function has_a_updater()
+    public function has_an_updater()
     {
         $user = User::factory()->create();
         $translation = Translation::factory()->create([
