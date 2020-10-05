@@ -30,6 +30,9 @@
         <div class="card-header">
             <h2 class="h5 card-title">
                 Books ({{ $translation->books->count() }})
+                <a href="{{ route('books.create', ['translation' => $translation]) }}" class="btn btn-primary">
+                    Create <i class="fas fa-plus"></i>
+                </a>
             </h2>
         </div>
         <div class="card-body">
