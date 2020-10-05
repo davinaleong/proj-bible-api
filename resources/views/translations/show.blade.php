@@ -3,7 +3,7 @@
 @section('content')
     <h1>Translations</h1>
 
-    <div class="card shadow">
+    <div class="card shadow mb-3">
         <div class="card-header">
             <h2 class="h5 card-title">{{ $translation->name }}</h2>
         </div>
@@ -23,6 +23,25 @@
             <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">
                 Delete <i class="fas fa-trash-alt"></i>
             </button>
+        </div>
+    </div>
+
+    <div class="card shadow">
+        <div class="card-header">
+            <h2 class="h5 card-title">
+                Books ({{ $translation->books->count() }})
+            </h2>
+        </div>
+        <div class="card-body">
+            @foreach($translation->books as $book)
+                <div class="card card-hover" onclick="goto('{{ route('books.show', ['translation' => $translation, 'book' => $book]) }}')">
+                    <div class="card-body">
+                        <h3>{{ $book->name }} ({{ $book->abbr }})</h3>
+                        <p>Creator: {{ $book->getCreatorName() }}</p>
+                        <p>Updater: {{ $book->getUpdaterName() }}</p>
+                    </div>
+                </div>
+            @endforeach
         </div>
     </div>
 
