@@ -1,11 +1,11 @@
 @extends('layouts.admin')
 
 @section('content')
-    <h1>Translations</h1>
+    <h1>{{ $translation->name }}</h1>
 
     <div class="card shadow mb-3">
         <div class="card-header">
-            <h2 class="h5 card-title">{{ $translation->name }}</h2>
+            <h2 class="h5 card-title">Other Details</h2>
         </div>
         <div class="card-body">
             <p>Abbr: {{ $translation->abbr }}</p>
@@ -38,15 +38,45 @@
             </h2>
         </div>
         <div class="card-body">
-            @foreach($translation->books as $book)
-                <div class="card card-hover" onclick="goto('{{ route('books.show', ['translation' => $translation, 'book' => $book]) }}')">
-                    <div class="card-body">
-                        <h3>{{ $book->name }} ({{ $book->abbr }})</h3>
-                        <p>Creator: {{ $book->getCreatorName() }}</p>
-                        <p>Updater: {{ $book->getUpdaterName() }}</p>
-                    </div>
-                </div>
-            @endforeach
+            <div class="table-responsive">
+                <table id="table" class="table table-bordered table-hover" width="100%" cellspacing="0">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Abbr</th>
+                        <th>Number</th>
+                        <th>Chapter Limit</th>
+                        <th>Creator</th>
+                        <th>Updater</th>
+                    </tr>
+                    </thead>
+                    <tfoot>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Abbr</th>
+                        <th>Number</th>
+                        <th>Chapter Limit</th>
+                        <th>Creator</th>
+                        <th>Updater</th>
+                    </tr>
+                    </tfoot>
+                    <tbody>
+                    @foreach($translation->books as $book)
+                        <tr class="clickable" onclick="goto('{{ route('books.show', ['translation' => $translation, 'book' => $book]) }}')">
+                            <td>{{ $book->id }}</td>
+                            <td>{{ $book->name }}</td>
+                            <td>{{ $book->abbr }}</td>
+                            <td>{{ $book->number }}</td>
+                            <td>{{ $book->chapter_limit }}</td>
+                            <td>{{ $book->getCreatorName() }}</td>
+                            <td>{{ $book->getUpdaterName() }}</td>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 
@@ -79,4 +109,12 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('scripts')
+    <script>
+        $(document).ready(function() {
+            $('#table').DataTable();
+        });
+    </script>
 @endsection

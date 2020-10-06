@@ -46,7 +46,22 @@ class BookController extends Controller
 
     public function show(Translation $translation, Book $book)
     {
-        //
+        return view('books.show', [
+            'breadcrumb' => Breadcrumb::items([
+                [
+                    'label' => 'Translations',
+                    'href' => route('translations.index')
+                ], [
+                    'label' => 'ID: ' . $translation->id,
+                    'href' => route('translations.show', ['translation' => $translation])
+                ], [
+                    'label' => 'Book ID: ' . $book->id,
+                    'active' => true
+                ]
+            ]),
+            'translation' => $translation,
+            'book' => $book
+        ]);
     }
 
     public function showBook(Book $book)
