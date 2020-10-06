@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Book;
 use App\Models\Translation;
+use App\Rules\BookAbbrExists;
 use App\Rules\BookNameExists;
+use App\Rules\BookNumberExists;
 use Illuminate\Http\Request;
 
 class BookController extends Controller
@@ -47,9 +49,9 @@ class BookController extends Controller
     {
         return [
             'name' => ['required', 'string', new BookNameExists($translation, $book)],
-            'abbr' => 'required',
-            'number' => 'required|integer|min:1',
-            'chapter_limit' => 'required|integer|min:0'
+            'abbr' => ['required', 'string', new BookAbbrExists($translation, $book)],
+            'number' => ['required', 'integer', 'min:1', new BookNumberExists($translation, $book)],
+            'chapter_limit' => 'required|integer|min:1'
         ];
     }
 }

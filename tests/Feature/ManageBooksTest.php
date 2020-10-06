@@ -177,24 +177,61 @@ class ManageBooksTest extends TestCase
             ->post(route('books.store', ['translation' => $translation]), [
                 'name' => $book->name,
                 'abbr' => $book->abbr,
+                'number' => $book->number,
                 'chapter_limit' => ''
             ])
             ->assertSessionHasErrors([
                 'chapter_limit' => 'The chapter limit field is required.'
             ]);
 
-        $book = Book::factory()->create([
-            'translation_id' => $translation->id
-        ]);
         $this->actingAs($user)
             ->post(route('books.store', ['translation' => $translation]), [
                 'name' => $book->name,
                 'abbr' => $book->abbr,
                 'number' => $book->number,
+                'chapter_limit' => 0
+            ])
+            ->assertSessionHasErrors([
+                'chapter_limit' => 'The chapter limit must be at least 1.'
+            ]);
+
+        $book2 = Book::factory()->create([
+            'translation_id' => $translation->id,
+            'name' => 'Book2',
+            'abbr' => 'Bk2',
+            'number' => 2
+        ]);
+        $this->actingAs($user)
+            ->post(route('books.store', ['translation' => $translation]), [
+                'name' => $book2->name,
+                'abbr' => $book->abbr,
+                'number' => $book->number,
                 'chapter_limit' => $book->chapter_limit
             ])
             ->assertSessionHasErrors([
-                'name' => "name: book for current translation already exists."
+                'name' => "The name of the book exists for the current translation.",
+            ]);
+
+        $this->actingAs($user)
+            ->post(route('books.store', ['translation' => $translation]), [
+                'name' => $book->name,
+                'abbr' => $book2->abbr,
+                'number' => $book->number,
+                'chapter_limit' => $book->chapter_limit
+            ])
+            ->assertSessionHasErrors([
+                'abbr' => "The abbr of the book exists for the current translation.",
+            ]);
+
+        $this->actingAs($user)
+            ->post(route('books.store', ['translation' => $translation]), [
+                'name' => $book->name,
+                'abbr' => $book->abbr,
+                'number' => $book2->number,
+                'chapter_limit' => $book->chapter_limit
+            ])
+            ->assertSessionHasErrors([
+                'number' => "The number of the book exists for the current translation.",
             ]);
     }
 }
