@@ -6,7 +6,7 @@ use App\Models\Book;
 use App\Models\Translation;
 use Illuminate\Contracts\Validation\Rule;
 
-class BookExists implements Rule
+class BookNameExists implements Rule
 {
     public $translation;
     public $book;

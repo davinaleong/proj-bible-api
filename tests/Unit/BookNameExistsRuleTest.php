@@ -4,11 +4,11 @@ namespace Tests\Unit;
 
 use App\Models\Book;
 use App\Models\Translation;
-use App\Rules\BookExists;
+use App\Rules\BookNameExists;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
-class BookExistsRuleTest extends TestCase
+class BookNameExistsRuleTest extends TestCase
 {
     use RefreshDatabase;
 
@@ -16,7 +16,7 @@ class BookExistsRuleTest extends TestCase
     public function rule_passes_when_no_book_of_translation_exists()
     {
         $translation = Translation::factory()->create();
-        $rule = new BookExists($translation);
+        $rule = new BookNameExists($translation);
         $this->assertTrue($rule->passes('name', 'Book'));
     }
 
@@ -28,7 +28,7 @@ class BookExistsRuleTest extends TestCase
             'translation_id' => $translations[1],
             'name' => 'Book'
         ]);
-        $rule = new BookExists($translations[0]);
+        $rule = new BookNameExists($translations[0]);
         $this->assertTrue($rule->passes('name', $book->name));
     }
 
@@ -40,7 +40,7 @@ class BookExistsRuleTest extends TestCase
             'translation_id' => $translation,
             'name' => 'Book'
         ]);
-        $rule = new BookExists($translation);
+        $rule = new BookNameExists($translation);
         $this->assertFalse($rule->passes('name', $book->name));
     }
 
@@ -52,7 +52,7 @@ class BookExistsRuleTest extends TestCase
             'translation_id' => $translation,
             'name' => 'Book'
         ]);
-        $rule = new BookExists($translation, $book);
+        $rule = new BookNameExists($translation, $book);
         $this->assertTrue($rule->passes('name', $book->name));
     }
 }
