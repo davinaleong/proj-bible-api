@@ -85,7 +85,6 @@ class ManageBooksTest extends TestCase
     /** @test */
     public function user_can_create_book()
     {
-        $this->withoutExceptionHandling();
         $user = User::factory()->create();
         $translation = Translation::factory()->create();
         $book = Book::factory()->make([
