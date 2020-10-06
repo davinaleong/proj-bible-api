@@ -36,7 +36,7 @@ class BookNameExists implements Rule
             'name' => $value
         ])->get();
 
-        if (filled($this->book) && filled($book)) {
+        if (filled($this->book) && filled($book[0]) && filled($book)) {
             return $this->book->id === $book[0]->id;
         }
 
@@ -50,6 +50,6 @@ class BookNameExists implements Rule
      */
     public function message()
     {
-        return ':attribute: book for current translation already exists.';
+        return 'The :attribute of the book exists for the current translation.';
     }
 }

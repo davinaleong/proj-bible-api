@@ -36,7 +36,7 @@ class BookAbbrExists implements Rule
             'abbr' => $value
         ])->get();
 
-        if (filled($this->book) && filled($book)) {
+        if (filled($this->book) && filled($book[0]) && filled($book)) {
             return $this->book->id === $book[0]->id;
         }
 
@@ -50,6 +50,6 @@ class BookAbbrExists implements Rule
      */
     public function message()
     {
-        return 'The validation error message.';
+        return 'The :attribute of the book exists for the current translation.';
     }
 }
