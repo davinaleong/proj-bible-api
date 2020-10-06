@@ -50,7 +50,7 @@ class BookController extends Controller
         return [
             'name' => ['required', 'string', new BookNameExists($translation, $book)],
             'abbr' => ['required', 'string', new BookAbbrExists($translation, $book)],
-            'number' => ['required', 'integer', 'min:1', new BookNumberExists($translation, $book)],
+            'number' => ['required', 'integer', 'min:1', 'max:66', new BookNumberExists($translation, $book)],
             'chapter_limit' => 'required|integer|min:1'
         ];
     }

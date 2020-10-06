@@ -177,6 +177,16 @@ class ManageBooksTest extends TestCase
             ->post(route('books.store', ['translation' => $translation]), [
                 'name' => $book->name,
                 'abbr' => $book->abbr,
+                'number' => 67
+            ])
+            ->assertSessionHasErrors([
+                'number' => 'The number may not be greater than 66.'
+            ]);
+
+        $this->actingAs($user)
+            ->post(route('books.store', ['translation' => $translation]), [
+                'name' => $book->name,
+                'abbr' => $book->abbr,
                 'number' => $book->number,
                 'chapter_limit' => ''
             ])
