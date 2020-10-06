@@ -59,8 +59,9 @@
                     <div class="modal-body">
                         @csrf
                         @method('DELETE')
-                        Are you sure? This will delete all chapters and verses associated with this book.
-                        <br>This action cannot be undone
+                        Are you sure?
+                        <br>This will delete <strong>ALL</strong> chapters and verses associated with this book.
+                        <br><span class="text-danger">This action cannot be undone.</span>
                     </div>
                     <div class="modal-footer">
                         <button class="btn btn-outline-secondary" type="button" data-dismiss="modal">
