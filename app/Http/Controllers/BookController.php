@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Book;
+use App\Models\Breadcrumb;
 use App\Models\Translation;
 use App\Rules\BookAbbrExists;
 use App\Rules\BookNameExists;
@@ -13,7 +14,21 @@ class BookController extends Controller
 {
     public function create(Translation $translation)
     {
-        //
+        return view('books.create', [
+            'breadcrumb' => Breadcrumb::items([
+                [
+                    'label' => 'Translations',
+                    'href' => route('translations.index')
+                ], [
+                    'label' => 'ID: ' . $translation->id,
+                    'href' => route('translations.show', ['translation' => $translation])
+                ], [
+                    'label' => 'Create Book',
+                    'active' => true
+                ]
+            ]),
+            'translation' => $translation
+        ]);
     }
 
     public function store(Translation $translation)
