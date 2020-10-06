@@ -56,7 +56,7 @@
             <div class="modal-content">
                 <form method="post" action="{{ route('translations.destroy', ['translation' => $translation]) }}">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Delete User</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">Delete Translation</h5>
                         <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">×</span>
                         </button>
