@@ -8,7 +8,7 @@ use App\Rules\BookNameExists;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
-class BookNameExistsRuleTest extends TestCase
+class BookNameExistsTest extends TestCase
 {
     use RefreshDatabase;
 
