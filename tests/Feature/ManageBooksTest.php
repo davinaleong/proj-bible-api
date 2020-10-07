@@ -83,7 +83,7 @@ class ManageBooksTest extends TestCase
     }
 
     /** @test */
-    public function user_can_create_book()
+    public function user_can_create_a_book()
     {
         $user = User::factory()->create();
         $translation = Translation::factory()->create();
