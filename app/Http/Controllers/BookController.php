@@ -72,12 +72,35 @@ class BookController extends Controller
 
     public function edit(Translation $translation, Book $book)
     {
-        //
+        return view('books.edit', [
+            'breadcrumb' => Breadcrumb::items([
+                [
+                    'label' => 'Translations',
+                    'href' => route('translations.index')
+                ], [
+                    'label' => 'ID: ' . $translation->id,
+                    'href' => route('translations.show', ['translation' => $translation])
+                ], [
+                    'label' => 'Book ID: ' . $book->id,
+                    'href' => route('books.show', ['translation' => $translation, 'book' => $book])
+                ], [
+                    'label' => 'Edit',
+                    'active' => true
+                ]
+            ]),
+            'translation' => $translation,
+            'book' => $book
+        ]);
     }
 
     public function update(Translation $translation, Book $book)
     {
-        $attributes = request()->validate($this->rules($translation, $book));
+        $attributes = request()->validate([
+            'name' => ['required', 'string', new BookNameExists($translation, $book)],
+            'abbr' => ['required', 'string', new BookAbbrExists($translation, $book)],
+            'number' => ['required', 'integer', 'min:1', 'max:66', new BookNumberExists($translation, $book)],
+            'chapter_limit' => 'required|integer|min:1'
+        ]);
         $attributes['translation_id'] = $translation->id;
         $attributes['updated_by'] = auth()->user()->id;
 

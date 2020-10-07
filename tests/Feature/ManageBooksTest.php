@@ -334,7 +334,6 @@ class ManageBooksTest extends TestCase
             ->assertSessionHasErrors([
                 'number' => 'The number must be an integer.'
             ]);
-        dd(session('errors'));
 
         $this->actingAs($user)
             ->patch(route('books.update', ['translation' => $translation, 'book' => $book]), [

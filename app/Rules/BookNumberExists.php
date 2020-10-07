@@ -31,6 +31,10 @@ class BookNumberExists implements Rule
      */
     public function passes($attribute, $value)
     {
+        if (!ctype_digit($value) && !is_int($value)) {
+            return false;
+        }
+
         $book = Book::where([
             'translation_id' => $this->translation->id,
             'number' => $value

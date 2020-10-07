@@ -2,10 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="aea7a033-8388-4a34-8811-e03be647dd13" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/resources/views/books/edit.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/BookController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/BookController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Book.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Book.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Providers/EventServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Providers/EventServiceProvider.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Rules/BookNumberExists.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Rules/BookNumberExists.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/books/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/books/create.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tests/Feature/ManageBooksTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/ManageBooksTest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Unit/BookNumberExistsTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Unit/BookNumberExistsTest.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -36,8 +39,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tests/Feature/ManageBooksTest.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="181">
-              <caret line="329" column="32" lean-forward="true" selection-start-line="329" selection-start-column="32" selection-end-line="329" selection-end-column="32" />
+            <state relative-caret-position="278">
+              <caret line="343" column="17" selection-start-line="343" selection-start-column="17" selection-end-line="343" selection-end-column="17" />
               <folding>
                 <element signature="e#33#53#0#PHP" expanded="true" />
                 <element signature="e#3907#6703#0#PHP" />
@@ -46,13 +49,25 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/Models/Book.php">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tests/Unit/BookNumberExistsTest.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="294">
-              <caret line="17" column="39" selection-start-line="17" selection-start-column="39" selection-end-line="17" selection-end-column="39" />
+            <state relative-caret-position="-78">
+              <caret line="27" column="52" selection-start-line="27" selection-start-column="52" selection-end-line="27" selection-end-column="52" />
               <folding>
-                <element signature="e#30#57#0#PHP" expanded="true" />
+                <element signature="e#30#50#0#PHP" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/Rules/BookNumberExists.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="32">
+              <caret line="33" column="50" selection-start-line="33" selection-start-column="50" selection-end-line="33" selection-end-column="50" />
+              <folding>
+                <element signature="e#29#49#0#PHP" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -61,11 +76,20 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/BookController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="70">
-              <caret line="80" column="57" selection-start-line="80" selection-start-column="57" selection-end-line="80" selection-end-column="57" />
+            <state relative-caret-position="90">
+              <caret line="100" column="64" selection-start-line="100" selection-start-column="64" selection-end-line="100" selection-end-column="64" />
               <folding>
                 <element signature="e#40#60#0#PHP" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/views/books/edit.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="197">
+              <caret line="27" column="39" selection-start-line="27" selection-start-column="33" selection-end-line="27" selection-end-column="39" />
             </state>
           </provider>
         </entry>
@@ -117,7 +141,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/resources/views/translations/create.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/translations/edit.blade.php" />
         <option value="$PROJECT_DIR$/tests/Feature/ManageCopyrightsTest.php" />
         <option value="$PROJECT_DIR$/tests/Feature/ManageUsersTest.php" />
@@ -155,19 +178,20 @@
         <option value="$PROJECT_DIR$/tests/Rule/BookAbbrExistsTest.php" />
         <option value="$PROJECT_DIR$/app/Rules/BookAbbrExists.php" />
         <option value="$PROJECT_DIR$/app/Rules/BookNameExists.php" />
-        <option value="$PROJECT_DIR$/app/Rules/BookNumberExists.php" />
-        <option value="$PROJECT_DIR$/tests/Unit/BookNumberExistsTest.php" />
-        <option value="$PROJECT_DIR$/resources/views/books/create.blade.php" />
         <option value="$PROJECT_DIR$/public/css/bible-api.css" />
         <option value="$PROJECT_DIR$/resources/views/layouts/admin.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/translations/show.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/books/show.blade.php" />
-        <option value="$PROJECT_DIR$/tests/Feature/ManageBooksTest.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/BookController.php" />
         <option value="$PROJECT_DIR$/app/Events/BookUpdated.php" />
         <option value="$PROJECT_DIR$/app/Listeners/LogBookUpdated.php" />
         <option value="$PROJECT_DIR$/app/Providers/EventServiceProvider.php" />
         <option value="$PROJECT_DIR$/app/Models/Book.php" />
+        <option value="$PROJECT_DIR$/resources/views/books/create.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/books/edit.blade.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/BookController.php" />
+        <option value="$PROJECT_DIR$/tests/Feature/ManageBooksTest.php" />
+        <option value="$PROJECT_DIR$/tests/Unit/BookNumberExistsTest.php" />
+        <option value="$PROJECT_DIR$/app/Rules/BookNumberExists.php" />
       </list>
     </option>
   </component>
@@ -323,12 +347,6 @@
             <path>
               <item name="bible-api" type="b2602c69:ProjectViewProjectNode" />
               <item name="bible-api" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="Events" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="bible-api" type="b2602c69:ProjectViewProjectNode" />
-              <item name="bible-api" type="462c0819:PsiDirectoryNode" />
               <item name="database" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -431,7 +449,7 @@
       <workItem from="1600483533533" duration="20145000" />
       <workItem from="1601296766235" duration="3136000" />
       <workItem from="1601820145446" duration="247000" />
-      <workItem from="1601891389698" duration="10320000" />
+      <workItem from="1601891389698" duration="12753000" />
     </task>
     <servers />
   </component>
@@ -459,7 +477,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="93755000" />
+    <option name="totallyTimeSpent" value="96188000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -501,13 +519,6 @@
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/resources/views/copyrights/edit.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="156">
-          <caret line="38" column="38" selection-start-line="38" selection-start-column="38" selection-end-line="38" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/translations/edit.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="203">
@@ -766,16 +777,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Rules/BookNumberExists.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="249">
-          <caret line="40" column="9" lean-forward="true" selection-start-line="40" selection-start-column="9" selection-end-line="40" selection-end-column="9" />
-          <folding>
-            <element signature="e#29#49#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Rules/BookAbbrExists.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="220">
@@ -796,16 +797,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tests/Unit/BookNumberExistsTest.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="26">
-          <caret line="10" column="26" selection-start-line="10" selection-start-column="6" selection-end-line="10" selection-end-column="26" />
-          <folding>
-            <element signature="e#30#50#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tests/Unit/BookNameExistsTest.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="212">
@@ -813,13 +804,6 @@
           <folding>
             <element signature="e#30#50#0#PHP" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/books/create.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="296">
-          <caret line="41" column="124" selection-start-line="41" selection-start-column="124" selection-end-line="41" selection-end-column="124" />
         </state>
       </provider>
     </entry>
@@ -844,13 +828,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/books/show.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="263">
-          <caret line="63" column="90" selection-start-line="63" selection-start-column="90" selection-end-line="63" selection-end-column="90" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/routes/web.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="86">
@@ -867,16 +844,6 @@
           <caret line="63" column="17" selection-start-line="57" selection-start-column="16" selection-end-line="63" selection-end-column="17" />
           <folding>
             <element signature="e#40#66#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/BookController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="70">
-          <caret line="80" column="57" selection-start-line="80" selection-start-column="57" selection-end-line="80" selection-end-column="57" />
-          <folding>
-            <element signature="e#40#60#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -925,10 +892,51 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/Models/Book.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="294">
+          <caret line="17" column="39" selection-start-line="17" selection-start-column="39" selection-end-line="17" selection-end-column="39" />
+          <folding>
+            <element signature="e#30#57#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/books/show.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1323">
+          <caret line="63" column="90" selection-start-line="63" selection-start-column="90" selection-end-line="63" selection-end-column="90" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/books/create.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="27" column="42" selection-start-line="27" selection-start-column="42" selection-end-line="27" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/books/edit.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="197">
+          <caret line="27" column="39" selection-start-line="27" selection-start-column="33" selection-end-line="27" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/BookController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="100" column="64" selection-start-line="100" selection-start-column="64" selection-end-line="100" selection-end-column="64" />
+          <folding>
+            <element signature="e#40#60#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/tests/Feature/ManageBooksTest.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="181">
-          <caret line="329" column="32" lean-forward="true" selection-start-line="329" selection-start-column="32" selection-end-line="329" selection-end-column="32" />
+        <state relative-caret-position="278">
+          <caret line="343" column="17" selection-start-line="343" selection-start-column="17" selection-end-line="343" selection-end-column="17" />
           <folding>
             <element signature="e#33#53#0#PHP" expanded="true" />
             <element signature="e#3907#6703#0#PHP" />
@@ -936,12 +944,22 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Models/Book.php">
+    <entry file="file://$PROJECT_DIR$/tests/Unit/BookNumberExistsTest.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="294">
-          <caret line="17" column="39" selection-start-line="17" selection-start-column="39" selection-end-line="17" selection-end-column="39" />
+        <state relative-caret-position="-78">
+          <caret line="27" column="52" selection-start-line="27" selection-start-column="52" selection-end-line="27" selection-end-column="52" />
           <folding>
-            <element signature="e#30#57#0#PHP" expanded="true" />
+            <element signature="e#30#50#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Rules/BookNumberExists.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="32">
+          <caret line="33" column="50" selection-start-line="33" selection-start-column="50" selection-end-line="33" selection-end-column="50" />
+          <folding>
+            <element signature="e#29#49#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>

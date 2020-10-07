@@ -13,11 +13,19 @@ class BookNumberExistsTest extends TestCase
     use RefreshDatabase;
 
     /** @test */
+    public function rule_fails_if_value_is_not_an_integer()
+    {
+        $translation = Translation::factory()->create();
+        $rule = new BookNumberExists($translation);
+        $this->assertFalse($rule->passes('number', 'a'));
+    }
+
+    /** @test */
     public function rule_passes_when_no_book_of_translation_exists()
     {
         $translation = Translation::factory()->create();
         $rule = new BookNumberExists($translation);
-        $this->assertTrue($rule->passes('number', 'Book'));
+        $this->assertTrue($rule->passes('number', '1'));
     }
 
     /** @test */
