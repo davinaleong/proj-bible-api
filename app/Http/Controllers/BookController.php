@@ -78,6 +78,7 @@ class BookController extends Controller
     public function update(Translation $translation, Book $book)
     {
         $attributes = request()->validate($this->rules($translation, $book));
+        $attributes['translation_id'] = $translation->id;
         $attributes['updated_by'] = auth()->user()->id;
 
         $book->update($attributes);
