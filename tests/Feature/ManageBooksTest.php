@@ -265,7 +265,7 @@ class ManageBooksTest extends TestCase
         ]);
 
         $this->actingAs($user)
-            ->post(route('books.update', ['translation' => $translation, 'book' => $book]), [
+            ->patch(route('books.update', ['translation' => $translation, 'book' => $book]), [
                 'name' => $book->name,
                 'abbr' => $book->abbr,
                 'number' => $book->number,
@@ -334,6 +334,7 @@ class ManageBooksTest extends TestCase
             ->assertSessionHasErrors([
                 'number' => 'The number must be an integer.'
             ]);
+        dd(session('errors'));
 
         $this->actingAs($user)
             ->patch(route('books.update', ['translation' => $translation, 'book' => $book]), [
@@ -364,6 +365,17 @@ class ManageBooksTest extends TestCase
             ])
             ->assertSessionHasErrors([
                 'chapter_limit' => 'The chapter limit field is required.'
+            ]);
+
+        $this->actingAs($user)
+            ->patch(route('books.update', ['translation' => $translation, 'book' => $book]), [
+                'name' => $book->name,
+                'abbr' => $book->abbr,
+                'number' => $book->number,
+                'chapter_limit' => 'a'
+            ])
+            ->assertSessionHasErrors([
+                'number' => 'The chapter limit must be an integer.'
             ]);
 
         $this->actingAs($user)
