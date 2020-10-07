@@ -75,6 +75,18 @@ class BookController extends Controller
         //
     }
 
+    public function update(Translation $translation, Book $book)
+    {
+        $attributes = request()->validate($this->rules($translation, $book));
+        $attributes['updated_by'] = auth()->user()->id;
+
+        $book->update($attributes);
+
+        return redirect()
+            ->route('books.show', ['translation' => $translation, 'book' => $book])
+            ->with('message', 'Book updated.');
+    }
+
     private function rules(Translation $translation, Book $book=null)
     {
         return [

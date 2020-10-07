@@ -198,6 +198,17 @@ class ManageBooksTest extends TestCase
                 'name' => $book->name,
                 'abbr' => $book->abbr,
                 'number' => $book->number,
+                'chapter_limit' => 'a'
+            ])
+            ->assertSessionHasErrors([
+                'chapter_limit' => 'The chapter limit must be an integer.'
+            ]);
+
+        $this->actingAs($user)
+            ->post(route('books.store', ['translation' => $translation]), [
+                'name' => $book->name,
+                'abbr' => $book->abbr,
+                'number' => $book->number,
                 'chapter_limit' => 0
             ])
             ->assertSessionHasErrors([
@@ -244,7 +255,166 @@ class ManageBooksTest extends TestCase
             ]);
     }
 
-    // TODO: Test update book
-    // TODO: Test validation of update book
+    /** @test */
+    public function user_can_update_a_book()
+    {
+        $user = User::factory()->create();
+        $translation = Translation::factory()->create();
+        $book = Book::factory()->create([
+            'translation_id' => $translation->id
+        ]);
+
+        $this->actingAs($user)
+            ->post(route('books.update', ['translation' => $translation, 'book' => $book]), [
+                'name' => $book->name,
+                'abbr' => $book->abbr,
+                'number' => $book->number,
+                'chapter_limit' => $book->chapter_limit
+            ])
+            ->assertRedirect(route('books.show', ['translation' => $translation, 'book' => $book]))
+            ->assertSessionHas('message', 'Book updated.');
+
+        $this->assertDatabaseHas('books', [
+            'translation_id' => $book->translation_id,
+            'name' => $book->name,
+            'abbr' => $book->abbr,
+            'chapter_limit' => $book->chapter_limit
+        ]);
+
+        $this->assertDatabaseHas('logs', [
+            'user_id' => $user->id,
+            'source' => Log::$TABLE_BOOKS,
+            'source_id' => 1,
+            'message' => "$user->name updated $book->name for $translation->abbr."
+        ]);
+    }
+
+    /** @test */
+    public function update_book_returns_error_when_data_criteria_not_met()
+    {
+        $user = User::factory()->create();
+        $translation = Translation::factory()->create();
+        $book = Book::factory()->create([
+            'translation_id' => $translation->id
+        ]);
+
+        $this->actingAs($user)
+            ->patch(route('books.update', ['translation' => $translation, 'book' => $book]), [
+                'name' => ''
+            ])
+            ->assertSessionHasErrors([
+                'name' => 'The name field is required.'
+            ]);
+
+        $this->actingAs($user)
+            ->patch(route('books.update', ['translation' => $translation, 'book' => $book]), [
+                'name' => $book->name,
+                'abbr' => ''
+            ])
+            ->assertSessionHasErrors([
+                'abbr' => 'The abbr field is required.'
+            ]);
+
+        $this->actingAs($user)
+            ->patch(route('books.update', ['translation' => $translation, 'book' => $book]), [
+                'name' => $book->name,
+                'abbr' => $book->abbr,
+                'number' => ''
+            ])
+            ->assertSessionHasErrors([
+                'number' => 'The number field is required.'
+            ]);
+
+        $this->actingAs($user)
+            ->patch(route('books.update', ['translation' => $translation, 'book' => $book]), [
+                'name' => $book->name,
+                'abbr' => $book->abbr,
+                'number' => 'a'
+            ])
+            ->assertSessionHasErrors([
+                'number' => 'The number must be an integer.'
+            ]);
+
+        $this->actingAs($user)
+            ->patch(route('books.update', ['translation' => $translation, 'book' => $book]), [
+                'name' => $book->name,
+                'abbr' => $book->abbr,
+                'number' => 0
+            ])
+            ->assertSessionHasErrors([
+                'number' => 'The number must be at least 1.'
+            ]);
+
+        $this->actingAs($user)
+            ->patch(route('books.update', ['translation' => $translation, 'book' => $book]), [
+                'name' => $book->name,
+                'abbr' => $book->abbr,
+                'number' => 67
+            ])
+            ->assertSessionHasErrors([
+                'number' => 'The number may not be greater than 66.'
+            ]);
+
+        $this->actingAs($user)
+            ->patch(route('books.update', ['translation' => $translation, 'book' => $book]), [
+                'name' => $book->name,
+                'abbr' => $book->abbr,
+                'number' => $book->number,
+                'chapter_limit' => ''
+            ])
+            ->assertSessionHasErrors([
+                'chapter_limit' => 'The chapter limit field is required.'
+            ]);
+
+        $this->actingAs($user)
+            ->patch(route('books.update', ['translation' => $translation, 'book' => $book]), [
+                'name' => $book->name,
+                'abbr' => $book->abbr,
+                'number' => $book->number,
+                'chapter_limit' => 0
+            ])
+            ->assertSessionHasErrors([
+                'chapter_limit' => 'The chapter limit must be at least 1.'
+            ]);
+
+        $book2 = Book::factory()->create([
+            'translation_id' => $translation->id,
+            'name' => 'Book2',
+            'abbr' => 'Bk2',
+            'number' => 2
+        ]);
+        $this->actingAs($user)
+            ->patch(route('books.update', ['translation' => $translation, 'book' => $book]), [
+                'name' => $book2->name,
+                'abbr' => $book->abbr,
+                'number' => $book->number,
+                'chapter_limit' => $book->chapter_limit
+            ])
+            ->assertSessionHasErrors([
+                'name' => "The name of the book exists for the current translation.",
+            ]);
+
+        $this->actingAs($user)
+            ->patch(route('books.update', ['translation' => $translation, 'book' => $book]), [
+                'name' => $book->name,
+                'abbr' => $book2->abbr,
+                'number' => $book->number,
+                'chapter_limit' => $book->chapter_limit
+            ])
+            ->assertSessionHasErrors([
+                'abbr' => "The abbr of the book exists for the current translation.",
+            ]);
+
+        $this->actingAs($user)
+            ->patch(route('books.update', ['translation' => $translation, 'book' => $book]), [
+                'name' => $book->name,
+                'abbr' => $book->abbr,
+                'number' => $book2->number,
+                'chapter_limit' => $book->chapter_limit
+            ])
+            ->assertSessionHasErrors([
+                'number' => "The number of the book exists for the current translation.",
+            ]);
+    }
     // TODO: Test delete book
 }
