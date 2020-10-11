@@ -2,6 +2,7 @@
 
 namespace Tests\Unit;
 
+use App\Models\Book;
 use App\Models\Copyright;
 use App\Models\Translation;
 use App\Models\User;
@@ -45,7 +46,7 @@ class TranslationTest extends TestCase
     }
 
     /** @test */
-    public function has_a_updater()
+    public function has_an_updater()
     {
         $user = User::factory()->create();
         $translation = Translation::factory()->create([
@@ -96,5 +97,16 @@ class TranslationTest extends TestCase
         ]);
 
         $this->assertEquals($copyright->text, $translation->getCopyrightText());
+    }
+
+    /** @test */
+    public function has_books()
+    {
+        $translation = Translation::factory()->create();
+        $books = Book::factory()->count(2)->create([
+            'translation_id' => $translation
+        ]);
+
+        $this->assertEquals($books->count(), $translation->books->count());
     }
 }
