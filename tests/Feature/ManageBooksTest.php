@@ -352,7 +352,7 @@ class ManageBooksTest extends TestCase
                 'chapter_limit' => 'a'
             ])
             ->assertSessionHasErrors([
-                'number' => 'The chapter limit must be an integer.'
+                'chapter_limit' => 'The chapter limit must be an integer.'
             ]);
 
         $this->actingAs($user)

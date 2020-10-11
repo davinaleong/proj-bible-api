@@ -103,6 +103,13 @@ class BookController extends Controller
     public function update(Translation $translation, Book $book)
     {
         $attributes = request()->validate($this->rules());
+
+        $otherBook = Book::getBook($translation, $attributes['number']);
+        if ($otherBook->id != $book->id) {
+            return redirect()
+                ->back()
+                ->withErrors('Number exists for current translation.');
+        }
         $attributes['translation_id'] = $translation->id;
         $attributes['updated_by'] = auth()->user()->id;
 
