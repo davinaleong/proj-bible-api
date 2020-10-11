@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Events\BookCreated;
+use App\Events\BookDeleted;
 use App\Events\BookUpdated;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -15,7 +16,8 @@ class Book extends Model
 
     protected $dispatchesEvents = [
         'created' => BookCreated::class,
-        'updated' => BookUpdated::class
+        'updated' => BookUpdated::class,
+        'deleted' => BookDeleted::class
     ];
 
     public static function getBook(Translation $translation, int $number)

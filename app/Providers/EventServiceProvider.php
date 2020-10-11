@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Events\BookCreated;
+use App\Events\BookDeleted;
 use App\Events\BookUpdated;
 use App\Events\CopyrightCreated;
 use App\Events\CopyrightDeleted;
@@ -13,6 +14,7 @@ use App\Events\TranslationUpdated;
 use App\Events\UserCreated;
 use App\Events\UserUpdated;
 use App\Listeners\LogBookCreated;
+use App\Listeners\LogBookDeleted;
 use App\Listeners\LogBookUpdated;
 use App\Listeners\LogCopyrightCreated;
 use App\Listeners\LogCopyrightDeleted;
@@ -67,6 +69,9 @@ class EventServiceProvider extends ServiceProvider
         ],
         BookUpdated::class => [
             LogBookUpdated::class
+        ],
+        BookDeleted::class => [
+            LogBookDeleted::class
         ]
     ];
 

@@ -441,5 +441,14 @@ class ManageBooksTest extends TestCase
             ->delete(route('books.destroy', ['translation' => $translation, 'book' => $book]))
             ->assertRedirect(route('translations.show', ['translation' => $translation]))
             ->assertSessionHas('message', 'Book deleted.');
+
+        $this->assertDatabaseMissing('books', $book->jsonSerialize());
+
+        $this->assertDatabaseHas('logs', [
+            'user_id' => $user->id,
+            'source' => Log::$TABLE_BOOKS,
+            'source_id' => $book->id,
+            'message' => "$user->name deleted $book->name from $translation->abbr."
+        ]);
     }
 }
