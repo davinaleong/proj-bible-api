@@ -33,7 +33,14 @@ class BookController extends Controller
 
     public function store(Translation $translation)
     {
-        $attributes = request()->validate($this->rules($translation));
+        $attributes = request()->validate($this->rules());
+
+        if (Book::getBook($translation, $attributes['number'])) {
+            return redirect()
+                ->back()
+                ->withErrors('Number exists for current translation.');
+        }
+
         $attributes['translation_id'] = $translation->id;
         $attributes['created_by'] = auth()->user()->id;
 
@@ -95,12 +102,7 @@ class BookController extends Controller
 
     public function update(Translation $translation, Book $book)
     {
-        $attributes = request()->validate([
-            'name' => ['required', 'string', new BookNameExists($translation, $book)],
-            'abbr' => ['required', 'string', new BookAbbrExists($translation, $book)],
-            'number' => ['required', 'integer', 'min:1', 'max:66', new BookNumberExists($translation, $book)],
-            'chapter_limit' => 'required|integer|min:1'
-        ]);
+        $attributes = request()->validate($this->rules());
         $attributes['translation_id'] = $translation->id;
         $attributes['updated_by'] = auth()->user()->id;
 
@@ -111,12 +113,12 @@ class BookController extends Controller
             ->with('message', 'Book updated.');
     }
 
-    private function rules(Translation $translation, Book $book=null)
+    private function rules()
     {
         return [
-            'name' => ['required', 'string', new BookNameExists($translation, $book)],
-            'abbr' => ['required', 'string', new BookAbbrExists($translation, $book)],
-            'number' => ['required', 'integer', 'min:1', 'max:66', new BookNumberExists($translation, $book)],
+            'name' => 'required|string',
+            'abbr' => 'required|string',
+            'number' => 'required|integer|min:1|max:66',
             'chapter_limit' => 'required|integer|min:1'
         ];
     }

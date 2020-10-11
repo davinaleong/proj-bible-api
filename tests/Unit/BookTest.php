@@ -97,4 +97,15 @@ class BookTest extends TestCase
 
         $this->assertEquals($translation->abbr, $book->getTranslationAbbr());
     }
+
+    /** @test */
+    public function get_book_returns_book_of_translation_and_number()
+    {
+        $translation = Translation::factory()->create();
+        $book = Book::factory()->create([
+            'translation_id' => $translation->id
+        ]);
+
+        $this->assertEquals($book->id, Book::getBook($translation, $book->number)->id);
+    }
 }

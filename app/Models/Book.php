@@ -18,6 +18,14 @@ class Book extends Model
         'updated' => BookUpdated::class
     ];
 
+    public static function getBook(Translation $translation, int $number)
+    {
+        return Book::where([
+            'translation_id' => $translation->id,
+            'number' => $number
+        ])->first();
+    }
+
     public function translation()
     {
         return $this->belongsTo('App\Models\Translation');

@@ -32,7 +32,7 @@
                 </div>
                 <div class="form-group">
                     <label for="chapter_limit">Chapter Limit <span class="text-danger">*</span></label>
-                    <input type="number" name="chapter_limit" class="form-control" value="{{ old('chapter_limit') ? old('chapter_limit') : $book->chapter_limit }}" min="1" step="1" required>
+                    <input type="number" name="chapter_limit" class="form-control" value="{{ old('chapter_limit') ? old('chapter_limit') : $book->chapter_limit }}" min="1" step="1" >
                     <p class="form-text text-muted">
                         <small>A check for the number of chapters one can create for this book.</small>
                     </p>
