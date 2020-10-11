@@ -21,6 +21,7 @@ class Log extends Model
     public static $TABLE_LOGS = 'logs';
     public static $TABLE_COPYRIGHTS = 'copyrights';
     public static $TABLE_TRANSLATIONS = 'translations';
+    public static $TABLE_BOOKS = 'books';
 
     private $displayDateFormat = 'H:i:s d-m-Y';
     private $dbDateFormat = 'Y-m-d H:i:s';

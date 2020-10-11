@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Book;
 use App\Models\Breadcrumb;
 use App\Models\Copyright;
 use App\Models\Translation;
@@ -104,6 +105,7 @@ class TranslationController extends Controller
 
     public function destroy(Translation $translation)
     {
+        Book::where(['translation_id' => $translation->id])->delete();
         $translation->delete();
 
         return redirect()
