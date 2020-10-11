@@ -34,10 +34,10 @@ class BookNameExists implements Rule
         $book = Book::where([
             'translation_id' => $this->translation->id,
             'name' => $value
-        ])->get();
+        ])->first();
 
-        if (filled($this->book) && filled($book[0]) && filled($book)) {
-            return $this->book->id === $book[0]->id;
+        if (filled($book) && filled($this->book) && $book->id == $this->book->id) {
+            return true;
         }
 
         return blank($book);

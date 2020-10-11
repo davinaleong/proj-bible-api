@@ -223,14 +223,36 @@ class ManageBooksTest extends TestCase
         ]);
         $this->actingAs($user)
             ->post(route('books.store', ['translation' => $translation]), [
+                'name' => $book2->name,
+                'abbr' => $book->abbr,
+                'number' => $book->number,
+                'chapter_limit' => $book->chapter_limit
+            ])
+            ->assertSessionHasErrors([
+                'name' => 'The name of the book exists for the current translation.'
+            ]);
+
+        $this->actingAs($user)
+            ->post(route('books.store', ['translation' => $translation]), [
+                'name' => $book->name,
+                'abbr' => $book2->abbr,
+                'number' => $book->number,
+                'chapter_limit' => $book->chapter_limit
+            ])
+            ->assertSessionHasErrors([
+                'abbr' => 'The abbr of the book exists for the current translation.'
+            ]);
+
+        $this->actingAs($user)
+            ->post(route('books.store', ['translation' => $translation]), [
                 'name' => $book->name,
                 'abbr' => $book->abbr,
                 'number' => $book2->number,
                 'chapter_limit' => $book->chapter_limit
+            ])
+            ->assertSessionHasErrors([
+                'number' => 'The number of the book exists for the current translation.'
             ]);
-        $errors = session('errors');
-        $messages = $errors->getBag('default')->getMessages();
-        $this->assertEquals('Number exists for current translation.', $messages[0][0]);
     }
 
     /** @test */
@@ -374,14 +396,36 @@ class ManageBooksTest extends TestCase
         ]);
         $this->actingAs($user)
             ->patch(route('books.update', ['translation' => $translation, 'book' => $book]), [
+                'name' => $book2->name,
+                'abbr' => $book->abbr,
+                'number' => $book->number,
+                'chapter_limit' => $book->chapter_limit
+            ])
+            ->assertSessionHasErrors([
+                'name' => 'The name of the book exists for the current translation.'
+            ]);
+
+        $this->actingAs($user)
+            ->patch(route('books.update', ['translation' => $translation, 'book' => $book]), [
+                'name' => $book->name,
+                'abbr' => $book2->abbr,
+                'number' => $book->number,
+                'chapter_limit' => $book->chapter_limit
+            ])
+            ->assertSessionHasErrors([
+                'abbr' => 'The abbr of the book exists for the current translation.'
+            ]);
+
+        $this->actingAs($user)
+            ->patch(route('books.update', ['translation' => $translation, 'book' => $book]), [
                 'name' => $book->name,
                 'abbr' => $book->abbr,
                 'number' => $book2->number,
                 'chapter_limit' => $book->chapter_limit
+            ])
+            ->assertSessionHasErrors([
+                'number' => 'The number of the book exists for the current translation.'
             ]);
-        $errors = session('errors');
-        $messages = $errors->getBag('default')->getMessages();
-        $this->assertEquals('Number exists for current translation.', $messages[0][0]);
     }
     // TODO: Test delete book
 }

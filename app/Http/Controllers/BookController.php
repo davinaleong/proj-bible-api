@@ -33,14 +33,7 @@ class BookController extends Controller
 
     public function store(Translation $translation)
     {
-        $attributes = request()->validate($this->rules());
-
-        if (Book::getBook($translation, $attributes['number'])) {
-            return redirect()
-                ->back()
-                ->withErrors('Number exists for current translation.');
-        }
-
+        $attributes = request()->validate($this->rules($translation));
         $attributes['translation_id'] = $translation->id;
         $attributes['created_by'] = auth()->user()->id;
 
@@ -102,14 +95,7 @@ class BookController extends Controller
 
     public function update(Translation $translation, Book $book)
     {
-        $attributes = request()->validate($this->rules());
-
-        $otherBook = Book::getBook($translation, $attributes['number']);
-        if ($otherBook->id != $book->id) {
-            return redirect()
-                ->back()
-                ->withErrors('Number exists for current translation.');
-        }
+        $attributes = request()->validate($this->rules($translation, $book));
         $attributes['translation_id'] = $translation->id;
         $attributes['updated_by'] = auth()->user()->id;
 
@@ -120,12 +106,12 @@ class BookController extends Controller
             ->with('message', 'Book updated.');
     }
 
-    private function rules()
+    private function rules($translation, $book = null)
     {
         return [
-            'name' => 'required|string',
-            'abbr' => 'required|string',
-            'number' => 'required|integer|min:1|max:66',
+            'name' => ['required', 'string', new BookNameExists($translation, $book)],
+            'abbr' => ['required', 'string', new BookAbbrExists($translation, $book)],
+            'number' => ['required', 'integer', 'min:1', 'max:66', new BookNumberExists($translation, $book)],
             'chapter_limit' => 'required|integer|min:1'
         ];
     }
