@@ -106,6 +106,15 @@ class BookController extends Controller
             ->with('message', 'Book updated.');
     }
 
+    public function destroy(Translation $translation, Book $book)
+    {
+        $book->delete();
+
+        return redirect()
+            ->route('translations.show', ['translation' => $translation])
+            ->with('message', 'Book deleted.');
+    }
+
     private function rules($translation, $book = null)
     {
         return [
