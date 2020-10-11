@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Models\Book;
 use App\Models\Copyright;
 use App\Models\Log;
 use App\Models\Translation;
@@ -248,8 +249,12 @@ class ManageTranslationsTest extends TestCase
     /** @test */
     public function user_can_delete_a_translation()
     {
+        $this->withoutExceptionHandling();
         $user = User::factory()->create();
         $translation = Translation::factory()->create();
+        $book = Book::factory()->create([
+            'translation_id' => $translation->id
+        ]);
 
         $this->actingAs($user)
             ->delete(route('translations.destroy', ['translation' => $translation]))
@@ -257,6 +262,7 @@ class ManageTranslationsTest extends TestCase
             ->assertSessionHas('message', 'Translation deleted.');
 
         $this->assertDatabaseMissing('translations', $translation->jsonSerialize());
+        $this->assertDatabaseMissing('books', $book->jsonSerialize());
 
         $this->assertDatabaseHas('logs', [
             'user_id' => $user->id,
