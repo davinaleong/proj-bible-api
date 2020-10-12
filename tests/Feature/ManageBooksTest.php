@@ -112,7 +112,7 @@ class ManageBooksTest extends TestCase
             'user_id' => $user->id,
             'source' => Log::$TABLE_BOOKS,
             'source_id' => 1,
-            'message' => "$user->name created $book->name for $translation->abbr."
+            'message' => "$user->name created book $book->name for $translation->abbr."
         ]);
     }
 
@@ -285,7 +285,7 @@ class ManageBooksTest extends TestCase
             'user_id' => $user->id,
             'source' => Log::$TABLE_BOOKS,
             'source_id' => 1,
-            'message' => "$user->name updated $book->name for $translation->abbr."
+            'message' => "$user->name updated book $book->name for $translation->abbr."
         ]);
     }
 
@@ -448,7 +448,7 @@ class ManageBooksTest extends TestCase
             'user_id' => $user->id,
             'source' => Log::$TABLE_BOOKS,
             'source_id' => $book->id,
-            'message' => "$user->name deleted $book->name from $translation->abbr."
+            'message' => "$user->name deleted book $book->name from $translation->abbr."
         ]);
     }
 }

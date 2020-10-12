@@ -34,7 +34,7 @@ class LogBookUpdated
                 'user_id' => auth()->user()->id,
                 'source' => Log::$TABLE_BOOKS,
                 'source_id' => $book->id,
-                'message' => "$name updated $book->name for $abbr."
+                'message' => "$name updated book $book->name for $abbr."
             ]);
         }
     }
