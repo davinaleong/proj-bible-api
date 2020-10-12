@@ -96,7 +96,7 @@ class ManageCopyrightsTest extends TestCase
             'user_id' => $user->id,
             'source' => Log::$TABLE_COPYRIGHTS,
             'source_id' => 1,
-            'message' => 'Copyright created.'
+            'message' => "$user->name created copyright $copyright->name."
         ]);
     }
 
@@ -125,7 +125,7 @@ class ManageCopyrightsTest extends TestCase
     }
 
     /** @test */
-    public function user_can_edit_a_copyright()
+    public function user_can_update_a_copyright()
     {
         $users = User::factory()->count(2)->create();
         $copyright = Copyright::factory()->create([
@@ -148,11 +148,12 @@ class ManageCopyrightsTest extends TestCase
             'updated_by' => $users[1]->id
         ]);
 
+        $name = $users[1]->name;
         $this->assertDatabaseHas('logs', [
             'user_id' => $users[1]->id,
             'source' => Log::$TABLE_COPYRIGHTS,
             'source_id' => $copyright->id,
-            'message' => 'Copyright updated.'
+            'message' => "$name updated copyright $updated_copyright->name."
         ]);
     }
 
@@ -198,7 +199,7 @@ class ManageCopyrightsTest extends TestCase
             'user_id' => $user->id,
             'source' => Log::$TABLE_COPYRIGHTS,
             'source_id' => $copyright->id,
-            'message' => 'Copyright deleted.'
+            'message' => "$user->name deleted copyright $copyright->name."
         ]);
     }
 }
