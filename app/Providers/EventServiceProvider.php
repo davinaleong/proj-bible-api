@@ -12,6 +12,7 @@ use App\Events\TranslationCreated;
 use App\Events\TranslationDeleted;
 use App\Events\TranslationUpdated;
 use App\Events\UserCreated;
+use App\Events\UserPasswordUpdated;
 use App\Events\UserUpdated;
 use App\Listeners\LogBookCreated;
 use App\Listeners\LogBookDeleted;
@@ -23,6 +24,7 @@ use App\Listeners\LogTranslationCreated;
 use App\Listeners\LogTranslationDeleted;
 use App\Listeners\LogTranslationUpdated;
 use App\Listeners\LogUserCreated;
+use App\Listeners\LogUserPasswordUpdated;
 use App\Listeners\LogUserUpdated;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
@@ -45,6 +47,9 @@ class EventServiceProvider extends ServiceProvider
         ],
         UserUpdated::class => [
             LogUserUpdated::class
+        ],
+        UserPasswordUpdated::class => [
+            LogUserPasswordUpdated::class
         ],
         CopyrightCreated::class => [
             LogCopyrightCreated::class

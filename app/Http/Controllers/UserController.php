@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\UserPasswordUpdated;
+use App\Events\UserUpdated;
 use App\Models\Breadcrumb;
 use App\Models\User;
 use App\Rules\PasswordHash;
@@ -58,7 +60,9 @@ class UserController extends Controller
         ]));
 
         $user->name = $name;
+
         if ($user->save()) {
+            event(new UserUpdated($user));
             return redirect()
                 ->route('users.show', ['user' => $user])
                 ->with('message', 'Profile updated.');
@@ -79,6 +83,7 @@ class UserController extends Controller
 
         $user->password = Hash::make($new_password);
         if ($user->save()) {
+            event(new UserPasswordUpdated($user));
             return redirect()
                 ->route('users.show', ['user' => $user])
                 ->with('message', 'Password changed.');
