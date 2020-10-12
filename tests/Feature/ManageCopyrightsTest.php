@@ -125,7 +125,7 @@ class ManageCopyrightsTest extends TestCase
     }
 
     /** @test */
-    public function user_can_update_a_copyright()
+    public function user_can_edit_a_copyright()
     {
         $users = User::factory()->count(2)->create();
         $copyright = Copyright::factory()->create([
