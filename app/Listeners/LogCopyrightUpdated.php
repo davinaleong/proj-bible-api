@@ -27,11 +27,14 @@ class LogCopyrightUpdated
     public function handle($event)
     {
         if(auth()->user()) {
+            $name = auth()->user()->name;
+            $copyright_name = $event->copyright->name;
+
             Log::create([
                 'user_id' => auth()->user()->id,
                 'source' => Log::$TABLE_COPYRIGHTS,
                 'source_id' => $event->copyright->id,
-                'message' => 'Copyright updated.'
+                'message' => "$name updated copyright $copyright_name."
             ]);
         }
     }

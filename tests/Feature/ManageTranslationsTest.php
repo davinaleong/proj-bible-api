@@ -100,7 +100,7 @@ class ManageTranslationsTest extends TestCase
             'user_id' => $user->id,
             'source' => Log::$TABLE_TRANSLATIONS,
             'source_id' => 1,
-            'message' => 'Translation created.'
+            'message' => "$user->name created translation $translation->name."
         ]);
     }
 
@@ -184,11 +184,12 @@ class ManageTranslationsTest extends TestCase
             'updated_by' => $users[1]->id
         ]);
 
+        $name = $users[1]->name;
         $this->assertDatabaseHas('logs', [
             'user_id' => $users[1]->id,
             'source' => Log::$TABLE_TRANSLATIONS,
             'source_id' => $translation->id,
-            'message' => 'Translation updated.'
+            'message' => "$name updated translation $updated_translation->name."
         ]);
     }
 
@@ -268,7 +269,7 @@ class ManageTranslationsTest extends TestCase
             'user_id' => $user->id,
             'source' => Log::$TABLE_TRANSLATIONS,
             'source_id' => $translation->id,
-            'message' => 'Translation deleted.'
+            'message' => "$user->name deleted translation $translation->name."
         ]);
     }
 }

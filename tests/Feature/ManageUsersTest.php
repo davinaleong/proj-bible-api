@@ -86,7 +86,7 @@ class ManageUsersTest extends TestCase
            'user_id' => $user->id,
            'source' => Log::$TABLE_USERS,
            'source_id' => $user->id,
-           'message' => 'User updated.'
+           'message' => "$user->name updated his/her profile."
         ]);
     }
 
@@ -128,7 +128,7 @@ class ManageUsersTest extends TestCase
             'user_id' => $user->id,
             'source' => Log::$TABLE_USERS,
             'source_id' => $user->id,
-            'message' => 'User updated.'
+            'message' => "$user->name changed his/her password."
         ]);
     }
 

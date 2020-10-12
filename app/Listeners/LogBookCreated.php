@@ -34,7 +34,7 @@ class LogBookCreated
                 'user_id' => auth()->user()->id,
                 'source' => Log::$TABLE_BOOKS,
                 'source_id' => $book->id,
-                'message' => "$name created $book->name for $abbr."
+                'message' => "$name created book $book->name for $abbr."
             ]);
         }
     }
