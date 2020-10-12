@@ -64,8 +64,7 @@ class User extends Authenticatable
     ];
 
     protected $dispatchesEvents = [
-        'created' => UserCreated::class,
-        'updated' => UserUpdated::class
+        'created' => UserCreated::class
     ];
 
     public function logs()

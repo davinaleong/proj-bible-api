@@ -28,11 +28,12 @@ class LogUserCreated
     public function handle(UserCreated $event)
     {
         if(auth()->user()) {
+            $name = auth()->user()->name;
             Log::create([
                 'user_id' => auth()->user()->id,
                 'source' => Log::$TABLE_USERS,
                 'source_id' => $event->user->id,
-                'message' => 'User created.'
+                'message' => "Profile of $name created."
             ]);
         }
     }
