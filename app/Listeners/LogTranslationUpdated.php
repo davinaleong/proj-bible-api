@@ -27,11 +27,14 @@ class LogTranslationUpdated
     public function handle($event)
     {
         if(auth()->user()) {
+            $name = auth()->user()->name;
+            $translation_name = $event->translation->name;
+
             Log::create([
                 'user_id' => auth()->user()->id,
                 'source' => Log::$TABLE_TRANSLATIONS,
                 'source_id' => $event->translation->id,
-                'message' => 'Translation updated.'
+                'message' => "$name updated translation $translation_name."
             ]);
         }
     }
