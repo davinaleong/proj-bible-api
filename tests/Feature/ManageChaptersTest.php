@@ -210,6 +210,7 @@ class ManageChaptersTest extends TestCase
 
         $this->actingAs($users[1])
             ->patch(route('chapters.update', ['translation' => $chapter->book->translation, 'book' => $chapter->book, 'chapter' => $chapter]), [
+                'number' => $updated_chapter->number,
                 'verse_limit' => $updated_chapter->verse_limit
             ])
             ->assertSessionHas([
@@ -218,7 +219,7 @@ class ManageChaptersTest extends TestCase
 
         $this->assertDatabaseHas('chapters', [
             'book_id' => $chapter->book_id,
-            'number' => $chapter->number,
+            'number' => $updated_chapter->number,
             'verse_limit' => $updated_chapter->verse_limit,
             'created_by' => $users[0]->id,
             'updated_by' => $users[1]->id
@@ -231,7 +232,83 @@ class ManageChaptersTest extends TestCase
             'user_id' => $user->id,
             'source' => Log::$TABLE_CHAPTERS,
             'source_id' => 1,
-            'message' => "$user->name updated chapter $chapter->number for $book->name, $translation->abbr."
+            'message' => "$user->name updated chapter $updated_chapter->number for $book->name, $translation->abbr."
         ]);
+    }
+
+    /** @test */
+    public function update_chapter_returns_error_if_data_criteria_not_met()
+    {
+        $user = User::factory()->create();
+        $chapter = Chapter::factory()->create([
+            'number' => 1
+        ]);
+
+        $this->actingAs($user)
+            ->patch(route('chapters.update', ['translation' => $chapter->book->translation, 'book' => $chapter->book, 'chapter' => $chapter]), [
+                'number' => '',
+                'verse_limit' => $chapter->verse_limit
+            ])
+            ->assertSessionHasErrors([
+                'number' => 'The number field is required.'
+            ]);
+
+        $this->actingAs($user)
+            ->patch(route('chapters.update', ['translation' => $chapter->book->translation, 'book' => $chapter->book, 'chapter' => $chapter]), [
+                'number' => 'a',
+                'verse_limit' => $chapter->verse_limit
+            ])
+            ->assertSessionHasErrors([
+                'number' => 'The number must be an integer.'
+            ]);
+
+        $this->actingAs($user)
+            ->patch(route('chapters.update', ['translation' => $chapter->book->translation, 'book' => $chapter->book, 'chapter' => $chapter]), [
+                'number' => 0,
+                'verse_limit' => $chapter->verse_limit
+            ])
+            ->assertSessionHasErrors([
+                'number' => 'The number must be at least 1.'
+            ]);
+
+        $this->actingAs($user)
+            ->patch(route('chapters.update', ['translation' => $chapter->book->translation, 'book' => $chapter->book, 'chapter' => $chapter]), [
+                'number' => $chapter->number,
+                'verse_limit' => ''
+            ])
+            ->assertSessionHasErrors([
+                'verse_limit' => 'The verse limit field is required.'
+            ]);
+
+        $this->actingAs($user)
+            ->patch(route('chapters.update', ['translation' => $chapter->book->translation, 'book' => $chapter->book, 'chapter' => $chapter]), [
+                'number' => $chapter->number,
+                'verse_limit' => 'a'
+            ])
+            ->assertSessionHasErrors([
+                'verse_limit' => 'The verse limit must be an integer.'
+            ]);
+
+        $this->actingAs($user)
+            ->patch(route('chapters.update', ['translation' => $chapter->book->translation, 'book' => $chapter->book, 'chapter' => $chapter]), [
+                'number' => $chapter->number,
+                'verse_limit' => 0
+            ])
+            ->assertSessionHasErrors([
+                'verse_limit' => 'The verse limit must be at least 1.'
+            ]);
+
+        $chapter2 = Chapter::factory()->create([
+            'book_id' => $chapter->book_id,
+            'number' => 2
+        ]);
+        $this->actingAs($user)
+            ->patch(route('chapters.update', ['translation' => $chapter->book->translation, 'book' => $chapter->book, 'chapter' => $chapter]), [
+                'number' => $chapter2->number,
+                'verse_limit' => $chapter->verse_limit
+            ])
+            ->assertSessionHasErrors([
+                'number' => 'The number of the chapter exists for the current book.'
+            ]);
     }
 }
