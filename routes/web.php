@@ -39,8 +39,10 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function() {
     Route::patch('/users/{user}', [UserController::class, 'update'])->name('users.update');
     Route::patch('/users/{user}/change-password', [UserController::class, 'changePassword'])->name('users.change-password');
 
-    // Resource
+    // Copyrights
     Route::resource('copyrights', CopyrightController::class);
+
+    // Translations
     Route::resource('translations', TranslationController::class);
 
     // Books
