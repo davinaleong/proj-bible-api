@@ -21,7 +21,7 @@ class BookNumberExistsTest extends TestCase
     }
 
     /** @test */
-    public function rule_passes_when_no_book_of_translation_exists()
+    public function rule_passes_when_book_no_of_translation_doesnt_exist()
     {
         $translation = Translation::factory()->create();
         $rule = new BookNumberExists($translation);
