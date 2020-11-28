@@ -21,33 +21,29 @@ class ManageBooksTest extends TestCase
             ->assertStatus(302)
             ->assertRedirect('login');
 
-        $translation = Translation::factory()->create();
+        $book = Book::factory()->create();
 
-        $this->get(route('books.create', ['translation' => $translation]))
+        $this->get(route('books.create', ['translation' => $book->translation]))
             ->assertStatus(302)
             ->assertRedirect('login');
 
-        $this->post(route('books.store', ['translation' => $translation]))
+        $this->post(route('books.store', ['translation' => $book->translation]))
             ->assertStatus(302)
             ->assertRedirect('login');
 
-        $book = Book::factory()->create([
-            'translation_id' => $translation->id
-        ]);
-
-        $this->get(route('books.show', ['translation' => $translation, 'book' => $book]))
+        $this->get(route('books.show', ['translation' => $book->translation, 'book' => $book]))
             ->assertStatus(302)
             ->assertRedirect('login');
 
-        $this->get(route('books.edit', ['translation' => $translation, 'book' => $book]))
+        $this->get(route('books.edit', ['translation' => $book->translation, 'book' => $book]))
             ->assertStatus(302)
             ->assertRedirect('login');
 
-        $this->patch(route('books.update', ['translation' => $translation, 'book' => $book]))
+        $this->patch(route('books.update', ['translation' => $book->translation, 'book' => $book]))
             ->assertStatus(302)
             ->assertRedirect('login');
 
-        $this->delete(route('books.destroy', ['translation' => $translation, 'book' => $book]))
+        $this->delete(route('books.destroy', ['translation' => $book->translation, 'book' => $book]))
             ->assertStatus(302)
             ->assertRedirect('login');
     }
@@ -56,22 +52,18 @@ class ManageBooksTest extends TestCase
     public function user_can_access_endpoints()
     {
         $user = User::factory()->create();
-        $translation = Translation::factory()->create();
+        $book = Book::factory()->create();
 
         $this->actingAs($user)
-            ->get(route('books.create', ['translation' => $translation]))
-            ->assertOk();
-
-        $book = Book::factory()->create([
-            'created_by' => $user->id,
-            'updated_by' => $user->id
-        ]);
-        $this->actingAs($user)
-            ->get(route('books.show', ['translation' => $translation, 'book' => $book]))
+            ->get(route('books.create', ['translation' => $book->translation]))
             ->assertOk();
 
         $this->actingAs($user)
-            ->get(route('books.edit', ['translation' => $translation, 'book' => $book]))
+            ->get(route('books.show', ['translation' => $book->translation, 'book' => $book]))
+            ->assertOk();
+
+        $this->actingAs($user)
+            ->get(route('books.edit', ['translation' => $book->translation, 'book' => $book]))
             ->assertOk();
     }
 
@@ -90,19 +82,16 @@ class ManageBooksTest extends TestCase
     public function user_can_create_a_book()
     {
         $user = User::factory()->create();
-        $translation = Translation::factory()->create();
-        $book = Book::factory()->make([
-            'translation_id' => $translation->id
-        ]);
+        $book = Book::factory()->make();
 
         $this->actingAs($user)
-            ->post(route('books.store', ['translation' => $translation]), [
+            ->post(route('books.store', ['translation' => $book->translation]), [
                 'name' => $book->name,
                 'abbr' => $book->abbr,
                 'number' => $book->number,
                 'chapter_limit' => $book->chapter_limit
             ])
-            ->assertRedirect(route('books.show', ['translation' => $translation, 'book' => 1]))
+            ->assertRedirect(route('books.show', ['translation' => $book->translation, 'book' => 1]))
             ->assertSessionHas('message', 'Book created.');
 
         $this->assertDatabaseHas('books', [
@@ -112,11 +101,12 @@ class ManageBooksTest extends TestCase
             'chapter_limit' => $book->chapter_limit
         ]);
 
+        $abbr = $book->getTranslationAbbr();
         $this->assertDatabaseHas('logs', [
             'user_id' => $user->id,
             'source' => Log::$TABLE_BOOKS,
             'source_id' => 1,
-            'message' => "$user->name created book $book->name for $translation->abbr."
+            'message' => "$user->name created book $book->name for $abbr."
         ]);
     }
 
@@ -124,13 +114,10 @@ class ManageBooksTest extends TestCase
     public function create_book_returns_error_when_data_criteria_not_met()
     {
         $user = User::factory()->create();
-        $translation = Translation::factory()->create();
-        $book = Book::factory()->make([
-            'translation_id' => $translation->id
-        ]);
+        $book = Book::factory()->make();
 
         $this->actingAs($user)
-            ->post(route('books.store', ['translation' => $translation]), [
+            ->post(route('books.store', ['translation' => $book->translation]), [
                 'name' => ''
             ])
             ->assertSessionHasErrors([
@@ -138,7 +125,7 @@ class ManageBooksTest extends TestCase
             ]);
 
         $this->actingAs($user)
-            ->post(route('books.store', ['translation' => $translation]), [
+            ->post(route('books.store', ['translation' => $book->translation]), [
                 'name' => $book->name,
                 'abbr' => ''
             ])
@@ -147,7 +134,7 @@ class ManageBooksTest extends TestCase
             ]);
 
         $this->actingAs($user)
-            ->post(route('books.store', ['translation' => $translation]), [
+            ->post(route('books.store', ['translation' => $book->translation]), [
                 'name' => $book->name,
                 'abbr' => $book->abbr,
                 'number' => ''
@@ -157,7 +144,7 @@ class ManageBooksTest extends TestCase
             ]);
 
         $this->actingAs($user)
-            ->post(route('books.store', ['translation' => $translation]), [
+            ->post(route('books.store', ['translation' => $book->translation]), [
                 'name' => $book->name,
                 'abbr' => $book->abbr,
                 'number' => 'a'
@@ -167,7 +154,7 @@ class ManageBooksTest extends TestCase
             ]);
 
         $this->actingAs($user)
-            ->post(route('books.store', ['translation' => $translation]), [
+            ->post(route('books.store', ['translation' => $book->translation]), [
                 'name' => $book->name,
                 'abbr' => $book->abbr,
                 'number' => 0
@@ -177,7 +164,7 @@ class ManageBooksTest extends TestCase
             ]);
 
         $this->actingAs($user)
-            ->post(route('books.store', ['translation' => $translation]), [
+            ->post(route('books.store', ['translation' => $book->translation]), [
                 'name' => $book->name,
                 'abbr' => $book->abbr,
                 'number' => 67
@@ -187,7 +174,7 @@ class ManageBooksTest extends TestCase
             ]);
 
         $this->actingAs($user)
-            ->post(route('books.store', ['translation' => $translation]), [
+            ->post(route('books.store', ['translation' => $book->translation]), [
                 'name' => $book->name,
                 'abbr' => $book->abbr,
                 'number' => $book->number,
@@ -198,7 +185,7 @@ class ManageBooksTest extends TestCase
             ]);
 
         $this->actingAs($user)
-            ->post(route('books.store', ['translation' => $translation]), [
+            ->post(route('books.store', ['translation' => $book->translation]), [
                 'name' => $book->name,
                 'abbr' => $book->abbr,
                 'number' => $book->number,
@@ -209,7 +196,7 @@ class ManageBooksTest extends TestCase
             ]);
 
         $this->actingAs($user)
-            ->post(route('books.store', ['translation' => $translation]), [
+            ->post(route('books.store', ['translation' => $book->translation]), [
                 'name' => $book->name,
                 'abbr' => $book->abbr,
                 'number' => $book->number,
@@ -220,13 +207,13 @@ class ManageBooksTest extends TestCase
             ]);
 
         $book2 = Book::factory()->create([
-            'translation_id' => $translation->id,
+            'translation_id' => $book->translation_id,
             'name' => 'Book2',
             'abbr' => 'Bk2',
             'number' => 2
         ]);
         $this->actingAs($user)
-            ->post(route('books.store', ['translation' => $translation]), [
+            ->post(route('books.store', ['translation' => $book->translation]), [
                 'name' => $book2->name,
                 'abbr' => $book->abbr,
                 'number' => $book->number,
@@ -237,7 +224,7 @@ class ManageBooksTest extends TestCase
             ]);
 
         $this->actingAs($user)
-            ->post(route('books.store', ['translation' => $translation]), [
+            ->post(route('books.store', ['translation' => $book->translation]), [
                 'name' => $book->name,
                 'abbr' => $book2->abbr,
                 'number' => $book->number,
@@ -248,7 +235,7 @@ class ManageBooksTest extends TestCase
             ]);
 
         $this->actingAs($user)
-            ->post(route('books.store', ['translation' => $translation]), [
+            ->post(route('books.store', ['translation' => $book->translation]), [
                 'name' => $book->name,
                 'abbr' => $book->abbr,
                 'number' => $book2->number,
