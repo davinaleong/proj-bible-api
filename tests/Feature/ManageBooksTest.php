@@ -254,25 +254,27 @@ class ManageBooksTest extends TestCase
     {
         $users = User::factory()->count(2)->create();
         $book = Book::factory()->create([
-            'created_by' => $users[0],
-            'updated_by' => $users[0]
+            'created_by' => $users[0]->id
+        ]);
+        $updated_book = Book::factory()->make([
+            'translation_id' => $book->translation_id
         ]);
 
         $this->actingAs($users[1])
             ->patch(route('books.update', ['translation' => $book->translation, 'book' => $book]), [
-                'name' => $book->name,
-                'abbr' => $book->abbr,
-                'number' => $book->number,
-                'chapter_limit' => $book->chapter_limit
+                'name' => $updated_book->name,
+                'abbr' => $updated_book->abbr,
+                'number' => $updated_book->number,
+                'chapter_limit' => $updated_book->chapter_limit
             ])
             ->assertRedirect(route('books.show', ['translation' => $book->translation, 'book' => $book]))
             ->assertSessionHas('message', 'Book updated.');
 
         $this->assertDatabaseHas('books', [
             'translation_id' => $book->translation_id,
-            'name' => $book->name,
-            'abbr' => $book->abbr,
-            'chapter_limit' => $book->chapter_limit,
+            'name' => $updated_book->name,
+            'abbr' => $updated_book->abbr,
+            'chapter_limit' => $updated_book->chapter_limit,
             'created_by' => $users[0]->id,
             'updated_by' => $users[1]->id
         ]);
@@ -283,7 +285,7 @@ class ManageBooksTest extends TestCase
             'user_id' => $users[1]->id,
             'source' => Log::$TABLE_BOOKS,
             'source_id' => 1,
-            'message' => "$user->name updated book $book->name for $translation->abbr."
+            'message' => "$user->name updated book $updated_book->name for $translation->abbr."
         ]);
     }
 
