@@ -5,6 +5,7 @@ namespace Tests\Feature;
 use App\Models\Book;
 use App\Models\Chapter;
 use App\Models\Translation;
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
@@ -52,5 +53,33 @@ class ManageChaptersTest extends TestCase
         $this->delete(route('chapters.destroy', ['translation' => $translation, 'book' => $book, 'chapter' => $chapter]))
             ->assertStatus(302)
             ->assertRedirect(route('login'));
+    }
+
+    /** @test */
+    public function user_can_access_endpoints()
+    {
+        $this->withoutExceptionHandling();
+        $user = User::factory()->create();
+
+        $translation = Translation::factory()->create();
+        $book = Book::factory()->create([
+            'translation_id' => $translation->id
+        ]);
+
+        $this->actingAs($user)
+            ->get(route('chapters.create', ['translation' => $translation, 'book' => $book]))
+            ->assertOk();
+
+        $chapter = Chapter::factory()->create([
+            'book_id' => $book->id
+        ]);
+
+        $this->actingAs($user)
+            ->get(route('chapters.show', ['translation' => $translation, 'book' => $book, 'chapter' => $chapter]))
+            ->assertOk();
+
+        $this->actingAs($user)
+            ->get(route('chapters.edit', ['translation' => $translation, 'book' => $book, 'chapter' => $chapter]))
+            ->assertOk();
     }
 }

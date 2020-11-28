@@ -25,4 +25,9 @@ class ChapterController extends Controller
     {
         //
     }
+
+    public function edit(Translation $translation, Book $book, Chapter $chapter)
+    {
+        //
+    }
 }
