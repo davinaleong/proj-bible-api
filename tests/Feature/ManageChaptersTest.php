@@ -311,4 +311,6 @@ class ManageChaptersTest extends TestCase
                 'number' => 'The number of the chapter exists for the current book.'
             ]);
     }
+
+    // TODO: Test delete chapter
 }

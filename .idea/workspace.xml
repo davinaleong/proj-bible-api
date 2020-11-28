@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="aea7a033-8388-4a34-8811-e03be647dd13" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ChapterController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ChapterController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tests/Feature/ManageChaptersTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/ManageChaptersTest.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -46,8 +45,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/tests/Feature/ManageChaptersTest.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="159">
-              <caret line="303" column="11" lean-forward="true" selection-start-line="303" selection-start-column="11" selection-end-line="303" selection-end-column="11" />
+            <state relative-caret-position="250">
+              <caret line="314" column="32" selection-start-line="314" selection-start-column="32" selection-end-line="314" selection-end-column="32" />
               <folding>
                 <element signature="e#33#53#0#PHP" expanded="true" />
               </folding>
@@ -437,7 +436,7 @@
       <workItem from="1605499085167" duration="293000" />
       <workItem from="1605511943902" duration="478000" />
       <workItem from="1605516203803" duration="675000" />
-      <workItem from="1606007257681" duration="17675000" />
+      <workItem from="1606007257681" duration="17753000" />
     </task>
     <servers />
   </component>
@@ -468,7 +467,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="126406000" />
+    <option name="totallyTimeSpent" value="126484000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -951,8 +950,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/tests/Feature/ManageChaptersTest.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="159">
-          <caret line="303" column="11" lean-forward="true" selection-start-line="303" selection-start-column="11" selection-end-line="303" selection-end-column="11" />
+        <state relative-caret-position="250">
+          <caret line="314" column="32" selection-start-line="314" selection-start-column="32" selection-end-line="314" selection-end-column="32" />
           <folding>
             <element signature="e#33#53#0#PHP" expanded="true" />
           </folding>
