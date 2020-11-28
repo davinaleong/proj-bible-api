@@ -254,10 +254,12 @@ class ManageBooksTest extends TestCase
     {
         $users = User::factory()->count(2)->create();
         $book = Book::factory()->create([
+            'abbr' => 'Abbr',
             'created_by' => $users[0]->id
         ]);
         $updated_book = Book::factory()->make([
-            'translation_id' => $book->translation_id
+            'translation_id' => $book->translation_id,
+            'abbr' => 'Abbr2'
         ]);
 
         $this->actingAs($users[1])
