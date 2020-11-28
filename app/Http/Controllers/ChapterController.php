@@ -48,7 +48,7 @@ class ChapterController extends Controller
     private function rules(Book $book, Chapter $chapter=null)
     {
         return [
-            'number' => ['required', 'integer', 'min:0', new ChapterNumberExists($book, $chapter)],
+            'number' => ['required', 'integer', 'min:1', "max:$book->chapter_limit", new ChapterNumberExists($book, $chapter)],
             'verse_limit' => 'required|integer|min:0'
         ];
     }
