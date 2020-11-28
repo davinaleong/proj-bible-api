@@ -117,7 +117,9 @@ class ManageChaptersTest extends TestCase
     public function create_chapter_returns_error_when_data_critera_not_met()
     {
         $user = User::factory()->create();
-        $chapter = Chapter::factory()->make();
+        $chapter = Chapter::factory()->make([
+            'number' => 1
+        ]);
 
         $this->actingAs($user)
             ->post(route('chapters.store', ['translation' => $chapter->book->translation, 'book' => $chapter->book]), [
@@ -150,6 +152,46 @@ class ManageChaptersTest extends TestCase
             ])
             ->assertSessionHasErrors([
                 'number' => "The number may not be greater than $book->chapter_limit."
+            ]);
+
+        $this->actingAs($user)
+            ->post(route('chapters.store', ['translation' => $chapter->book->translation, 'book' => $chapter->book]), [
+                'number' => $chapter->number,
+                'verse_limit' => ''
+            ])
+            ->assertSessionHasErrors([
+                'verse_limit' => 'The verse limit field is required.'
+            ]);
+
+        $this->actingAs($user)
+            ->post(route('chapters.store', ['translation' => $chapter->book->translation, 'book' => $chapter->book]), [
+                'number' => $chapter->number,
+                'verse_limit' => 'a'
+            ])
+            ->assertSessionHasErrors([
+                'verse_limit' => 'The verse limit must be an integer.'
+            ]);
+
+        $this->actingAs($user)
+            ->post(route('chapters.store', ['translation' => $chapter->book->translation, 'book' => $chapter->book]), [
+                'number' => $chapter->number,
+                'verse_limit' => 0
+            ])
+            ->assertSessionHasErrors([
+                'verse_limit' => 'The verse limit must be at least 1.'
+            ]);
+
+        Chapter::factory()->create([
+            'book_id' => $chapter->book_id,
+            'number' => $chapter->number
+        ]);
+        $this->actingAs($user)
+            ->post(route('chapters.store', ['translation' => $chapter->book->translation, 'book' => $chapter->book]), [
+                'number' => $chapter->number,
+                'verse_limit' => 0
+            ])
+            ->assertSessionHasErrors([
+                'number' => 'The number of the chapter exists for the current book.'
             ]);
     }
 }
