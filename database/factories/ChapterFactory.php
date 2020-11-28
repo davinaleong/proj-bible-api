@@ -27,7 +27,7 @@ class ChapterFactory extends Factory
         $user = User::factory()->create();
         return [
             'book_id' => Book::factory()->create(),
-            'number' => $this->faker->randomNumber(),
+            'number' => 1,
             'verse_limit' => 1,
             'created_by' => $user,
             'updated_by' => $user
