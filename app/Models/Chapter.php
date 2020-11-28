@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Events\ChapterCreated;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -10,6 +11,10 @@ class Chapter extends Model
     use HasFactory;
 
     protected $fillable = ['book_id', 'number', 'verse_limit', 'created_by', 'updated_by'];
+
+    protected $dispatchesEvents = [
+        'created' => ChapterCreated::class
+    ];
 
     public static function getChapter(Book $book, int $number)
     {
