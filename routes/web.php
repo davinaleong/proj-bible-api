@@ -5,6 +5,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\CopyrightController;
 use App\Http\Controllers\TranslationController;
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\ChapterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -56,5 +57,12 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function() {
     Route::get('/translations/{translation}/books/{book}/edit', [BookController::class, 'edit'])->name('books.edit');
     Route::patch('/translations/{translation}/books/{book}', [BookController::class, 'update'])->name('books.update');
     Route::delete('/translations/{translation}/books/{book}', [BookController::class, 'destroy'])->name('books.destroy');
+    //#endregion
+
+    //#region Chapters
+    Route::get('/chapters/{chapter}', [ChapterController::class, 'showChapter'])->name('chapters.showChapter');
+    Route::get('/translations/{translation}/books/{book}/chapters/create', [ChapterController::class, 'create'])->name('chapters.create');
+    Route::post('/translations/{translation}/books/{book}/chapters', [ChapterController::class, 'store'])->name('chapters.store');
+    Route::get('/translations/{translation}/books/{book}/chapters/{chapters}', [ChapterController::class, 'show'])->name('chapters.show');
     //#endregion
 });
