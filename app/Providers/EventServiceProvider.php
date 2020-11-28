@@ -6,6 +6,7 @@ use App\Events\BookCreated;
 use App\Events\BookDeleted;
 use App\Events\BookUpdated;
 use App\Events\ChapterCreated;
+use App\Events\ChapterUpdated;
 use App\Events\CopyrightCreated;
 use App\Events\CopyrightDeleted;
 use App\Events\CopyrightUpdated;
@@ -19,6 +20,7 @@ use App\Listeners\LogBookCreated;
 use App\Listeners\LogBookDeleted;
 use App\Listeners\LogBookUpdated;
 use App\Listeners\LogChapterCreated;
+use App\Listeners\LogChapterUpdated;
 use App\Listeners\LogCopyrightCreated;
 use App\Listeners\LogCopyrightDeleted;
 use App\Listeners\LogCopyrightUpdated;
@@ -82,6 +84,9 @@ class EventServiceProvider extends ServiceProvider
         ],
         ChapterCreated::class => [
             LogChapterCreated::class
+        ],
+        ChapterUpdated::class => [
+            LogChapterUpdated::class
         ]
     ];
 

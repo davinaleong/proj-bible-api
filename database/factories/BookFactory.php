@@ -30,7 +30,7 @@ class BookFactory extends Factory
             'name' => $this->faker->name,
             'abbr' => $this->faker->word,
             'number' => 1,
-            'chapter_limit' => 1,
+            'chapter_limit' => 10,
             'created_by' => $user,
             'updated_by' => $user
         ];

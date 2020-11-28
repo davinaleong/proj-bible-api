@@ -194,4 +194,44 @@ class ManageChaptersTest extends TestCase
                 'number' => 'The number of the chapter exists for the current book.'
             ]);
     }
+
+    /** @test */
+    public function user_can_update_a_chapter()
+    {
+        $users = User::factory()->count(2)->create();
+        $chapter = Chapter::factory()->create([
+            'number' => 1,
+            'created_by' => $users[0]->id
+        ]);
+        $updated_chapter = Chapter::factory()->make([
+            'book_id' => $chapter->book_id,
+            'number' => 2
+        ]);
+
+        $this->actingAs($users[1])
+            ->patch(route('chapters.update', ['translation' => $chapter->book->translation, 'book' => $chapter->book, 'chapter' => $chapter]), [
+                'verse_limit' => $updated_chapter->verse_limit
+            ])
+            ->assertSessionHas([
+                'message' => 'Chapter updated.'
+            ]);
+
+        $this->assertDatabaseHas('chapters', [
+            'book_id' => $chapter->book_id,
+            'number' => $chapter->number,
+            'verse_limit' => $updated_chapter->verse_limit,
+            'created_by' => $users[0]->id,
+            'updated_by' => $users[1]->id
+        ]);
+
+        $user = $users[1];
+        $translation = $chapter->book->translation;
+        $book = $chapter->book;
+        $this->assertDatabaseHas('logs', [
+            'user_id' => $user->id,
+            'source' => Log::$TABLE_CHAPTERS,
+            'source_id' => 1,
+            'message' => "$user->name updated chapter $chapter->number for $book->name, $translation->abbr."
+        ]);
+    }
 }

@@ -45,11 +45,28 @@ class ChapterController extends Controller
         //
     }
 
+    public function update(Translation $translation, Book $book, Chapter $chapter)
+    {
+        $attributes = request()->validate($this->rules($book, $chapter));
+        $attributes['updated_by'] = auth()->user()->id;
+
+        $chapter->update($attributes);
+
+        return redirect()
+            ->route('chapters.show', ['translation' => $translation, 'book' => $book, 'chapter' => $chapter])
+            ->with('message', 'Chapter updated.');
+    }
+
     private function rules(Book $book, Chapter $chapter=null)
     {
-        return [
-            'number' => ['required', 'integer', 'min:1', "max:$book->chapter_limit", new ChapterNumberExists($book, $chapter)],
+        $rules = [
             'verse_limit' => 'required|integer|min:1'
         ];
+
+        if(blank($chapter)) {
+            $rules['number'] = ['required', 'integer', 'min:1', "max:$book->chapter_limit", new ChapterNumberExists($book, $chapter)];
+        }
+
+        return $rules;
     }
 }
