@@ -82,4 +82,16 @@ class ManageChaptersTest extends TestCase
             ->get(route('chapters.edit', ['translation' => $translation, 'book' => $book, 'chapter' => $chapter]))
             ->assertOk();
     }
+
+    /** @test */
+    public function user_accessing_showchapter_results_in_redirect()
+    {
+        $user = User::factory()->create();
+        $chapter = Chapter::factory()->create();
+
+        $this->actingAs($user)
+            ->get(route('chapters.showChapter', ['chapter' => $chapter]))
+            ->assertRedirect(route('chapters.show',
+                ['translation' => $chapter->book->translation, 'book' => $chapter->book, 'chapter' => $chapter]));
+    }
 }
