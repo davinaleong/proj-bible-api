@@ -98,7 +98,8 @@ class ManageBooksTest extends TestCase
             'translation_id' => $book->translation_id,
             'name' => $book->name,
             'abbr' => $book->abbr,
-            'chapter_limit' => $book->chapter_limit
+            'chapter_limit' => $book->chapter_limit,
+            'created_by' => $user->id
         ]);
 
         $abbr = $book->getTranslationAbbr();
@@ -251,10 +252,13 @@ class ManageBooksTest extends TestCase
     /** @test */
     public function user_can_update_a_book()
     {
-        $user = User::factory()->create();
-        $book = Book::factory()->create();
+        $users = User::factory()->count(2)->create();
+        $book = Book::factory()->create([
+            'created_by' => $users[0],
+            'updated_by' => $users[0]
+        ]);
 
-        $this->actingAs($user)
+        $this->actingAs($users[1])
             ->patch(route('books.update', ['translation' => $book->translation, 'book' => $book]), [
                 'name' => $book->name,
                 'abbr' => $book->abbr,
@@ -268,12 +272,15 @@ class ManageBooksTest extends TestCase
             'translation_id' => $book->translation_id,
             'name' => $book->name,
             'abbr' => $book->abbr,
-            'chapter_limit' => $book->chapter_limit
+            'chapter_limit' => $book->chapter_limit,
+            'created_by' => $users[0]->id,
+            'updated_by' => $users[1]->id
         ]);
 
+        $user = $users[1];
         $translation = $book->translation;
         $this->assertDatabaseHas('logs', [
-            'user_id' => $user->id,
+            'user_id' => $users[1]->id,
             'source' => Log::$TABLE_BOOKS,
             'source_id' => 1,
             'message' => "$user->name updated book $book->name for $translation->abbr."
