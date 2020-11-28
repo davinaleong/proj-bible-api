@@ -33,7 +33,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ChapterController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="229">
+            <state relative-caret-position="691">
               <caret line="63" column="53" lean-forward="true" selection-start-line="63" selection-start-column="53" selection-end-line="63" selection-end-column="53" />
               <folding>
                 <element signature="e#40#60#0#PHP" expanded="true" />
@@ -45,8 +45,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/tests/Feature/ManageChaptersTest.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="250">
-              <caret line="314" column="32" selection-start-line="314" selection-start-column="32" selection-end-line="314" selection-end-column="32" />
+            <state relative-caret-position="334">
+              <caret line="328" column="50" selection-start-line="328" selection-start-column="50" selection-end-line="328" selection-end-column="50" />
               <folding>
                 <element signature="e#33#53#0#PHP" expanded="true" />
               </folding>
@@ -436,7 +436,7 @@
       <workItem from="1605499085167" duration="293000" />
       <workItem from="1605511943902" duration="478000" />
       <workItem from="1605516203803" duration="675000" />
-      <workItem from="1606007257681" duration="17753000" />
+      <workItem from="1606007257681" duration="18155000" />
     </task>
     <servers />
   </component>
@@ -467,7 +467,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="126484000" />
+    <option name="totallyTimeSpent" value="126886000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -940,7 +940,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ChapterController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="229">
+        <state relative-caret-position="691">
           <caret line="63" column="53" lean-forward="true" selection-start-line="63" selection-start-column="53" selection-end-line="63" selection-end-column="53" />
           <folding>
             <element signature="e#40#60#0#PHP" expanded="true" />
@@ -950,8 +950,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/tests/Feature/ManageChaptersTest.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="250">
-          <caret line="314" column="32" selection-start-line="314" selection-start-column="32" selection-end-line="314" selection-end-column="32" />
+        <state relative-caret-position="334">
+          <caret line="328" column="50" selection-start-line="328" selection-start-column="50" selection-end-line="328" selection-end-column="50" />
           <folding>
             <element signature="e#33#53#0#PHP" expanded="true" />
           </folding>

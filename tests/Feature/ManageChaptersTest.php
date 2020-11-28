@@ -312,5 +312,20 @@ class ManageChaptersTest extends TestCase
             ]);
     }
 
-    // TODO: Test delete chapter
+    /** @test */
+    public function user_can_delete_a_chapter()
+    {
+        $user = User::factory()->create();
+        $chapter = Chapter::factory()->create();
+
+        $this->actingAs($user)
+            ->delete(route('chapters.destroy', ['translation' => $chapter->book->translation, 'book' => $chapter->book, 'chapter' => $chapter]))
+            ->assertSessionHas([
+                'message' => 'Chapter deleted.'
+            ])
+            ->assertRedirect(route('books.show', ['translation' => $chapter->book->translation, 'book' => $chapter->book]));
+
+        //TODO: Assert chapters DB
+        //TODO: Assert logs DB for deleted chapter
+    }
 }
