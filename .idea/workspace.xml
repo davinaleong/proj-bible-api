@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="aea7a033-8388-4a34-8811-e03be647dd13" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Feature/ManageChaptersTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/ManageChaptersTest.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -18,11 +19,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/routes/web.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="302">
-              <caret line="65" column="18" selection-start-line="65" selection-start-column="18" selection-end-line="65" selection-end-column="18" />
+            <state relative-caret-position="267">
+              <caret line="68" column="143" selection-start-line="68" selection-start-column="143" selection-end-line="68" selection-end-column="143" />
               <folding>
                 <element signature="e#7#44#0#PHP" expanded="true" />
               </folding>
@@ -54,11 +55,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tests/Feature/ManageChaptersTest.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="292">
-              <caret line="30" column="91" selection-start-line="30" selection-start-column="91" selection-end-line="30" selection-end-column="91" />
+            <state relative-caret-position="334">
+              <caret line="53" column="44" selection-start-line="53" selection-start-column="44" selection-end-line="53" selection-end-column="44" />
               <folding>
                 <element signature="e#33#53#0#PHP" expanded="true" />
               </folding>
@@ -69,8 +70,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tests/Feature/ManageBooksTest.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="250">
-              <caret line="31" column="38" lean-forward="true" selection-start-line="29" selection-start-column="8" selection-end-line="31" selection-end-column="38" />
+            <state relative-caret-position="263">
+              <caret line="49" column="92" selection-start-line="49" selection-start-column="92" selection-end-line="49" selection-end-column="92" />
               <folding>
                 <element signature="e#33#53#0#PHP" expanded="true" />
               </folding>
@@ -194,7 +195,6 @@
         <option value="$PROJECT_DIR$/app/Rules/BookAbbrExists.php" />
         <option value="$PROJECT_DIR$/resources/views/books/edit.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/BookController.php" />
-        <option value="$PROJECT_DIR$/tests/Feature/ManageBooksTest.php" />
         <option value="$PROJECT_DIR$/app/Events/BookDeleted.php" />
         <option value="$PROJECT_DIR$/app/Models/Book.php" />
         <option value="$PROJECT_DIR$/app/Listeners/LogBookDeleted.php" />
@@ -223,8 +223,9 @@
         <option value="$PROJECT_DIR$/app/Models/Chapter.php" />
         <option value="$PROJECT_DIR$/tests/Unit/ChapterTest.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/ChapterController.php" />
-        <option value="$PROJECT_DIR$/routes/web.php" />
+        <option value="$PROJECT_DIR$/tests/Feature/ManageBooksTest.php" />
         <option value="$PROJECT_DIR$/tests/Feature/ManageChaptersTest.php" />
+        <option value="$PROJECT_DIR$/routes/web.php" />
       </list>
     </option>
   </component>
@@ -486,7 +487,7 @@
       <workItem from="1605499085167" duration="293000" />
       <workItem from="1605511943902" duration="478000" />
       <workItem from="1605516203803" duration="675000" />
-      <workItem from="1606007257681" duration="4922000" />
+      <workItem from="1606007257681" duration="5604000" />
     </task>
     <servers />
   </component>
@@ -517,7 +518,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="113653000" />
+    <option name="totallyTimeSpent" value="114335000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -963,20 +964,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/web.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="302">
-          <caret line="65" column="18" selection-start-line="65" selection-start-column="18" selection-end-line="65" selection-end-column="18" />
-          <folding>
-            <element signature="e#7#44#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tests/Feature/ManageBooksTest.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="250">
-          <caret line="31" column="38" lean-forward="true" selection-start-line="29" selection-start-column="8" selection-end-line="31" selection-end-column="38" />
+        <state relative-caret-position="263">
+          <caret line="49" column="92" selection-start-line="49" selection-start-column="92" selection-end-line="49" selection-end-column="92" />
           <folding>
             <element signature="e#33#53#0#PHP" expanded="true" />
           </folding>
@@ -985,10 +976,20 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/tests/Feature/ManageChaptersTest.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="292">
-          <caret line="30" column="91" selection-start-line="30" selection-start-column="91" selection-end-line="30" selection-end-column="91" />
+        <state relative-caret-position="334">
+          <caret line="53" column="44" selection-start-line="53" selection-start-column="44" selection-end-line="53" selection-end-column="44" />
           <folding>
             <element signature="e#33#53#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/web.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="267">
+          <caret line="68" column="143" selection-start-line="68" selection-start-column="143" selection-end-line="68" selection-end-column="143" />
+          <folding>
+            <element signature="e#7#44#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>

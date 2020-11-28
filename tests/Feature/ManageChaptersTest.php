@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use App\Models\Book;
+use App\Models\Chapter;
 use App\Models\Translation;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -31,5 +32,25 @@ class ManageChaptersTest extends TestCase
         $this->post(route('chapters.store', ['translation' => $translation, 'book' => $book]))
             ->assertStatus(302)
             ->assertRedirect('login');
+
+        $chapter = Chapter::factory()->create([
+            'book_id' => $book->id
+        ]);
+
+        $this->get(route('chapters.show', ['translation' => $translation, 'book' => $book, 'chapter' => $chapter]))
+            ->assertStatus(302)
+            ->assertRedirect(route('login'));
+
+        $this->get(route('chapters.edit', ['translation' => $translation, 'book' => $book, 'chapter' => $chapter]))
+            ->assertStatus(302)
+            ->assertRedirect(route('login'));
+
+        $this->patch(route('chapters.update', ['translation' => $translation, 'book' => $book, 'chapter' => $chapter]))
+            ->assertStatus(302)
+            ->assertRedirect(route('login'));
+
+        $this->delete(route('chapters.destroy', ['translation' => $translation, 'book' => $book, 'chapter' => $chapter]))
+            ->assertStatus(302)
+            ->assertRedirect(route('login'));
     }
 }

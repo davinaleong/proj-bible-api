@@ -63,6 +63,9 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function() {
     Route::get('/chapters/{chapter}', [ChapterController::class, 'showChapter'])->name('chapters.showChapter');
     Route::get('/translations/{translation}/books/{book}/chapters/create', [ChapterController::class, 'create'])->name('chapters.create');
     Route::post('/translations/{translation}/books/{book}/chapters', [ChapterController::class, 'store'])->name('chapters.store');
-    Route::get('/translations/{translation}/books/{book}/chapters/{chapters}', [ChapterController::class, 'show'])->name('chapters.show');
+    Route::get('/translations/{translation}/books/{book}/chapters/{chapter}', [ChapterController::class, 'show'])->name('chapters.show');
+    Route::get('/translations/{translation}/books/{book}/chapters/{chapter}/edit', [ChapterController::class, 'edit'])->name('chapters.edit');
+    Route::patch('/translations/{translation}/books/{book}/chapters/{chapter}', [ChapterController::class, 'update'])->name('chapters.update');
+    Route::delete('/translations/{translation}/books/{book}/chapters/{chapter}', [ChapterController::class, 'destroy'])->name('chapters.destroy');
     //#endregion
 });
