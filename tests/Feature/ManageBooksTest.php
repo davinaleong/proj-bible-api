@@ -31,19 +31,23 @@ class ManageBooksTest extends TestCase
             ->assertStatus(302)
             ->assertRedirect('login');
 
-        $this->get(route('books.show', ['translation' => $translation, 'book' => 1]))
+        $book = Book::factory()->create([
+            'translation_id' => $translation->id
+        ]);
+
+        $this->get(route('books.show', ['translation' => $translation, 'book' => $book]))
             ->assertStatus(302)
             ->assertRedirect('login');
 
-        $this->get(route('books.edit', ['translation' => $translation, 'book' => 1]))
+        $this->get(route('books.edit', ['translation' => $translation, 'book' => $book]))
             ->assertStatus(302)
             ->assertRedirect('login');
 
-        $this->patch(route('books.update', ['translation' => $translation, 'book' => 1]))
+        $this->patch(route('books.update', ['translation' => $translation, 'book' => $book]))
             ->assertStatus(302)
             ->assertRedirect('login');
 
-        $this->delete(route('books.destroy', ['translation' => $translation, 'book' => 1]))
+        $this->delete(route('books.destroy', ['translation' => $translation, 'book' => $book]))
             ->assertStatus(302)
             ->assertRedirect('login');
     }
