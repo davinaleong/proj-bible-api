@@ -33,19 +33,22 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function() {
         ]);
     })->name('dashboard');
 
-    // Users
+    //#region Users
     Route::get('/users/{user}', [UserController::class, 'show'])->name('users.show');
     Route::get('/users/{user}/edit', [UserController::class, 'edit'])->name('users.edit');
     Route::patch('/users/{user}', [UserController::class, 'update'])->name('users.update');
     Route::patch('/users/{user}/change-password', [UserController::class, 'changePassword'])->name('users.change-password');
+    //#endregion
 
-    // Copyrights
+    //#region Copyrights
     Route::resource('copyrights', CopyrightController::class);
+    //#endregion
 
-    // Translations
+    //#region Translations
     Route::resource('translations', TranslationController::class);
+    //#endregion
 
-    // Books
+    //#region Books
     Route::get('/books/{book}', [BookController::class, 'showBook'])->name('books.showBook');
     Route::get('/translations/{translation}/books/create', [BookController::class, 'create'])->name('books.create');
     Route::post('/translations/{translation}/books', [BookController::class, 'store'])->name('books.store');
@@ -53,4 +56,5 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function() {
     Route::get('/translations/{translation}/books/{book}/edit', [BookController::class, 'edit'])->name('books.edit');
     Route::patch('/translations/{translation}/books/{book}', [BookController::class, 'update'])->name('books.update');
     Route::delete('/translations/{translation}/books/{book}', [BookController::class, 'destroy'])->name('books.destroy');
+    //#endregion
 });
