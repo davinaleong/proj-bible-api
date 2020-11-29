@@ -3,7 +3,7 @@
 @section('content')
     <h1>Copyrights</h1>
 
-    <div class="card shadow">
+    <div class="card shadow mb-3">
         <div class="card-header">
             <h2 class="h5 card-title">{{ $copyright->name }}</h2>
         </div>
@@ -16,6 +16,52 @@
             <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">
                 Delete <i class="fas fa-trash-alt"></i>
             </button>
+        </div>
+    </div>
+
+    <div class="card shadow">
+        <div class="card-header">
+            <h2 class="h5 card-title">
+                Translations ({{ $copyright->translations->count() }})
+                <a href="{{ route('translations.create') }}" class="btn btn-primary">
+                    Create <i class="fas fa-plus"></i>
+                </a>
+            </h2>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table id="table" class="table table-bordered table-hover" width="100%" cellspacing="0">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Abbr</th>
+                        <th>Creator</th>
+                        <th>Updater</th>
+                    </tr>
+                    </thead>
+                    <tfoot>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Abbr</th>
+                        <th>Creator</th>
+                        <th>Updater</th>
+                    </tr>
+                    </tfoot>
+                    <tbody>
+                    @foreach($copyright->translations as $translation)
+                        <tr class="clickable" onclick="goto('{{ route('translations.show', ['translation' => $translation]) }}')">
+                            <td>{{ $translation->id }}</td>
+                            <td>{{ $translation->name }}</td>
+                            <td>{{ $translation->abbr }}</td>
+                            <td>{{ $translation->getCreatorName() }}</td>
+                            <td>{{ $translation->getUpdaterName() }}</td>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 
@@ -48,4 +94,12 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('scripts')
+    <script>
+        $(document).ready(function() {
+            $('#table').DataTable();
+        });
+    </script>
 @endsection

@@ -40,8 +40,8 @@
                         <th>ID</th>
                         <th>Number</th>
                         <th>Verse Limit</th>
-                        <th>Created At</th>
-                        <th>Updated At</th>
+                        <th>Creator</th>
+                        <th>Updater</th>
                     </tr>
                     </thead>
                     <tfoot>
@@ -49,8 +49,8 @@
                         <th>ID</th>
                         <th>Number</th>
                         <th>Verse Limit</th>
-                        <th>Created At</th>
-                        <th>Updated At</th>
+                        <th>Creator</th>
+                        <th>Updater</th>
                     </tr>
                     </tfoot>
                     <tbody>
