@@ -13,17 +13,20 @@ class ChapterController extends Controller
 {
     public function create(Translation $translation, Book $book)
     {
-        return view('books.show', [
+        return view('chapters.create', [
             'breadcrumb' => Breadcrumb::items([
                 [
                     'label' => 'Translations',
                     'href' => route('translations.index')
                 ], [
-                    'label' => 'ID: ' . $translation->id,
+                    'label' => $translation->abbr,
                     'href' => route('translations.show', ['translation' => $translation])
                 ], [
-                    'label' => 'Book ID: ' . $book->id,
-                    'href' => true
+                    'label' => $book->abbr,
+                    'href' => route('books.show', ['translation' => $translation, 'book' => $book])
+                ], [
+                    'label' => 'Create Chapter',
+                    'active' => true
                 ]
             ]),
             'translation' => $translation,
