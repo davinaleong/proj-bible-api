@@ -21,7 +21,7 @@ class BookController extends Controller
                     'label' => 'Translations',
                     'href' => route('translations.index')
                 ], [
-                    'label' => 'ID: ' . $translation->id,
+                    'label' => $translation->abbr,
                     'href' => route('translations.show', ['translation' => $translation])
                 ], [
                     'label' => 'Create Book',
@@ -53,10 +53,10 @@ class BookController extends Controller
                     'label' => 'Translations',
                     'href' => route('translations.index')
                 ], [
-                    'label' => 'ID: ' . $translation->id,
+                    'label' => $translation->abbr,
                     'href' => route('translations.show', ['translation' => $translation])
                 ], [
-                    'label' => 'Book ID: ' . $book->id,
+                    'label' => $book->abbr,
                     'active' => true
                 ]
             ]),
@@ -79,10 +79,10 @@ class BookController extends Controller
                     'label' => 'Translations',
                     'href' => route('translations.index')
                 ], [
-                    'label' => 'ID: ' . $translation->id,
+                    'label' => $translation->abbr,
                     'href' => route('translations.show', ['translation' => $translation])
                 ], [
-                    'label' => 'Book ID: ' . $book->id,
+                    'label' => $book->abbr,
                     'href' => route('books.show', ['translation' => $translation, 'book' => $book])
                 ], [
                     'label' => 'Edit',

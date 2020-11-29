@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="aea7a033-8388-4a34-8811-e03be647dd13" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ChapterController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ChapterController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CopyrightController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CopyrightController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/TranslationController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/TranslationController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/BookController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/BookController.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -44,11 +42,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/BookController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="751">
-              <caret line="51" column="17" lean-forward="true" selection-start-line="51" selection-start-column="17" selection-end-line="51" selection-end-column="17" />
+            <state relative-caret-position="235">
+              <caret line="84" column="43" lean-forward="true" selection-start-line="84" selection-start-column="43" selection-end-line="84" selection-end-column="43" />
               <folding>
                 <element signature="e#40#60#0#PHP" expanded="true" />
               </folding>
@@ -65,11 +63,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/CopyrightController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-464">
-              <caret line="74" column="20" lean-forward="true" selection-start-line="74" selection-start-column="20" selection-end-line="74" selection-end-column="20" />
+            <state relative-caret-position="334">
+              <caret line="112" column="33" lean-forward="true" selection-start-line="112" selection-start-column="33" selection-end-line="112" selection-end-column="33" />
             </state>
           </provider>
         </entry>
@@ -165,7 +163,6 @@
         <option value="$PROJECT_DIR$/app/Events/ChapterDeleted.php" />
         <option value="$PROJECT_DIR$/app/Listeners/LogChapterDeleted.php" />
         <option value="$PROJECT_DIR$/app/Models/Chapter.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/BookController.php" />
         <option value="$PROJECT_DIR$/app/Providers/EventServiceProvider.php" />
         <option value="$PROJECT_DIR$/app/Listeners/LogBookDeleted.php" />
         <option value="$PROJECT_DIR$/tests/Feature/ManageBooksTest.php" />
@@ -176,6 +173,7 @@
         <option value="$PROJECT_DIR$/app/Http/Controllers/ChapterController.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/TranslationController.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/CopyrightController.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/BookController.php" />
       </list>
     </option>
   </component>
@@ -439,7 +437,7 @@
       <workItem from="1605499085167" duration="293000" />
       <workItem from="1605511943902" duration="478000" />
       <workItem from="1605516203803" duration="675000" />
-      <workItem from="1606007257681" duration="22994000" />
+      <workItem from="1606007257681" duration="23103000" />
     </task>
     <servers />
   </component>
@@ -470,7 +468,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="131725000" />
+    <option name="totallyTimeSpent" value="131834000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -934,16 +932,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/BookController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="751">
-          <caret line="51" column="17" lean-forward="true" selection-start-line="51" selection-start-column="17" selection-end-line="51" selection-end-column="17" />
-          <folding>
-            <element signature="e#40#60#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/TranslationController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1">
@@ -953,8 +941,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/CopyrightController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-464">
-          <caret line="74" column="20" lean-forward="true" selection-start-line="74" selection-start-column="20" selection-end-line="74" selection-end-column="20" />
+        <state relative-caret-position="334">
+          <caret line="112" column="33" lean-forward="true" selection-start-line="112" selection-start-column="33" selection-end-line="112" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/BookController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="235">
+          <caret line="84" column="43" lean-forward="true" selection-start-line="84" selection-start-column="43" selection-end-line="84" selection-end-column="43" />
+          <folding>
+            <element signature="e#40#60#0#PHP" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
