@@ -454,7 +454,7 @@ class ManageBooksTest extends TestCase
             'user_id' => $user->id,
             'source' => Log::$TABLE_BOOKS,
             'source_id' => $book->id,
-            'message' => "$user->name deleted book $book->name from $translation->abbr. All book's verses also deleted."
+            'message' => "$user->name deleted book $book->name from $translation->abbr. All book's chapters & verses also deleted."
         ]);
     }
 }
