@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use App\Models\Book;
+use App\Models\Chapter;
 use App\Models\Copyright;
 use App\Models\Log;
 use App\Models\Translation;
@@ -256,20 +257,25 @@ class ManageTranslationsTest extends TestCase
         $book = Book::factory()->create([
             'translation_id' => $translation->id
         ]);
+        $chapter = Chapter::factory()->create([
+            'book_id' => $book->id
+        ]);
 
         $this->actingAs($user)
             ->delete(route('translations.destroy', ['translation' => $translation]))
             ->assertRedirect(route('translations.index'))
             ->assertSessionHas('message', 'Translation deleted.');
 
-        $this->assertDatabaseMissing('translations', $translation->jsonSerialize());
+        //TODO: Assert deleted verses
+        $this->assertDatabaseMissing('chapters', $chapter->jsonSerialize());
         $this->assertDatabaseMissing('books', $book->jsonSerialize());
+        $this->assertDatabaseMissing('translations', $translation->jsonSerialize());
 
         $this->assertDatabaseHas('logs', [
             'user_id' => $user->id,
             'source' => Log::$TABLE_TRANSLATIONS,
             'source_id' => $translation->id,
-            'message' => "$user->name deleted translation $translation->name."
+            'message' => "$user->name deleted translation $translation->name. All translation's books, chapters & verses also deleted."
         ]);
     }
 }

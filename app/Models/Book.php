@@ -33,6 +33,11 @@ class Book extends Model
         return $this->belongsTo('App\Models\Translation');
     }
 
+    public function chapters()
+    {
+        return $this->hasMany('App\Models\Chapter');
+    }
+
     public function creator()
     {
         return $this->belongsTo('App\Models\User', 'created_by');

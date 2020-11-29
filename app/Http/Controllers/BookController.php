@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Book;
 use App\Models\Breadcrumb;
+use App\Models\Chapter;
 use App\Models\Translation;
 use App\Rules\BookAbbrExists;
 use App\Rules\BookNameExists;
@@ -20,7 +21,7 @@ class BookController extends Controller
                     'label' => 'Translations',
                     'href' => route('translations.index')
                 ], [
-                    'label' => 'ID: ' . $translation->id,
+                    'label' => $translation->abbr,
                     'href' => route('translations.show', ['translation' => $translation])
                 ], [
                     'label' => 'Create Book',
@@ -52,10 +53,10 @@ class BookController extends Controller
                     'label' => 'Translations',
                     'href' => route('translations.index')
                 ], [
-                    'label' => 'ID: ' . $translation->id,
+                    'label' => $translation->abbr,
                     'href' => route('translations.show', ['translation' => $translation])
                 ], [
-                    'label' => 'Book ID: ' . $book->id,
+                    'label' => $book->abbr,
                     'active' => true
                 ]
             ]),
@@ -78,10 +79,10 @@ class BookController extends Controller
                     'label' => 'Translations',
                     'href' => route('translations.index')
                 ], [
-                    'label' => 'ID: ' . $translation->id,
+                    'label' => $translation->abbr,
                     'href' => route('translations.show', ['translation' => $translation])
                 ], [
-                    'label' => 'Book ID: ' . $book->id,
+                    'label' => $book->abbr,
                     'href' => route('books.show', ['translation' => $translation, 'book' => $book])
                 ], [
                     'label' => 'Edit',
@@ -96,7 +97,6 @@ class BookController extends Controller
     public function update(Translation $translation, Book $book)
     {
         $attributes = request()->validate($this->rules($translation, $book));
-        $attributes['translation_id'] = $translation->id;
         $attributes['updated_by'] = auth()->user()->id;
 
         $book->update($attributes);
@@ -108,6 +108,8 @@ class BookController extends Controller
 
     public function destroy(Translation $translation, Book $book)
     {
+        //TODO: Delete verses
+        Chapter::where(['book_id' => $book->id])->delete();
         $book->delete();
 
         return redirect()

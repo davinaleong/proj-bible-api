@@ -6,7 +6,7 @@ use App\Models\Log;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 
-class LogBookDeleted
+class LogChapterCreated
 {
     /**
      * Create the event listener.
@@ -28,13 +28,14 @@ class LogBookDeleted
     {
         if(auth()->user()) {
             $name = auth()->user()->name;
-            $book = $event->book;
-            $abbr = $event->book->getTranslationAbbr();
+            $chapter = $event->chapter;
+            $book_name = $event->chapter->getBookName();
+            $abbr = $event->chapter->book->getTranslationAbbr();
             Log::create([
                 'user_id' => auth()->user()->id,
-                'source' => Log::$TABLE_BOOKS,
-                'source_id' => $book->id,
-                'message' => "$name deleted book $book->name from $abbr. All book's chapters & verses also deleted."
+                'source' => Log::$TABLE_CHAPTERS,
+                'source_id' => $chapter->id,
+                'message' => "$name created chapter $chapter->number for $book_name, $abbr."
             ]);
         }
     }

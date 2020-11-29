@@ -3,6 +3,7 @@
 namespace Tests\Unit;
 
 use App\Models\Book;
+use App\Models\Chapter;
 use App\Models\Translation;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -107,5 +108,16 @@ class BookTest extends TestCase
         ]);
 
         $this->assertEquals($book->id, Book::getBook($translation, $book->number)->id);
+    }
+
+    /** @test */
+    public function has_chapters()
+    {
+        $book = Book::factory()->create();
+        $chapters = Chapter::factory()->count(2)->create([
+            'book_id' => $book->id
+        ]);
+
+        $this->assertEquals($chapters->count(), $book->chapters->count());
     }
 }
