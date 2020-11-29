@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Book;
 use App\Models\Breadcrumb;
+use App\Models\Chapter;
 use App\Models\Copyright;
 use App\Models\Translation;
 use Illuminate\Http\Request;
@@ -105,8 +106,11 @@ class TranslationController extends Controller
 
     public function destroy(Translation $translation)
     {
-        //TODO: Delete verses
-        //TODO: Delete chapters
+        $books = Book::where(['translation_id' => $translation->id])->get();
+        foreach($books as $book) {
+            //TODO: Delete verses
+            Chapter::where(['book_id' => $book->id])->delete();
+        }
         Book::where(['translation_id' => $translation->id])->delete();
         $translation->delete();
 
