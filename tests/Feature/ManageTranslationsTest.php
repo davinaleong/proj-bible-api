@@ -264,6 +264,8 @@ class ManageTranslationsTest extends TestCase
 
         $this->assertDatabaseMissing('translations', $translation->jsonSerialize());
         $this->assertDatabaseMissing('books', $book->jsonSerialize());
+        //TODO: Assert deleted chapters
+        //TODO: Assert deleted verses
 
         $this->assertDatabaseHas('logs', [
             'user_id' => $user->id,

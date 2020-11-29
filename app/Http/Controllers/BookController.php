@@ -107,6 +107,8 @@ class BookController extends Controller
 
     public function destroy(Translation $translation, Book $book)
     {
+        //TODO: Delete verses
+        //TODO: Delete chapters
         $book->delete();
 
         return redirect()

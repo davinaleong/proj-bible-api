@@ -105,6 +105,8 @@ class TranslationController extends Controller
 
     public function destroy(Translation $translation)
     {
+        //TODO: Delete verses
+        //TODO: Delete chapters
         Book::where(['translation_id' => $translation->id])->delete();
         $translation->delete();
 

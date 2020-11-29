@@ -441,7 +441,10 @@ class ManageBooksTest extends TestCase
             ->assertRedirect(route('translations.show', ['translation' => $translation]))
             ->assertSessionHas('message', 'Book deleted.');
 
+
         $this->assertDatabaseMissing('books', $book->jsonSerialize());
+        //TODO: Assert deleted chapters
+        //TODO: Assert deleted verses
 
         $this->assertDatabaseHas('logs', [
             'user_id' => $user->id,

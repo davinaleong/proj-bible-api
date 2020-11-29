@@ -325,7 +325,16 @@ class ManageChaptersTest extends TestCase
             ])
             ->assertRedirect(route('books.show', ['translation' => $chapter->book->translation, 'book' => $chapter->book]));
 
-        //TODO: Assert chapters DB
-        //TODO: Assert logs DB for deleted chapter
+        $this->assertDatabaseMissing('chapters', $chapter->jsonSerialize());
+        //TODO: Assert deleted verses
+
+        $translation = $chapter->book->translation;
+        $book = $chapter->book;
+        $this->assertDatabaseHas('logs', [
+            'user_id' => $user->id,
+            'source' => Log::$TABLE_CHAPTERS,
+            'source_id' => 1,
+            'message' => "$user->name deleted chapter $chapter->number for $book->name, $translation->abbr."
+        ]);
     }
 }
