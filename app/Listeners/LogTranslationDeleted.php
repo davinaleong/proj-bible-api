@@ -34,7 +34,7 @@ class LogTranslationDeleted
                 'user_id' => auth()->user()->id,
                 'source' => Log::$TABLE_TRANSLATIONS,
                 'source_id' => $event->translation->id,
-                'message' => "$name deleted translation $translation_name."
+                'message' => "$name deleted translation $translation_name. All translation's books, chapters & verses also deleted."
             ]);
         }
     }
