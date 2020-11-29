@@ -56,7 +56,26 @@ class ChapterController extends Controller
 
     public function show(Translation $translation, Book $book, Chapter $chapter)
     {
-        //
+        return view('chapters.show', [
+            'breadcrumb' => Breadcrumb::items([
+                [
+                    'label' => 'Translations',
+                    'href' => route('translations.index')
+                ], [
+                    'label' => $translation->abbr,
+                    'href' => route('translations.show', ['translation' => $translation])
+                ], [
+                    'label' => $book->abbr,
+                    'href' => route('books.show', ['translation' => $translation, 'book' => $book])
+                ], [
+                    'label' => $chapter->number,
+                    'active' => true
+                ]
+            ]),
+            'translation' => $translation,
+            'book' => $book,
+            'chapter' => $chapter
+        ]);
     }
 
     public function edit(Translation $translation, Book $book, Chapter $chapter)

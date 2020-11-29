@@ -1,11 +1,11 @@
 @extends('layouts.admin')
 
 @section('content')
-    <h1>{{ $book->name }}</h1>
+    <h1>{{ $translation->name }}</h1>
 
     <div class="card shadow">
         <div class="card-header">
-            <h1 class="card-title h5">Create Chapter</h1>
+            <h1 class="card-title h5">Book: {{ $book->name }} Create Chapter</h1>
         </div>
         <div class="card-body">
             <form method="post" action="{{ route('chapters.store', ['translation' => $translation, 'book' => $book]) }}">
