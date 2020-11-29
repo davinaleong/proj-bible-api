@@ -316,25 +316,31 @@ class ManageChaptersTest extends TestCase
     public function user_can_delete_a_chapter()
     {
         $user = User::factory()->create();
-        $chapter = Chapter::factory()->create();
+        $translation = Translation::factory()->create();
+        $book = Book::factory()->create([
+            'translation_id' => $translation->id
+        ]);
+        $chapter = Chapter::factory()->create([
+            'book_id' => $book
+        ]);
 
         $this->actingAs($user)
-            ->delete(route('chapters.destroy', ['translation' => $chapter->book->translation, 'book' => $chapter->book, 'chapter' => $chapter]))
+            ->delete(route('chapters.destroy', ['translation' => $translation, 'book' => $book, 'chapter' => $chapter]))
             ->assertSessionHas([
                 'message' => 'Chapter deleted.'
             ])
-            ->assertRedirect(route('books.show', ['translation' => $chapter->book->translation, 'book' => $chapter->book]));
+            ->assertRedirect(route('books.show', ['translation' => $translation, 'book' => $book]));
 
         $this->assertDatabaseMissing('chapters', $chapter->jsonSerialize());
         //TODO: Assert deleted verses
 
-        $translation = $chapter->book->translation;
-        $book = $chapter->book;
         $this->assertDatabaseHas('logs', [
             'user_id' => $user->id,
             'source' => Log::$TABLE_CHAPTERS,
             'source_id' => 1,
             'message' => "$user->name deleted chapter $chapter->number for $book->name, $translation->abbr."
         ]);
+
+        //TODO: Assert deleted verse log
     }
 }
