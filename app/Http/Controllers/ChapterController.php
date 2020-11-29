@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Book;
+use App\Models\Breadcrumb;
 use App\Models\Chapter;
 use App\Models\Translation;
 use App\Rules\ChapterNumberExists;
@@ -12,7 +13,22 @@ class ChapterController extends Controller
 {
     public function create(Translation $translation, Book $book)
     {
-        //
+        return view('books.show', [
+            'breadcrumb' => Breadcrumb::items([
+                [
+                    'label' => 'Translations',
+                    'href' => route('translations.index')
+                ], [
+                    'label' => 'ID: ' . $translation->id,
+                    'href' => route('translations.show', ['translation' => $translation])
+                ], [
+                    'label' => 'Book ID: ' . $book->id,
+                    'href' => true
+                ]
+            ]),
+            'translation' => $translation,
+            'book' => $book
+        ]);
     }
 
     public function store(Translation $translation, Book $book)

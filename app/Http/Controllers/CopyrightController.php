@@ -57,7 +57,7 @@ class CopyrightController extends Controller
                     'label' => 'Copyrights',
                     'href' => route('copyrights.index')
                 ], [
-                    'label' => 'ID: ' . $copyright->id,
+                    'label' => $copyright->name,
                     'active' => true
                 ]
             ]),
@@ -73,7 +73,7 @@ class CopyrightController extends Controller
                     'label' => 'Copyrights',
                     'href' => route('copyrights.index')
                 ], [
-                    'label' => 'ID: ' . $copyright->id,
+                    'label' => $copyright->name,
                     'href' => route('copyrights.show', ['copyright' => $copyright])
                 ], [
                     'label' => 'Edit',

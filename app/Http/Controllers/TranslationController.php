@@ -61,7 +61,7 @@ class TranslationController extends Controller
                     'label' => 'Translations',
                     'href' => route('translations.index')
                 ], [
-                    'label' => 'ID: ' . $translation->id,
+                    'label' => $translation->abbr,
                     'active' => true
                 ]
             ]),
@@ -77,7 +77,7 @@ class TranslationController extends Controller
                     'label' => 'Translations',
                     'href' => route('translations.index')
                 ], [
-                    'label' => 'ID: ' . $translation->id,
+                    'label' => $translation->abbr,
                     'href' => route('translations.show', ['translation' => $translation])
                 ], [
                     'label' => 'Edit',
