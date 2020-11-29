@@ -34,7 +34,7 @@ class LogBookDeleted
                 'user_id' => auth()->user()->id,
                 'source' => Log::$TABLE_BOOKS,
                 'source_id' => $book->id,
-                'message' => "$name deleted book $book->name from $abbr."
+                'message' => "$name deleted book $book->name from $abbr. All book's verses also deleted."
             ]);
         }
     }

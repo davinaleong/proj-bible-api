@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use App\Models\Book;
+use App\Models\Chapter;
 use App\Models\Log;
 use App\Models\Translation;
 use App\Models\User;
@@ -435,6 +436,9 @@ class ManageBooksTest extends TestCase
         $book = Book::factory()->create([
             'translation_id' => $translation
         ]);
+        $chapter = Chapter::factory()->create([
+            'book_id' => $book->id
+        ]);
 
         $this->actingAs($user)
             ->delete(route('books.destroy', ['translation' => $translation, 'book' => $book]))
@@ -442,15 +446,15 @@ class ManageBooksTest extends TestCase
             ->assertSessionHas('message', 'Book deleted.');
 
 
+        $this->assertDatabaseMissing('chapters', $chapter->jsonSerialize());
         $this->assertDatabaseMissing('books', $book->jsonSerialize());
-        //TODO: Assert deleted chapters
         //TODO: Assert deleted verses
 
         $this->assertDatabaseHas('logs', [
             'user_id' => $user->id,
             'source' => Log::$TABLE_BOOKS,
             'source_id' => $book->id,
-            'message' => "$user->name deleted book $book->name from $translation->abbr."
+            'message' => "$user->name deleted book $book->name from $translation->abbr. All book's verses also deleted."
         ]);
     }
 }

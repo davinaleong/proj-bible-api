@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Book;
 use App\Models\Breadcrumb;
+use App\Models\Chapter;
 use App\Models\Translation;
 use App\Rules\BookAbbrExists;
 use App\Rules\BookNameExists;
@@ -108,7 +109,7 @@ class BookController extends Controller
     public function destroy(Translation $translation, Book $book)
     {
         //TODO: Delete verses
-        //TODO: Delete chapters
+        Chapter::where(['book_id' => $book->id])->delete();
         $book->delete();
 
         return redirect()
