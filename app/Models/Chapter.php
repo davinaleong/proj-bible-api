@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Events\ChapterCreated;
+use App\Events\ChapterDeleted;
 use App\Events\ChapterUpdated;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -15,7 +16,8 @@ class Chapter extends Model
 
     protected $dispatchesEvents = [
         'created' => ChapterCreated::class,
-        'updated' => ChapterUpdated::class
+        'updated' => ChapterUpdated::class,
+        'deleted' => ChapterDeleted::class
     ];
 
     public static function getChapter(Book $book, int $number)

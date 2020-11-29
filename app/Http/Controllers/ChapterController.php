@@ -57,6 +57,16 @@ class ChapterController extends Controller
             ->with('message', 'Chapter updated.');
     }
 
+    public function destroy(Translation $translation, Book $book, Chapter $chapter)
+    {
+        //TODO: Delete verses
+        $chapter->delete();
+
+        return redirect()
+            ->route('books.show', ['translation' => $translation, 'book' => $book])
+            ->with('message', 'Chapter deleted.');
+    }
+
     private function rules(Book $book, Chapter $chapter=null)
     {
         return [
