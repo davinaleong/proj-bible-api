@@ -51,6 +51,8 @@
                         <th>Chapter Limit</th>
                         <th>Creator</th>
                         <th>Updater</th>
+                        <th>Created At</th>
+                        <th>Updated At</th>
                     </tr>
                     </thead>
                     <tfoot>
@@ -62,6 +64,8 @@
                         <th>Chapter Limit</th>
                         <th>Creator</th>
                         <th>Updater</th>
+                        <th>Created At</th>
+                        <th>Updated At</th>
                     </tr>
                     </tfoot>
                     <tbody>
@@ -74,6 +78,8 @@
                             <td>{{ $book->chapter_limit }}</td>
                             <td>{{ $book->getCreatorName() }}</td>
                             <td>{{ $book->getUpdaterName() }}</td>
+                            <td>{{ $book->getCreatedAt() }}</td>
+                            <td>{{ $book->getUpdatedAt() }}</td>
                         </tr>
                     @endforeach
                     </tbody>

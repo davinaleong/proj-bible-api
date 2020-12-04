@@ -13,6 +13,8 @@
             <p>Chapter Limit: {{ $book->chapter_limit }}</p>
             <p>Creator: {{ $book->getCreatorName() }}</p>
             <p>Updater: {{ $book->getUpdaterName() }}</p>
+            <p>Created At: {{ $book->getCreatedAt() }}</p>
+            <p>Updated At: {{ $book->getUpdatedAt() }}</p>
 
             <a href="{{ route('books.edit', ['translation' => $translation, 'book' => $book]) }}" class="btn btn-primary">Edit <i class="fas fa-pen"></i></a>
             <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">
