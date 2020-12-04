@@ -4,6 +4,7 @@ namespace App\Listeners;
 
 use App\Events\UserCreated;
 use App\Models\Log;
+use App\Models\Table;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 
@@ -31,7 +32,7 @@ class LogUserCreated
             $name = auth()->user()->name;
             Log::create([
                 'user_id' => auth()->user()->id,
-                'source' => Log::$TABLE_USERS,
+                'source' => Table::$TABLE_USERS,
                 'source_id' => $event->user->id,
                 'message' => "Profile of $name created."
             ]);

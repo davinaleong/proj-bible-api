@@ -19,13 +19,6 @@ class Log extends Model
         'deleted_at'
     ];
 
-    public static $TABLE_USERS = 'users';
-    public static $TABLE_LOGS = 'logs';
-    public static $TABLE_COPYRIGHTS = 'copyrights';
-    public static $TABLE_TRANSLATIONS = 'translations';
-    public static $TABLE_BOOKS = 'books';
-    public static $TABLE_CHAPTERS = 'chapters';
-
     private $dateFormats = [
         'db' => 'Y-m-d H:i:s',
         'show' => 'H:i:s d-m-Y'

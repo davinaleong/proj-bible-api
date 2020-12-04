@@ -3,6 +3,7 @@
 namespace App\Listeners;
 
 use App\Models\Log;
+use App\Models\Table;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 
@@ -33,7 +34,7 @@ class LogChapterDeleted
             $abbr = $event->chapter->book->getTranslationAbbr();
             Log::create([
                 'user_id' => auth()->user()->id,
-                'source' => Log::$TABLE_CHAPTERS,
+                'source' => Table::$TABLE_CHAPTERS,
                 'source_id' => $chapter->id,
                 'message' => "$name deleted chapter $chapter->number for $book_name, $abbr."
             ]);
