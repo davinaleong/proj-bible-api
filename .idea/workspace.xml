@@ -2,14 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="aea7a033-8388-4a34-8811-e03be647dd13" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/app/Listeners/LogBookCreated.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Listeners/LogBookCreated.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Listeners/LogBookDeleted.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Listeners/LogBookDeleted.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Listeners/LogBookUpdated.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Listeners/LogBookUpdated.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Listeners/LogChapterCreated.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Listeners/LogChapterCreated.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Listeners/LogChapterDeleted.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Listeners/LogChapterDeleted.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Listeners/LogChapterUpdated.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Listeners/LogChapterUpdated.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Listeners/LogCopyrightCreated.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Listeners/LogCopyrightCreated.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Log.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Log.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Feature/ManageBooksTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/ManageBooksTest.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -49,47 +42,14 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Listeners/LogChapterCreated.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="179">
-              <caret line="36" column="33" selection-start-line="36" selection-start-column="33" selection-end-line="36" selection-end-column="33" />
-              <folding>
-                <element signature="e#33#52#0#PHP" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Listeners/LogChapterDeleted.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="250">
-              <caret line="36" column="33" selection-start-line="36" selection-start-column="33" selection-end-line="36" selection-end-column="33" />
-              <folding>
-                <element signature="e#33#52#0#PHP" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Listeners/LogChapterUpdated.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="36" column="33" selection-start-line="36" selection-start-column="33" selection-end-line="36" selection-end-column="33" />
-              <folding>
-                <element signature="e#33#52#0#PHP" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/Listeners/LogCopyrightCreated.php">
+        <entry file="file://$PROJECT_DIR$/tests/Feature/ManageBooksTest.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="244">
-              <caret line="35" column="33" selection-start-line="35" selection-start-column="33" selection-end-line="35" selection-end-column="33" />
+            <state relative-caret-position="236">
+              <caret line="109" column="19" lean-forward="true" selection-start-line="109" selection-start-column="19" selection-end-line="109" selection-end-column="19" />
+              <folding>
+                <element signature="e#33#53#0#PHP" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -145,13 +105,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/Listeners/LogTranslationCreated.php" />
-        <option value="$PROJECT_DIR$/app/Listeners/LogTranslationUpdated.php" />
-        <option value="$PROJECT_DIR$/.env" />
-        <option value="$PROJECT_DIR$/database/migrations/2020_11_28_012034_create_chapters_table.php" />
-        <option value="$PROJECT_DIR$/routes/web.php" />
-        <option value="$PROJECT_DIR$/tests/Unit/BookNumberExistsTest.php" />
-        <option value="$PROJECT_DIR$/database/factories/ChapterFactory.php" />
         <option value="$PROJECT_DIR$/app/Rules/ChapterNumberExists.php" />
         <option value="$PROJECT_DIR$/tests/Unit/ChapterNumberExistsTest.php" />
         <option value="$PROJECT_DIR$/app/Events/ChapterCreated.php" />
@@ -161,8 +114,6 @@
         <option value="$PROJECT_DIR$/tests/Feature/ManageChaptersTest.php" />
         <option value="$PROJECT_DIR$/app/Events/ChapterDeleted.php" />
         <option value="$PROJECT_DIR$/app/Providers/EventServiceProvider.php" />
-        <option value="$PROJECT_DIR$/tests/Feature/ManageBooksTest.php" />
-        <option value="$PROJECT_DIR$/app/Listeners/LogTranslationDeleted.php" />
         <option value="$PROJECT_DIR$/tests/Feature/ManageTranslationsTest.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/TranslationController.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/CopyrightController.php" />
@@ -196,6 +147,15 @@
         <option value="$PROJECT_DIR$/app/Listeners/LogChapterDeleted.php" />
         <option value="$PROJECT_DIR$/app/Listeners/LogChapterUpdated.php" />
         <option value="$PROJECT_DIR$/app/Listeners/LogCopyrightCreated.php" />
+        <option value="$PROJECT_DIR$/app/Listeners/LogCopyrightDeleted.php" />
+        <option value="$PROJECT_DIR$/app/Listeners/LogCopyrightUpdated.php" />
+        <option value="$PROJECT_DIR$/app/Listeners/LogTranslationCreated.php" />
+        <option value="$PROJECT_DIR$/app/Listeners/LogTranslationDeleted.php" />
+        <option value="$PROJECT_DIR$/app/Listeners/LogTranslationUpdated.php" />
+        <option value="$PROJECT_DIR$/app/Listeners/LogUserCreated.php" />
+        <option value="$PROJECT_DIR$/app/Listeners/LogUserPasswordUpdated.php" />
+        <option value="$PROJECT_DIR$/app/Listeners/LogUserUpdated.php" />
+        <option value="$PROJECT_DIR$/tests/Feature/ManageBooksTest.php" />
       </list>
     </option>
   </component>
@@ -351,13 +311,13 @@
             <path>
               <item name="bible-api" type="b2602c69:ProjectViewProjectNode" />
               <item name="bible-api" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="Listeners" type="462c0819:PsiDirectoryNode" />
+              <item name="tests" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="bible-api" type="b2602c69:ProjectViewProjectNode" />
               <item name="bible-api" type="462c0819:PsiDirectoryNode" />
               <item name="tests" type="462c0819:PsiDirectoryNode" />
+              <item name="Feature" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -466,7 +426,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="137274000" />
+    <option name="totallyTimeSpent" value="137537000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -519,67 +479,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/Events/ChapterCreated.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-36">
-          <caret line="4" selection-start-line="4" selection-end-line="4" />
-          <folding>
-            <element signature="e#30#66#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/database/migrations/2020_09_24_083328_create_translations_table.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-58">
-          <caret line="6" column="6" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/database/migrations/2020_10_02_052042_create_books_table.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="271">
-          <caret line="22" column="29" lean-forward="true" selection-start-line="22" selection-start-column="29" selection-end-line="22" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/database/factories/TranslationFactory.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="185">
-          <caret line="29" column="41" lean-forward="true" selection-start-line="29" selection-start-column="41" selection-end-line="29" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Rules/ChapterNumberExists.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="56" column="74" lean-forward="true" selection-start-line="56" selection-start-column="16" selection-end-line="56" selection-end-column="74" />
-          <folding>
-            <element signature="e#29#49#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/database/factories/ChapterFactory.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="29" column="25" selection-start-line="29" selection-start-column="25" selection-end-line="29" selection-end-column="25" />
-          <folding>
-            <element signature="e#38#58#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/database/factories/BookFactory.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="235">
-          <caret line="32" column="33" selection-start-line="32" selection-start-column="33" selection-end-line="32" selection-end-column="33" />
-          <folding>
-            <element signature="e#38#58#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Events/ChapterUpdated.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="334">
@@ -601,23 +500,6 @@
           <folding>
             <element signature="e#33#60#0#PHP" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/Feature/ManageBooksTest.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="328">
-          <caret line="456" column="130" selection-start-line="456" selection-start-column="130" selection-end-line="456" selection-end-column="130" />
-          <folding>
-            <element signature="e#33#53#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Listeners/LogTranslationDeleted.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="241">
-          <caret line="37" column="15" lean-forward="true" selection-start-line="37" selection-start-column="15" selection-end-line="37" selection-end-column="15" />
         </state>
       </provider>
     </entry>
@@ -861,16 +743,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Models/Table.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="12" column="41" lean-forward="true" selection-start-line="12" selection-start-column="41" selection-end-line="12" selection-end-column="41" />
-          <folding>
-            <element signature="e#30#84#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Listeners/LogBookCreated.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="207">
@@ -932,6 +804,82 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="244">
           <caret line="35" column="33" selection-start-line="35" selection-start-column="33" selection-end-line="35" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Listeners/LogCopyrightDeleted.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="233">
+          <caret line="35" column="33" selection-start-line="35" selection-start-column="33" selection-end-line="35" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Listeners/LogCopyrightUpdated.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="206">
+          <caret line="35" column="33" selection-start-line="35" selection-start-column="33" selection-end-line="35" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Listeners/LogTranslationCreated.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="243">
+          <caret line="35" column="33" selection-start-line="35" selection-start-column="33" selection-end-line="35" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Listeners/LogTranslationDeleted.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="178">
+          <caret line="35" column="33" selection-start-line="35" selection-start-column="33" selection-end-line="35" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Listeners/LogTranslationUpdated.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="207">
+          <caret line="35" column="33" selection-start-line="35" selection-start-column="33" selection-end-line="35" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Listeners/LogUserCreated.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="106">
+          <caret line="34" column="33" selection-start-line="34" selection-start-column="33" selection-end-line="34" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Listeners/LogUserPasswordUpdated.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="262">
+          <caret line="33" column="29" selection-start-line="33" selection-start-column="29" selection-end-line="33" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Listeners/LogUserUpdated.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="236">
+          <caret line="35" column="33" selection-start-line="35" selection-start-column="33" selection-end-line="35" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Models/Table.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="12" column="41" lean-forward="true" selection-start-line="12" selection-start-column="41" selection-end-line="12" selection-end-column="41" />
+          <folding>
+            <element signature="e#30#84#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/Feature/ManageBooksTest.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="236">
+          <caret line="109" column="19" lean-forward="true" selection-start-line="109" selection-start-column="19" selection-end-line="109" selection-end-column="19" />
+          <folding>
+            <element signature="e#33#53#0#PHP" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
