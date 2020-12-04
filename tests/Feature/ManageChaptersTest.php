@@ -5,6 +5,7 @@ namespace Tests\Feature;
 use App\Models\Book;
 use App\Models\Chapter;
 use App\Models\Log;
+use App\Models\Table;
 use App\Models\Translation;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -97,7 +98,7 @@ class ManageChaptersTest extends TestCase
             ->assertRedirect(route('chapters.show', ['translation' => $chapter->book->translation, 'book' => $chapter->book, 'chapter' => $chapter_id]))
             ->assertSessionHas('message', 'Chapter created.');
 
-        $this->assertDatabaseHas('chapters', [
+        $this->assertDatabaseHas(Table::$TABLE_CHAPTERS, [
             'book_id' => $chapter->book_id,
             'number' => $chapter->number,
             'verse_limit' => $chapter->verse_limit
@@ -105,9 +106,9 @@ class ManageChaptersTest extends TestCase
 
         $translation = $chapter->book->translation;
         $book = $chapter->book;
-        $this->assertDatabaseHas('logs', [
+        $this->assertDatabaseHas(Table::$TABLE_LOGS, [
             'user_id' => $user->id,
-            'source' => Log::$TABLE_CHAPTERS,
+            'source' => Table::$TABLE_CHAPTERS,
             'source_id' => 1,
             'message' => "$user->name created chapter $chapter->number for $book->name, $translation->abbr."
         ]);
@@ -217,7 +218,7 @@ class ManageChaptersTest extends TestCase
                 'message' => 'Chapter updated.'
             ]);
 
-        $this->assertDatabaseHas('chapters', [
+        $this->assertDatabaseHas(Table::$TABLE_CHAPTERS, [
             'book_id' => $chapter->book_id,
             'number' => $updated_chapter->number,
             'verse_limit' => $updated_chapter->verse_limit,
@@ -228,9 +229,9 @@ class ManageChaptersTest extends TestCase
         $user = $users[1];
         $translation = $chapter->book->translation;
         $book = $chapter->book;
-        $this->assertDatabaseHas('logs', [
+        $this->assertDatabaseHas(Table::$TABLE_LOGS, [
             'user_id' => $user->id,
-            'source' => Log::$TABLE_CHAPTERS,
+            'source' => Table::$TABLE_CHAPTERS,
             'source_id' => 1,
             'message' => "$user->name updated chapter $updated_chapter->number for $book->name, $translation->abbr."
         ]);
@@ -331,12 +332,12 @@ class ManageChaptersTest extends TestCase
             ])
             ->assertRedirect(route('books.show', ['translation' => $translation, 'book' => $book]));
 
-        $this->assertDatabaseMissing('chapters', $chapter->jsonSerialize());
+        $this->assertDatabaseMissing(Table::$TABLE_CHAPTERS, $chapter->jsonSerialize());
         //TODO: Assert deleted verses
 
-        $this->assertDatabaseHas('logs', [
+        $this->assertDatabaseHas(Table::$TABLE_LOGS, [
             'user_id' => $user->id,
-            'source' => Log::$TABLE_CHAPTERS,
+            'source' => Table::$TABLE_CHAPTERS,
             'source_id' => 1,
             'message' => "$user->name deleted chapter $chapter->number for $book->name, $translation->abbr."
         ]);
