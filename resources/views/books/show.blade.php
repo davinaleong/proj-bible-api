@@ -44,6 +44,8 @@
                         <th>Verse Limit</th>
                         <th>Creator</th>
                         <th>Updater</th>
+                        <th>Created At</th>
+                        <th>Updated At</th>
                     </tr>
                     </thead>
                     <tfoot>
@@ -53,6 +55,8 @@
                         <th>Verse Limit</th>
                         <th>Creator</th>
                         <th>Updater</th>
+                        <th>Created At</th>
+                        <th>Updated At</th>
                     </tr>
                     </tfoot>
                     <tbody>
@@ -63,6 +67,8 @@
                             <td>{{ $chapter->verse_limit }}</td>
                             <td>{{ $chapter->getCreatorName() }}</td>
                             <td>{{ $chapter->getUpdaterName() }}</td>
+                            <td>{{ $chapter->getCreatedAt() }}</td>
+                            <td>{{ $chapter->getUpdatedAt() }}</td>
                         </tr>
                     @endforeach
                     </tbody>

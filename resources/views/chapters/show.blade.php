@@ -12,6 +12,8 @@
             <p>Verse Limit: {{ $chapter->verse_limit }}</p>
             <p>Creator: {{ $chapter->getCreatorName() }}</p>
             <p>Updater: {{ $chapter->getUpdaterName() }}</p>
+            <p>Created At: {{ $chapter->getCreatedAt() }}</p>
+            <p>Updated At: {{ $chapter->getUpdatedAt() }}</p>
 
             <a href="{{ route('chapters.edit', ['translation' => $translation, 'book' => $book, 'chapter' => $chapter]) }}" class="btn btn-primary">Edit <i class="fas fa-pen"></i></a>
             <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">
