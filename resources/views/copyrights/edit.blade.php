@@ -34,6 +34,16 @@
                               required>{{ old('text') ? old('text') : $copyright->text }}</textarea>
                 </div>
 
+                <div class="form-group">
+                    <label>Created At</label>
+                    <p class="form-control-plaintext">{{ $copyright->getCreatedAt() }}</p>
+                </div>
+
+                <div class="form-group">
+                    <label>Updated</label>
+                    <p class="form-control-plaintext">{{ $copyright->getUpdatedAt() }}</p>
+                </div>
+
                 <p class="text-danger">* required</p>
                 <button type="submit" class="btn btn-primary">Submit <i class="fas fa-check"></i></button>
                 <a href="{{ route('copyrights.show', ['copyright' => $copyright]) }}" class="btn btn-outline-secondary">Cancel <i class="fas fa-ban"></i></a>

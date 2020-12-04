@@ -15,6 +15,8 @@
                         <p>{{ $copyright->text }}</p>
                         <p>Creator: {{ $copyright->getCreatorName() }}</p>
                         <p>Updater: {{ $copyright->getUpdaterName() }}</p>
+                        <p>Created At: {{ $copyright->getCreatedAt() }}</p>
+                        <p>Updated At: {{ $copyright->getUpdatedAt() }}</p>
                     </div>
                 </div>
             </div>

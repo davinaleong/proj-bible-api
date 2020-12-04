@@ -18,10 +18,6 @@ class Translation extends Model
         'updated_at'
     ];
 
-    protected $hidden = [
-        'deleted_at'
-    ];
-
     protected $dispatchesEvents = [
         'created' => TranslationCreated::class,
         'updated' => TranslationUpdated::class,
