@@ -11,6 +11,8 @@
             <p>Abbr: {{ $translation->abbr }}</p>
             <p>Creator: {{ $translation->getCreatorName() }}</p>
             <p>Updater: {{ $translation->getUpdaterName() }}</p>
+            <p>Created At: {{ $translation->getCreatedAt() }}</p>
+            <p>Updated At: {{ $translation->getUpdatedAt() }}</p>
 
             @if ($translation->copyright)
                 <p>
