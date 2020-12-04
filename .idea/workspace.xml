@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="aea7a033-8388-4a34-8811-e03be647dd13" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/resources/views/translations/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/translations/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/translations/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/translations/show.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/translations/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/translations/edit.blade.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -41,10 +40,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/resources/views/translations/show.blade.php">
+        <entry file="file://$PROJECT_DIR$/resources/views/translations/edit.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="256">
-              <caret line="14" column="56" selection-start-line="14" selection-start-column="56" selection-end-line="14" selection-end-column="56" />
+            <state relative-caret-position="334">
+              <caret line="42" column="22" selection-start-line="42" selection-start-column="22" selection-end-line="42" selection-end-column="22" />
             </state>
           </provider>
         </entry>
@@ -127,7 +126,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/Events/UserPasswordUpdated.php" />
         <option value="$PROJECT_DIR$/app/Listeners/LogUserPasswordUpdated.php" />
         <option value="$PROJECT_DIR$/app/Listeners/LogUserUpdated.php" />
         <option value="$PROJECT_DIR$/tests/Feature/ManageUsersTest.php" />
@@ -178,6 +176,7 @@
         <option value="$PROJECT_DIR$/app/Models/Translation.php" />
         <option value="$PROJECT_DIR$/resources/views/translations/index.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/translations/show.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/translations/edit.blade.php" />
       </list>
     </option>
   </component>
@@ -448,7 +447,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="135615000" />
+    <option name="totallyTimeSpent" value="135709000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -501,13 +500,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/.env">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="273">
-          <caret line="13" column="16" selection-start-line="13" selection-start-column="16" selection-end-line="13" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/database/migrations/2020_11_28_012034_create_chapters_table.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="269">
@@ -903,6 +895,13 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/translations/show.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="277">
+          <caret line="15" lean-forward="true" selection-start-line="15" selection-end-line="15" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/Models/Log.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="213">
@@ -910,10 +909,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/translations/show.blade.php">
+    <entry file="file://$PROJECT_DIR$/resources/views/translations/edit.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="256">
-          <caret line="14" column="56" selection-start-line="14" selection-start-column="56" selection-end-line="14" selection-end-column="56" />
+        <state relative-caret-position="334">
+          <caret line="42" column="22" selection-start-line="42" selection-start-column="22" selection-end-line="42" selection-end-column="22" />
         </state>
       </provider>
     </entry>

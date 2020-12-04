@@ -32,6 +32,16 @@
                     </select>
                 </div>
 
+                <div class="form-group">
+                    <label>Created At</label>
+                    <p class="form-control-plaintext">{{ $translation->getCreatedAt() }}</p>
+                </div>
+
+                <div class="form-group">
+                    <label>Updated At</label>
+                    <p class="form-control-plaintext">{{ $translation->getUpdatedAt() }}</p>
+                </div>
+
                 <p class="text-danger">* required</p>
                 <button type="submit" class="btn btn-primary">Submit <i class="fas fa-check"></i></button>
                 <a href="{{ route('translations.show', ['translation' => $translation]) }}" class="btn btn-outline-secondary">Cancel <i class="fas fa-ban"></i></a>
