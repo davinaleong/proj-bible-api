@@ -8,9 +8,11 @@
             <h2 class="h5 card-title">{{ $copyright->name }}</h2>
         </div>
         <div class="card-body">
-            <p>Text: {!! nl2br($copyright->text) !!}</p>
+            <p>Text: {{ $copyright->text }}</p>
             <p>Creator: {{ $copyright->getCreatorName() }}</p>
             <p>Updater: {{ $copyright->getUpdaterName() }}</p>
+            <p>Created At: {{ $copyright->getCreatedAt() }}</p>
+            <p>Updated At: {{ $copyright->getUpdatedAt() }}</p>
 
             <a href="{{ route('copyrights.edit', ['copyright' => $copyright]) }}" class="btn btn-primary">Edit <i class="fas fa-pen"></i></a>
             <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">

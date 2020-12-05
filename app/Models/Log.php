@@ -10,22 +10,19 @@ class Log extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'user_id',
-        'source',
-        'source_id',
-        'message'
+    protected $guarded = [
+        'created_at',
+        'updated_at'
     ];
 
-    public static $TABLE_USERS = 'users';
-    public static $TABLE_LOGS = 'logs';
-    public static $TABLE_COPYRIGHTS = 'copyrights';
-    public static $TABLE_TRANSLATIONS = 'translations';
-    public static $TABLE_BOOKS = 'books';
-    public static $TABLE_CHAPTERS = 'chapters';
+    protected $hidden = [
+        'deleted_at'
+    ];
 
-    private $displayDateFormat = 'H:i:s d-m-Y';
-    private $dbDateFormat = 'Y-m-d H:i:s';
+    private $dateFormats = [
+        'db' => 'Y-m-d H:i:s',
+        'show' => 'H:i:s d-m-Y'
+    ];
 
     public function user()
     {
@@ -35,8 +32,8 @@ class Log extends Model
     public function getCreatedAt()
     {
         if ($this->created_at) {
-            $created_at = Carbon::createFromFormat($this->dbDateFormat, $this->created_at);
-            return $created_at->format($this->displayDateFormat);
+            $dt = Carbon::createFromFormat($this->dateFormats['db'], $this->created_at);
+            return $dt->format($this->dateFormats['show']);
         } else {
             return '';
         }
@@ -45,8 +42,8 @@ class Log extends Model
     public function getUpdatedAt()
     {
         if ($this->created_at) {
-            $created_at = Carbon::createFromFormat($this->dbDateFormat, $this->updated_at);
-            return $created_at->format($this->displayDateFormat);
+            $dt = Carbon::createFromFormat($this->dateFormats['db'], $this->updated_at);
+            return $dt->format($this->dateFormats['show']);
         } else {
             return '';
         }

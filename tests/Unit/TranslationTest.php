@@ -109,4 +109,24 @@ class TranslationTest extends TestCase
 
         $this->assertEquals($books->count(), $translation->books->count());
     }
+
+    /** @test */
+    public function get_created_at()
+    {
+        $translation = Translation::factory()->create([
+            'created_at' => '2020-09-10 12:00:00'
+        ]);
+
+        $this->assertEquals('12:00:00 10-09-2020', $translation->getCreatedAt());
+    }
+
+    /** @test */
+    public function get_update_at()
+    {
+        $translation = Translation::factory()->create([
+            'updated_at' => '2020-09-10 12:00:00'
+        ]);
+
+        $this->assertEquals('12:00:00 10-09-2020', $translation->getUpdatedAt());
+    }
 }

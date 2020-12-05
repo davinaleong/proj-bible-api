@@ -120,4 +120,24 @@ class BookTest extends TestCase
 
         $this->assertEquals($chapters->count(), $book->chapters->count());
     }
+
+    /** @test */
+    public function get_created_at()
+    {
+        $book = Book::factory()->create([
+            'created_at' => '2020-09-10 12:00:00'
+        ]);
+
+        $this->assertEquals('12:00:00 10-09-2020', $book->getCreatedAt());
+    }
+
+    /** @test */
+    public function get_update_at()
+    {
+        $book = Book::factory()->create([
+            'updated_at' => '2020-09-10 12:00:00'
+        ]);
+
+        $this->assertEquals('12:00:00 10-09-2020', $book->getUpdatedAt());
+    }
 }

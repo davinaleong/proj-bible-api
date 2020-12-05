@@ -86,4 +86,24 @@ class CopyrightTest extends TestCase
 
         $this->assertCount(2, $copyright->translations);
     }
+
+    /** @test */
+    public function get_created_at()
+    {
+        $copyright = Copyright::factory()->create([
+            'created_at' => '2020-09-10 12:00:00'
+        ]);
+
+        $this->assertEquals('12:00:00 10-09-2020', $copyright->getCreatedAt());
+    }
+
+    /** @test */
+    public function get_update_at()
+    {
+        $copyright = Copyright::factory()->create([
+            'updated_at' => '2020-09-10 12:00:00'
+        ]);
+
+        $this->assertEquals('12:00:00 10-09-2020', $copyright->getUpdatedAt());
+    }
 }

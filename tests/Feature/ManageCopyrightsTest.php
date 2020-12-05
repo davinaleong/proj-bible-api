@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 use App\Models\Copyright;
 use App\Models\Log;
+use App\Models\Table;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -85,16 +86,16 @@ class ManageCopyrightsTest extends TestCase
             ->assertRedirect(route('copyrights.show', ['copyright' => 1]))
             ->assertSessionHas('message', 'Copyright created.');
 
-        $this->assertDatabaseHas('copyrights', [
+        $this->assertDatabaseHas(Table::$TABLE_COPYRIGHTS, [
             'name' => $copyright->name,
             'text' => $copyright->text,
             'created_by' => $user->id,
             'updated_by' => null
         ]);
 
-        $this->assertDatabaseHas('logs', [
+        $this->assertDatabaseHas(Table::$TABLE_LOGS, [
             'user_id' => $user->id,
-            'source' => Log::$TABLE_COPYRIGHTS,
+            'source' => Table::$TABLE_COPYRIGHTS,
             'source_id' => 1,
             'message' => "$user->name created copyright $copyright->name."
         ]);
@@ -141,7 +142,7 @@ class ManageCopyrightsTest extends TestCase
             ->assertRedirect(route('copyrights.show', ['copyright' => $copyright]))
             ->assertSessionHas('message', 'Copyright updated.');
 
-        $this->assertDatabaseHas('copyrights', [
+        $this->assertDatabaseHas(Table::$TABLE_COPYRIGHTS, [
             'name' => $updated_copyright->name,
             'text' => $updated_copyright->text,
             'created_by' => $users[0]->id,
@@ -149,9 +150,9 @@ class ManageCopyrightsTest extends TestCase
         ]);
 
         $name = $users[1]->name;
-        $this->assertDatabaseHas('logs', [
+        $this->assertDatabaseHas(Table::$TABLE_LOGS, [
             'user_id' => $users[1]->id,
-            'source' => Log::$TABLE_COPYRIGHTS,
+            'source' => Table::$TABLE_COPYRIGHTS,
             'source_id' => $copyright->id,
             'message' => "$name updated copyright $updated_copyright->name."
         ]);
@@ -193,11 +194,11 @@ class ManageCopyrightsTest extends TestCase
             ->assertRedirect(route('copyrights.index'))
             ->assertSessionHas('message', 'Copyright deleted.');
 
-        $this->assertDatabaseMissing('copyrights', $copyright->jsonSerialize());
+        $this->assertDatabaseMissing(Table::$TABLE_COPYRIGHTS, $copyright->jsonSerialize());
 
-        $this->assertDatabaseHas('logs', [
+        $this->assertDatabaseHas(Table::$TABLE_LOGS, [
             'user_id' => $user->id,
-            'source' => Log::$TABLE_COPYRIGHTS,
+            'source' => Table::$TABLE_COPYRIGHTS,
             'source_id' => $copyright->id,
             'message' => "$user->name deleted copyright $copyright->name."
         ]);

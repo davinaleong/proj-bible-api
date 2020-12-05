@@ -13,6 +13,8 @@
             <p>Chapter Limit: {{ $book->chapter_limit }}</p>
             <p>Creator: {{ $book->getCreatorName() }}</p>
             <p>Updater: {{ $book->getUpdaterName() }}</p>
+            <p>Created At: {{ $book->getCreatedAt() }}</p>
+            <p>Updated At: {{ $book->getUpdatedAt() }}</p>
 
             <a href="{{ route('books.edit', ['translation' => $translation, 'book' => $book]) }}" class="btn btn-primary">Edit <i class="fas fa-pen"></i></a>
             <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">
@@ -42,6 +44,8 @@
                         <th>Verse Limit</th>
                         <th>Creator</th>
                         <th>Updater</th>
+                        <th>Created At</th>
+                        <th>Updated At</th>
                     </tr>
                     </thead>
                     <tfoot>
@@ -51,6 +55,8 @@
                         <th>Verse Limit</th>
                         <th>Creator</th>
                         <th>Updater</th>
+                        <th>Created At</th>
+                        <th>Updated At</th>
                     </tr>
                     </tfoot>
                     <tbody>
@@ -61,6 +67,8 @@
                             <td>{{ $chapter->verse_limit }}</td>
                             <td>{{ $chapter->getCreatorName() }}</td>
                             <td>{{ $chapter->getUpdaterName() }}</td>
+                            <td>{{ $chapter->getCreatedAt() }}</td>
+                            <td>{{ $chapter->getUpdatedAt() }}</td>
                         </tr>
                     @endforeach
                     </tbody>
