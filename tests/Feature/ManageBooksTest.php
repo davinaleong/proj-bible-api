@@ -5,6 +5,7 @@ namespace Tests\Feature;
 use App\Models\Book;
 use App\Models\Chapter;
 use App\Models\Log;
+use App\Models\Table;
 use App\Models\Translation;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -95,7 +96,7 @@ class ManageBooksTest extends TestCase
             ->assertRedirect(route('books.show', ['translation' => $book->translation, 'book' => 1]))
             ->assertSessionHas('message', 'Book created.');
 
-        $this->assertDatabaseHas('books', [
+        $this->assertDatabaseHas(Table::$TABLE_BOOKS, [
             'translation_id' => $book->translation_id,
             'name' => $book->name,
             'abbr' => $book->abbr,
@@ -104,9 +105,9 @@ class ManageBooksTest extends TestCase
         ]);
 
         $abbr = $book->getTranslationAbbr();
-        $this->assertDatabaseHas('logs', [
+        $this->assertDatabaseHas(Table::$TABLE_LOGS, [
             'user_id' => $user->id,
-            'source' => Log::$TABLE_BOOKS,
+            'source' => Table::$TABLE_BOOKS,
             'source_id' => 1,
             'message' => "$user->name created book $book->name for $abbr."
         ]);
@@ -273,7 +274,7 @@ class ManageBooksTest extends TestCase
             ->assertRedirect(route('books.show', ['translation' => $book->translation, 'book' => $book]))
             ->assertSessionHas('message', 'Book updated.');
 
-        $this->assertDatabaseHas('books', [
+        $this->assertDatabaseHas(Table::$TABLE_BOOKS, [
             'translation_id' => $book->translation_id,
             'name' => $updated_book->name,
             'abbr' => $updated_book->abbr,
@@ -284,9 +285,9 @@ class ManageBooksTest extends TestCase
 
         $user = $users[1];
         $translation = $book->translation;
-        $this->assertDatabaseHas('logs', [
+        $this->assertDatabaseHas(Table::$TABLE_LOGS, [
             'user_id' => $users[1]->id,
-            'source' => Log::$TABLE_BOOKS,
+            'source' => Table::$TABLE_BOOKS,
             'source_id' => 1,
             'message' => "$user->name updated book $updated_book->name for $translation->abbr."
         ]);
@@ -446,13 +447,13 @@ class ManageBooksTest extends TestCase
             ->assertSessionHas('message', 'Book deleted.');
 
 
-        $this->assertDatabaseMissing('chapters', $chapter->jsonSerialize());
-        $this->assertDatabaseMissing('books', $book->jsonSerialize());
+        $this->assertDatabaseMissing(Table::$TABLE_CHAPTERS, $chapter->jsonSerialize());
+        $this->assertDatabaseMissing(Table::$TABLE_BOOKS, $book->jsonSerialize());
         //TODO: Assert deleted verses
 
-        $this->assertDatabaseHas('logs', [
+        $this->assertDatabaseHas(Table::$TABLE_LOGS, [
             'user_id' => $user->id,
-            'source' => Log::$TABLE_BOOKS,
+            'source' => Table::$TABLE_BOOKS,
             'source_id' => $book->id,
             'message' => "$user->name deleted book $book->name from $translation->abbr. All book's chapters & verses also deleted."
         ]);

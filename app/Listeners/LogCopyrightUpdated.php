@@ -3,6 +3,7 @@
 namespace App\Listeners;
 
 use App\Models\Log;
+use App\Models\Table;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 
@@ -32,7 +33,7 @@ class LogCopyrightUpdated
 
             Log::create([
                 'user_id' => auth()->user()->id,
-                'source' => Log::$TABLE_COPYRIGHTS,
+                'source' => Table::$TABLE_COPYRIGHTS,
                 'source_id' => $event->copyright->id,
                 'message' => "$name updated copyright $copyright_name."
             ]);

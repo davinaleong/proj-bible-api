@@ -15,6 +15,8 @@
                         <p>{{ $translation->name }}</p>
                         <p>Creator: {{ $translation->getCreatorName() }}</p>
                         <p>Updater: {{ $translation->getUpdaterName() }}</p>
+                        <p>Created At: {{ $translation->getCreatedAt() }}</p>
+                        <p>Updated At: {{ $translation->getUpdatedAt() }}</p>
 
                         <p><small>{{ $translation->getCopyrightText() }}</small></p>
                     </div>

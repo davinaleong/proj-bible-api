@@ -3,6 +3,7 @@
 namespace App\Listeners;
 
 use App\Models\Log;
+use App\Models\Table;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 
@@ -32,7 +33,7 @@ class LogTranslationDeleted
 
             Log::create([
                 'user_id' => auth()->user()->id,
-                'source' => Log::$TABLE_TRANSLATIONS,
+                'source' => Table::$TABLE_TRANSLATIONS,
                 'source_id' => $event->translation->id,
                 'message' => "$name deleted translation $translation_name. All translation's books, chapters & verses also deleted."
             ]);

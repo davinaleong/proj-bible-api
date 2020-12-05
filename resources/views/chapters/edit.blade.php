@@ -12,6 +12,14 @@
                 @csrf
                 @method('PATCH')
                 <div class="form-group">
+                    <label>Creator</label>
+                    <p class="form-control-plaintext">{{ $chapter->getCreatorName() }}</p>
+                </div>
+                <div class="form-group">
+                    <label>Updater</label>
+                    <p class="form-control-plaintext">{{ $chapter->getUpdaterName() }}</p>
+                </div>
+                <div class="form-group">
                     <label>Book</label>
                     <p class="form-control-plaintext">{{ $chapter->book->name }}</p>
                 </div>
@@ -28,6 +36,14 @@
                     <p class="form-text text-muted">
                         <small>A check for the number of chapters one can create for this book.</small>
                     </p>
+                </div>
+                <div class="form-group">
+                    <label>Created At</label>
+                    <p class="form-control-plaintext">{{ $chapter->getCreatedAt() }}</p>
+                </div>
+                <div class="form-group">
+                    <label>Updated At</label>
+                    <p class="form-control-plaintext">{{ $chapter->getUpdatedAt() }}</p>
                 </div>
 
                 <p class="text-danger">* required</p>

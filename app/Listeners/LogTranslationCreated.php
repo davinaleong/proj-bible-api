@@ -3,6 +3,7 @@
 namespace App\Listeners;
 
 use App\Models\Log;
+use App\Models\Table;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 
@@ -32,7 +33,7 @@ class LogTranslationCreated
 
             Log::create([
                 'user_id' => auth()->user()->id,
-                'source' => Log::$TABLE_TRANSLATIONS,
+                'source' => Table::$TABLE_TRANSLATIONS,
                 'source_id' => $event->translation->id,
                 'message' => "$name created translation $translation_name."
             ]);
