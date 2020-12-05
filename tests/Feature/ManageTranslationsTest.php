@@ -6,6 +6,7 @@ use App\Models\Book;
 use App\Models\Chapter;
 use App\Models\Copyright;
 use App\Models\Log;
+use App\Models\Table;
 use App\Models\Translation;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -89,7 +90,7 @@ class ManageTranslationsTest extends TestCase
             ->assertRedirect(route('translations.show', ['translation' => 1]))
             ->assertSessionHas('message', 'Translation created.');
 
-        $this->assertDatabaseHas('translations', [
+        $this->assertDatabaseHas(Table::$TABLE_TRANSLATIONS, [
             'name' => $translation->name,
             'abbr' => $translation->abbr,
             'copyright_id' => $translation->copyright_id,
@@ -97,9 +98,9 @@ class ManageTranslationsTest extends TestCase
             'updated_by' => null
         ]);
 
-        $this->assertDatabaseHas('logs', [
+        $this->assertDatabaseHas(Table::$TABLE_LOGS, [
             'user_id' => $user->id,
-            'source' => Log::$TABLE_TRANSLATIONS,
+            'source' => Table::$TABLE_TRANSLATIONS,
             'source_id' => 1,
             'message' => "$user->name created translation $translation->name."
         ]);
@@ -177,7 +178,7 @@ class ManageTranslationsTest extends TestCase
             ->assertRedirect(route('translations.show', ['translation' => $translation]))
             ->assertSessionHas('message', 'Translation updated.');
 
-        $this->assertDatabaseHas('translations', [
+        $this->assertDatabaseHas(Table::$TABLE_TRANSLATIONS, [
             'name' => $updated_translation->name,
             'abbr' => $updated_translation->abbr,
             'copyright_id' => $translation->copyright_id,
@@ -188,7 +189,7 @@ class ManageTranslationsTest extends TestCase
         $name = $users[1]->name;
         $this->assertDatabaseHas('logs', [
             'user_id' => $users[1]->id,
-            'source' => Log::$TABLE_TRANSLATIONS,
+            'source' => Table::$TABLE_TRANSLATIONS,
             'source_id' => $translation->id,
             'message' => "$name updated translation $updated_translation->name."
         ]);
@@ -267,13 +268,13 @@ class ManageTranslationsTest extends TestCase
             ->assertSessionHas('message', 'Translation deleted.');
 
         //TODO: Assert deleted verses
-        $this->assertDatabaseMissing('chapters', $chapter->jsonSerialize());
-        $this->assertDatabaseMissing('books', $book->jsonSerialize());
-        $this->assertDatabaseMissing('translations', $translation->jsonSerialize());
+        $this->assertDatabaseMissing(Table::$TABLE_CHAPTERS, $chapter->jsonSerialize());
+        $this->assertDatabaseMissing(Table::$TABLE_BOOKS, $book->jsonSerialize());
+        $this->assertDatabaseMissing(Table::$TABLE_TRANSLATIONS, $translation->jsonSerialize());
 
-        $this->assertDatabaseHas('logs', [
+        $this->assertDatabaseHas(Table::$TABLE_LOGS, [
             'user_id' => $user->id,
-            'source' => Log::$TABLE_TRANSLATIONS,
+            'source' => Table::$TABLE_TRANSLATIONS,
             'source_id' => $translation->id,
             'message' => "$user->name deleted translation $translation->name. All translation's books, chapters & verses also deleted."
         ]);
