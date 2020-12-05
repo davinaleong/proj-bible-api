@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use App\Models\Log;
+use App\Models\Table;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -71,20 +72,21 @@ class ManageUsersTest extends TestCase
     public function user_can_update_own_profile()
     {
         $user = User::factory()->create();
+        $updated_user = User::factory()->make();
 
         $this->actingAs($user)
-            ->patch(route('users.update', ['user' => $user]), ['name' => 'John Doe'])
+            ->patch(route('users.update', ['user' => $user]), ['name' => $updated_user->name])
             ->assertStatus(302)
             ->assertRedirect(route('users.show', ['user' => $user]))
             ->assertSessionHas('message', 'Profile updated.');
 
-        $this->assertDatabaseHas('users', [
-            'name' => 'John Doe'
+        $this->assertDatabaseHas(Table::$TABLE_USERS, [
+            'name' => $updated_user->name
         ]);
 
-        $this->assertDatabaseHas('logs', [
+        $this->assertDatabaseHas(Table::$TABLE_LOGS, [
            'user_id' => $user->id,
-           'source' => Log::$TABLE_USERS,
+           'source' => Table::$TABLE_USERS,
            'source_id' => $user->id,
            'message' => "$user->name updated his/her profile."
         ]);
@@ -124,9 +126,9 @@ class ManageUsersTest extends TestCase
                 'message' => 'Password changed.'
             ]);
 
-        $this->assertDatabaseHas('logs', [
+        $this->assertDatabaseHas(Table::$TABLE_LOGS, [
             'user_id' => $user->id,
-            'source' => Log::$TABLE_USERS,
+            'source' => Table::$TABLE_USERS,
             'source_id' => $user->id,
             'message' => "$user->name changed his/her password."
         ]);

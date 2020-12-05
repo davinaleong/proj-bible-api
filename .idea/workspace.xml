@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="aea7a033-8388-4a34-8811-e03be647dd13" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/tests/Feature/ManageTranslationsTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/ManageTranslationsTest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Feature/ManageUsersTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/ManageUsersTest.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -43,13 +43,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/tests/Feature/ManageTranslationsTest.php">
+        <entry file="file://$PROJECT_DIR$/tests/Feature/ManageUsersTest.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="174">
-              <caret line="274" column="51" selection-start-line="274" selection-start-column="51" selection-end-line="274" selection-end-column="51" />
-              <folding>
-                <element signature="e#33#53#0#PHP" expanded="true" />
-              </folding>
+            <state relative-caret-position="252">
+              <caret line="83" column="41" lean-forward="true" selection-start-line="83" selection-start-column="41" selection-end-line="83" selection-end-column="41" />
             </state>
           </provider>
         </entry>
@@ -107,7 +104,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/tests/Unit/ChapterNumberExistsTest.php" />
         <option value="$PROJECT_DIR$/app/Events/ChapterCreated.php" />
         <option value="$PROJECT_DIR$/database/factories/TranslationFactory.php" />
         <option value="$PROJECT_DIR$/database/factories/BookFactory.php" />
@@ -158,6 +154,7 @@
         <option value="$PROJECT_DIR$/tests/Feature/ManageChaptersTest.php" />
         <option value="$PROJECT_DIR$/tests/Feature/ManageCopyrightsTest.php" />
         <option value="$PROJECT_DIR$/tests/Feature/ManageTranslationsTest.php" />
+        <option value="$PROJECT_DIR$/tests/Feature/ManageUsersTest.php" />
       </list>
     </option>
   </component>
@@ -428,7 +425,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="138067000" />
+    <option name="totallyTimeSpent" value="138386000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -443,7 +440,7 @@
     <frame x="28" y="39" width="1400" height="768" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25184095" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25184095" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -457,7 +454,7 @@
       <window_info anchor="bottom" id="Docker" order="7" />
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
-      <window_info anchor="bottom" id="Terminal" order="10" sideWeight="0.4992636" visible="true" weight="0.32874617" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="10" sideWeight="0.4992636" visible="true" weight="0.32874617" />
       <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.50073636" side_tool="true" weight="0.3287879" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -481,13 +478,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/Events/ChapterDeleted.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="329">
-          <caret line="24" column="34" selection-start-line="24" selection-start-column="34" selection-end-line="24" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Providers/EventServiceProvider.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
@@ -877,11 +867,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/tests/Feature/ManageTranslationsTest.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="174">
-          <caret line="274" column="51" selection-start-line="274" selection-start-column="51" selection-end-line="274" selection-end-column="51" />
+        <state relative-caret-position="300">
+          <caret line="280" column="5" lean-forward="true" selection-start-line="280" selection-start-column="5" selection-end-line="280" selection-end-column="5" />
           <folding>
             <element signature="e#33#53#0#PHP" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/Feature/ManageUsersTest.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="83" column="41" lean-forward="true" selection-start-line="83" selection-start-column="41" selection-end-line="83" selection-end-column="41" />
         </state>
       </provider>
     </entry>
