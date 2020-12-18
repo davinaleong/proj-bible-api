@@ -68,4 +68,11 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function() {
     Route::patch('/translations/{translation}/books/{book}/chapters/{chapter}', [ChapterController::class, 'update'])->name('chapters.update');
     Route::delete('/translations/{translation}/books/{book}/chapters/{chapter}', [ChapterController::class, 'destroy'])->name('chapters.destroy');
     //#endregion
+
+    //#region Verses
+    // TODO: Test manage verses
+    // TODO: Verse controller
+    // TODO: Verse routes
+    // TODO: Verse views
+    //#endregion
 });
