@@ -57,16 +57,6 @@ class CopyrightTest extends TestCase
     }
 
     /** @test */
-    public function get_creator_name_returns_null_if_no_creator()
-    {
-        $copyright = Copyright::factory()->create([
-            'created_by' => null
-        ]);
-
-        $this->assertEquals('', $copyright->getCreatorName());
-    }
-
-    /** @test */
     public function get_updater_name()
     {
         $user = User::factory()->create();
@@ -75,6 +65,16 @@ class CopyrightTest extends TestCase
         ]);
 
         $this->assertEquals($user->name, $copyright->getUpdaterName());
+    }
+
+    /** @test */
+    public function get_creator_name_returns_null_if_no_creator()
+    {
+        $copyright = Copyright::factory()->create([
+            'created_by' => null
+        ]);
+
+        $this->assertEquals('', $copyright->getCreatorName());
     }
 
     /** @test */
