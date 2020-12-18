@@ -19,7 +19,7 @@ class LogTest extends TestCase
             'user_id' => $user->id
         ]);
 
-        $this->assertEquals($log->user_id, $log->user->id);
+        $this->assertInstanceOf(User::class, $log->user);
     }
 
     /** @test */
@@ -33,7 +33,7 @@ class LogTest extends TestCase
     }
 
     /** @test */
-    public function get_update_at()
+    public function get_updated_at()
     {
         $log = Log::factory()->create([
             'updated_at' => '2020-09-10 12:00:00'
