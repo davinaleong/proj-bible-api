@@ -20,7 +20,29 @@ class CopyrightTest extends TestCase
             'created_by' => $user->id
         ]);
 
-        $this->assertEquals($user->id, $copyright->creator->id);
+        $this->assertInstanceOf(User::class, $copyright->creator);
+    }
+
+    /** @test */
+    public function has_an_updater()
+    {
+        $user = User::factory()->create();
+        $copyright = Copyright::factory()->create([
+            'updated_by' => $user->id
+        ]);
+
+        $this->assertInstanceOf(User::class, $copyright->updater);
+    }
+
+    /** @test */
+    public function has_translations()
+    {
+        $copyright = Copyright::factory()->create();
+        Translation::factory()->create([
+            'copyright_id' => $copyright->id
+        ]);
+
+        $this->assertInstanceOf(Translation::class, $copyright->translations[0]);
     }
 
     /** @test */
@@ -35,27 +57,6 @@ class CopyrightTest extends TestCase
     }
 
     /** @test */
-    public function get_creator_name_returns_null_if_no_creator()
-    {
-        $copyright = Copyright::factory()->create([
-            'created_by' => null
-        ]);
-
-        $this->assertEquals('', $copyright->getCreatorName());
-    }
-
-    /** @test */
-    public function has_an_updater()
-    {
-        $user = User::factory()->create();
-        $copyright = Copyright::factory()->create([
-            'updated_by' => $user->id
-        ]);
-
-        $this->assertEquals($user->id, $copyright->updater->id);
-    }
-
-    /** @test */
     public function get_updater_name()
     {
         $user = User::factory()->create();
@@ -64,6 +65,16 @@ class CopyrightTest extends TestCase
         ]);
 
         $this->assertEquals($user->name, $copyright->getUpdaterName());
+    }
+
+    /** @test */
+    public function get_creator_name_returns_null_if_no_creator()
+    {
+        $copyright = Copyright::factory()->create([
+            'created_by' => null
+        ]);
+
+        $this->assertEquals('', $copyright->getCreatorName());
     }
 
     /** @test */
@@ -77,17 +88,6 @@ class CopyrightTest extends TestCase
     }
 
     /** @test */
-    public function has_translations()
-    {
-        $copyright = Copyright::factory()->create();
-        Translation::factory()->count(2)->create([
-            'copyright_id' => $copyright->id
-        ]);
-
-        $this->assertCount(2, $copyright->translations);
-    }
-
-    /** @test */
     public function get_created_at()
     {
         $copyright = Copyright::factory()->create([
@@ -98,7 +98,7 @@ class CopyrightTest extends TestCase
     }
 
     /** @test */
-    public function get_update_at()
+    public function get_updated_at()
     {
         $copyright = Copyright::factory()->create([
             'updated_at' => '2020-09-10 12:00:00'
