@@ -50,7 +50,7 @@ class TranslationTest extends TestCase
     public function has_books()
     {
         $translation = Translation::factory()->create();
-        $books = Book::factory()->create([
+        Book::factory()->create([
             'translation_id' => $translation
         ]);
 
