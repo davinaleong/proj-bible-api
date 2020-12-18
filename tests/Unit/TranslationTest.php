@@ -21,7 +21,40 @@ class TranslationTest extends TestCase
             'created_by' => $user->id
         ]);
 
-        $this->assertEquals($user->id, $translation->creator->id);
+        $this->assertInstanceOf(User::class, $translation->creator);
+    }
+
+    /** @test */
+    public function has_an_updater()
+    {
+        $user = User::factory()->create();
+        $translation = Translation::factory()->create([
+            'updated_by' => $user->id
+        ]);
+
+        $this->assertInstanceOf(User::class, $translation->updater);
+    }
+
+    /** @test */
+    public function has_a_copyright()
+    {
+        $copyright = Copyright::factory()->create();
+        $translation = Translation::factory()->create([
+            'copyright_id' => $copyright->id
+        ]);
+
+        $this->assertInstanceOf(Copyright::class, $translation->copyright);
+    }
+
+    /** @test */
+    public function has_books()
+    {
+        $translation = Translation::factory()->create();
+        $books = Book::factory()->create([
+            'translation_id' => $translation
+        ]);
+
+        $this->assertInstanceOf(Book::class, $translation->books[0]);
     }
 
     /** @test */
@@ -36,27 +69,6 @@ class TranslationTest extends TestCase
     }
 
     /** @test */
-    public function get_creator_name_returns_null_if_no_creator()
-    {
-        $translation = Translation::factory()->create([
-            'created_by' => null
-        ]);
-
-        $this->assertEquals('', $translation->getCreatorName());
-    }
-
-    /** @test */
-    public function has_an_updater()
-    {
-        $user = User::factory()->create();
-        $translation = Translation::factory()->create([
-            'updated_by' => $user->id
-        ]);
-
-        $this->assertEquals($user->id, $translation->updater->id);
-    }
-
-    /** @test */
     public function get_updater_name()
     {
         $user = User::factory()->create();
@@ -68,6 +80,16 @@ class TranslationTest extends TestCase
     }
 
     /** @test */
+    public function get_creator_name_returns_null_if_no_creator()
+    {
+        $translation = Translation::factory()->create([
+            'created_by' => null
+        ]);
+
+        $this->assertEquals('', $translation->getCreatorName());
+    }
+
+    /** @test */
     public function get_updater_name_returns_null_if_no_updater()
     {
         $translation = Translation::factory()->create([
@@ -75,17 +97,6 @@ class TranslationTest extends TestCase
         ]);
 
         $this->assertEquals('', $translation->getUpdaterName());
-    }
-
-    /** @test */
-    public function has_a_copyright()
-    {
-        $copyright = Copyright::factory()->create();
-        $translation = Translation::factory()->create([
-            'copyright_id' => $copyright->id
-        ]);
-
-        $this->assertEquals($copyright->name, $translation->copyright->name);
     }
 
     /** @test */
@@ -100,17 +111,6 @@ class TranslationTest extends TestCase
     }
 
     /** @test */
-    public function has_books()
-    {
-        $translation = Translation::factory()->create();
-        $books = Book::factory()->count(2)->create([
-            'translation_id' => $translation
-        ]);
-
-        $this->assertEquals($books->count(), $translation->books->count());
-    }
-
-    /** @test */
     public function get_created_at()
     {
         $translation = Translation::factory()->create([
@@ -121,7 +121,7 @@ class TranslationTest extends TestCase
     }
 
     /** @test */
-    public function get_update_at()
+    public function get_updated_at()
     {
         $translation = Translation::factory()->create([
             'updated_at' => '2020-09-10 12:00:00'
