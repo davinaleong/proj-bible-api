@@ -100,4 +100,24 @@ class VerseTest extends TestCase
 
         $this->assertEquals($verse->id, Verse::getVerse($chapter, $verse->number)->id);
     }
+
+    /** @test */
+    public function get_created_at()
+    {
+        $chapter = Chapter::factory()->create([
+            'created_at' => '2020-09-10 12:00:00'
+        ]);
+
+        $this->assertEquals('12:00:00 10-09-2020', $chapter->getCreatedAt());
+    }
+
+    /** @test */
+    public function get_updated_at()
+    {
+        $chapter = Chapter::factory()->create([
+            'updated_at' => '2020-09-10 12:00:00'
+        ]);
+
+        $this->assertEquals('12:00:00 10-09-2020', $chapter->getUpdatedAt());
+    }
 }
