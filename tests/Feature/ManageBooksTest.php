@@ -19,11 +19,11 @@ class ManageBooksTest extends TestCase
     /** @test */
     public function guest_cannot_access_endpoints()
     {
-        $this->get(route('books.showBook', ['book' => 1]))
+        $book = Book::factory()->create();
+
+        $this->get(route('books.showBook', ['book' => $book]))
             ->assertStatus(302)
             ->assertRedirect('login');
-
-        $book = Book::factory()->create();
 
         $this->get(route('books.create', ['translation' => $book->translation]))
             ->assertStatus(302)

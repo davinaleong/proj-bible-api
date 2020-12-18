@@ -19,11 +19,11 @@ class ManageChaptersTest extends TestCase
     /** @test */
     public function guest_cannot_access_endpoints()
     {
-        $this->get(route('chapters.showChapter', ['chapter' => 1]))
+        $chapter = Chapter::factory()->create();
+
+        $this->get(route('chapters.showChapter', ['chapter' => $chapter]))
             ->assertStatus(302)
             ->assertRedirect(route('login'));
-
-        $chapter = Chapter::factory()->create();
 
         $this->get(route('chapters.create', ['translation' => $chapter->book->translation, 'book' => $chapter->book]))
             ->assertStatus(302)
