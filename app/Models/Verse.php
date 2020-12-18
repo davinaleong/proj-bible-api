@@ -10,6 +10,16 @@ class Verse extends Model
 {
     use HasFactory;
 
+    protected $guarded = [
+        'created_at',
+        'updated_at'
+    ];
+
+    private $dateFormats = [
+        'db' => 'Y-m-d H:i:s',
+        'show' => 'H:i:s d-m-Y'
+    ];
+
     public static function getVerse(Chapter $chapter, string $number)
     {
         return Verse::where([
