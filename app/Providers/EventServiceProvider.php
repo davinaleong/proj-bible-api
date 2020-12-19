@@ -18,6 +18,7 @@ use App\Events\UserCreated;
 use App\Events\UserPasswordUpdated;
 use App\Events\UserUpdated;
 use App\Events\VerseCreated;
+use App\Events\VerseUpdated;
 use App\Listeners\LogBookCreated;
 use App\Listeners\LogBookDeleted;
 use App\Listeners\LogBookUpdated;
@@ -34,6 +35,7 @@ use App\Listeners\LogUserCreated;
 use App\Listeners\LogUserPasswordUpdated;
 use App\Listeners\LogUserUpdated;
 use App\Listeners\LogVerseCreated;
+use App\Listeners\LogVerseUpdated;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -97,6 +99,9 @@ class EventServiceProvider extends ServiceProvider
         ],
         VerseCreated::class => [
             LogVerseCreated::class
+        ],
+        VerseUpdated::class => [
+            LogVerseUpdated::class
         ]
     ];
 

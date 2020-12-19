@@ -55,7 +55,17 @@ class VerseController extends Controller
 
     public function update(Translation $translation, Book $book, Chapter $chapter, Verse $verse)
     {
-        //
+        $attributes = request()->validate($this->rules($chapter, $verse));
+        $attributes['updated_by'] = auth()->user()->id;
+        $verse->update($attributes);
+        return redirect()
+            ->route('verses.show', [
+                'translation' => $translation,
+                'book' => $book,
+                'chapter' => $chapter,
+                'verse' => $verse
+            ])
+            ->with('message', 'Verse updated.');
     }
 
     public function destroy(Translation $translation, Book $book, Chapter $chapter, Verse $verse)
