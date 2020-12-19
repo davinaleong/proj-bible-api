@@ -54,15 +54,29 @@ class ManageVersesTest extends TestCase
         $verse = Verse::factory()->create();
 
         $this->actingAs($user)
-            ->get(route('verses.create', ['translation' => $verse->chapter->book->translation, 'book' => $verse->chapter->book, 'chapter' => $verse->chapter]))
+            ->get(route('verses.create', [
+                'translation' => $verse->chapter->book->translation,
+                'book' => $verse->chapter->book,
+                'chapter' => $verse->chapter
+            ]))
             ->assertOk();
 
         $this->actingAs($user)
-            ->get(route('verses.show', ['translation' => $verse->chapter->book->translation, 'book' => $verse->chapter->book, 'chapter' => $verse->chapter, 'verse' => $verse]))
+            ->get(route('verses.show', [
+                'translation' => $verse->chapter->book->translation,
+                'book' => $verse->chapter->book,
+                'chapter' => $verse->chapter,
+                'verse' => $verse
+            ]))
             ->assertOk();
 
         $this->actingAs($user)
-            ->get(route('verses.edit', ['translation' => $verse->chapter->book->translation, 'book' => $verse->chapter->book, 'chapter' => $verse->chapter, 'verse' => $verse]))
+            ->get(route('verses.edit', [
+                'translation' => $verse->chapter->book->translation,
+                'book' => $verse->chapter->book,
+                'chapter' => $verse->chapter,
+                'verse' => $verse
+            ]))
             ->assertOk();
     }
 
@@ -79,14 +93,16 @@ class ManageVersesTest extends TestCase
                 ['translation' => $verse->chapter->book->translation, 'book' => $verse->chapter->book, 'chapter' => $verse->chapter, 'verse' => $verse]));
     }
 
+    /** @test */
     public function user_can_create_a_verse()
     {
+        $this->withoutExceptionHandling();
         $user = User::factory()->create();
         $verse = Verse::factory()->make();
         $verse_id = 1;
 
         $this->actingAs($user)
-            ->post(route('verses.create', [
+            ->post(route('verses.store', [
                 'translation' => $verse->chapter->book->translation,
                 'book' => $verse->chapter->book,
                 'chapter' => $verse->chapter
@@ -94,6 +110,12 @@ class ManageVersesTest extends TestCase
                 'number' => $verse->number,
                 'passage' => $verse->passage
             ])
+            ->assertRedirect(route('verses.show', [
+                'translation' => $verse->chapter->book->translation,
+                'book' => $verse->chapter->book,
+                'chapter' => $verse->chapter,
+                'verse' => $verse_id
+            ]))
             ->assertSessionHas('message', 'Verse created.');
 
         $this->assertDatabaseHas(Table::$TABLE_VERSES, [

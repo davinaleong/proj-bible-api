@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Events\VerseCreated;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -13,6 +14,10 @@ class Verse extends Model
     protected $guarded = [
         'created_at',
         'updated_at'
+    ];
+
+    protected $dispatchesEvents = [
+        'created' => VerseCreated::class
     ];
 
     private $dateFormats = [
