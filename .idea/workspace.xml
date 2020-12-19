@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="aea7a033-8388-4a34-8811-e03be647dd13" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/app/Rules/VerseNumberExists.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Rules/VerseNumberExists.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Unit/VerseNumberExistsTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Unit/VerseNumberExistsTest.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -54,7 +54,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tests/Feature/ManageVersesTest.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="184">
+            <state relative-caret-position="234">
               <caret line="87" column="23" lean-forward="true" selection-start-line="87" selection-start-column="23" selection-end-line="87" selection-end-column="23" />
               <folding>
                 <element signature="e#33#54#0#PHP" expanded="true" />
@@ -64,12 +64,12 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/Rules/VerseNumberExists.php">
+        <entry file="file://$PROJECT_DIR$/tests/Unit/VerseNumberExistsTest.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="188">
-              <caret line="51" column="5" lean-forward="true" selection-start-line="51" selection-start-column="5" selection-end-line="51" selection-end-column="5" />
+            <state relative-caret-position="211">
+              <caret line="15" column="73" lean-forward="true" selection-start-line="15" selection-start-column="73" selection-end-line="15" selection-end-column="73" />
               <folding>
-                <element signature="e#29#52#0#PHP" expanded="true" />
+                <element signature="e#30#53#0#PHP" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -191,8 +191,8 @@
         <option value="$PROJECT_DIR$/tests/Feature/ManageVersesTest.php" />
         <option value="$PROJECT_DIR$/tests/Feature/ManageChaptersTest.php" />
         <option value="$PROJECT_DIR$/tests/Feature/ManageBooksTest.php" />
-        <option value="$PROJECT_DIR$/tests/Unit/VerseNumberExistsTest.php" />
         <option value="$PROJECT_DIR$/app/Rules/VerseNumberExists.php" />
+        <option value="$PROJECT_DIR$/tests/Unit/VerseNumberExistsTest.php" />
       </list>
     </option>
   </component>
@@ -351,6 +351,17 @@
               <item name="app" type="462c0819:PsiDirectoryNode" />
               <item name="Rules" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="bible-api" type="b2602c69:ProjectViewProjectNode" />
+              <item name="bible-api" type="462c0819:PsiDirectoryNode" />
+              <item name="tests" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="bible-api" type="b2602c69:ProjectViewProjectNode" />
+              <item name="bible-api" type="462c0819:PsiDirectoryNode" />
+              <item name="tests" type="462c0819:PsiDirectoryNode" />
+              <item name="Unit" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -458,7 +469,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="146579000" />
+    <option name="totallyTimeSpent" value="147184000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -891,30 +902,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tests/Unit/VerseNumberExistsTest.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="334">
-          <caret line="55" column="64" selection-start-line="55" selection-start-column="64" selection-end-line="55" selection-end-column="64" />
-          <folding>
-            <element signature="e#30#53#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Rules/BookAbbrExists.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="273">
           <caret line="52" column="80" lean-forward="true" selection-start-line="52" selection-start-column="8" selection-end-line="52" selection-end-column="80" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/Feature/ManageVersesTest.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="184">
-          <caret line="87" column="23" lean-forward="true" selection-start-line="87" selection-start-column="23" selection-end-line="87" selection-end-column="23" />
-          <folding>
-            <element signature="e#33#54#0#PHP" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -924,6 +915,26 @@
           <caret line="51" column="5" lean-forward="true" selection-start-line="51" selection-start-column="5" selection-end-line="51" selection-end-column="5" />
           <folding>
             <element signature="e#29#52#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/Feature/ManageVersesTest.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="234">
+          <caret line="87" column="23" lean-forward="true" selection-start-line="87" selection-start-column="23" selection-end-line="87" selection-end-column="23" />
+          <folding>
+            <element signature="e#33#54#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/Unit/VerseNumberExistsTest.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="211">
+          <caret line="15" column="73" lean-forward="true" selection-start-line="15" selection-start-column="73" selection-end-line="15" selection-end-column="73" />
+          <folding>
+            <element signature="e#30#53#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>

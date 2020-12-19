@@ -14,7 +14,7 @@ class BookAbbrExistsTest extends TestCase
     use RefreshDatabase;
 
     /** @test */
-    public function rule_passes_when_no_book_of_translation_exists()
+    public function rule_passes_when_book_abbr_of_translation_doesnt_exist()
     {
         $translation = Translation::factory()->create();
         $rule = new BookAbbrExists($translation);

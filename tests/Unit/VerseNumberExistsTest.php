@@ -13,7 +13,7 @@ class VerseNumberExistsTest extends TestCase
     use RefreshDatabase;
 
     /** @test */
-    public function rule_passes_no_verse_of_chapter_exists()
+    public function rule_passes_when_verse_number_of_chapter_doesnt_exist()
     {
         $chapter = Chapter::factory()->create();
         $rule = new VerseNumberExists($chapter);
