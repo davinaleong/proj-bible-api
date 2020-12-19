@@ -5,6 +5,7 @@ namespace Tests\Unit;
 use App\Models\Book;
 use App\Models\Chapter;
 use App\Models\User;
+use App\Models\Verse;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
@@ -43,6 +44,16 @@ class ChapterTest extends TestCase
         ]);
 
         $this->assertInstanceOf(Book::class, $chapter->book);
+    }
+
+    /** @test */
+    public function has_verses()
+    {
+        $chapter = Chapter::factory()->create();
+        Verse::factory()->create([
+            'chapter_id' => $chapter
+        ]);
+        $this->assertInstanceOf(Verse::class, $chapter->verses[0]);
     }
 
     /** @test */

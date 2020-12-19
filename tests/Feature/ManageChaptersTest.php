@@ -8,6 +8,7 @@ use App\Models\Log;
 use App\Models\Table;
 use App\Models\Translation;
 use App\Models\User;
+use App\Models\Verse;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
@@ -319,24 +320,30 @@ class ManageChaptersTest extends TestCase
     /** @test */
     public function user_can_delete_a_chapter()
     {
+        $this->withoutExceptionHandling();
         $user = User::factory()->create();
         $translation = Translation::factory()->create();
         $book = Book::factory()->create([
-            'translation_id' => $translation->id
+            'translation_id' => $translation
         ]);
         $chapter = Chapter::factory()->create([
             'book_id' => $book
         ]);
+        $verse = Verse::factory()->create([
+            'chapter_id' => $chapter
+        ]);
 
         $this->actingAs($user)
-            ->delete(route('chapters.destroy', ['translation' => $translation, 'book' => $book, 'chapter' => $chapter]))
+            ->delete(route('chapters.destroy', [
+                'translation' => $translation, 'book' => $book, 'chapter' => $chapter
+            ]))
             ->assertSessionHas([
                 'message' => 'Chapter deleted.'
             ])
             ->assertRedirect(route('books.show', ['translation' => $translation, 'book' => $book]));
 
+        $this->assertDatabaseMissing(Table::$TABLE_VERSES, $verse->jsonSerialize());
         $this->assertDatabaseMissing(Table::$TABLE_CHAPTERS, $chapter->jsonSerialize());
-        //TODO: Assert deleted verses
 
         $this->assertDatabaseHas(Table::$TABLE_LOGS, [
             'user_id' => $user->id,
