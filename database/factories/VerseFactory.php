@@ -29,6 +29,7 @@ class VerseFactory extends Factory
         return [
             'chapter_id' => Chapter::factory()->create(),
             'number' => '01',
+            'passage' => $this->faker->sentence,
             'created_by' => $user,
             'updated_by' => $user
         ];

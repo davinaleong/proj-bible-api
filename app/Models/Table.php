@@ -13,4 +13,5 @@ class Table extends Model
     public static $TABLE_TRANSLATIONS = 'translations';
     public static $TABLE_BOOKS = 'books';
     public static $TABLE_CHAPTERS = 'chapters';
+    public static $TABLE_VERSES = 'verses';
 }

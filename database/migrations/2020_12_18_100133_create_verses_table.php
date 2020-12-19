@@ -17,6 +17,7 @@ class CreateVersesTable extends Migration
             $table->id();
             $table->foreignId('chapter_id')->constrained('chapters');
             $table->string('number');
+            $table->string('passage');
             $table->foreignId('created_by')->nullable()->constrained('users');
             $table->foreignId('updated_by')->nullable()->constrained('users');
             $table->timestamps();

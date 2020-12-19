@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Models\Table;
 use App\Models\User;
 use App\Models\Verse;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -76,5 +77,41 @@ class ManageVersesTest extends TestCase
             ->get(route('verses.showVerse', ['verse' => $verse]))
             ->assertRedirect(route('verses.show',
                 ['translation' => $verse->chapter->book->translation, 'book' => $verse->chapter->book, 'chapter' => $verse->chapter, 'verse' => $verse]));
+    }
+
+    public function user_can_create_a_verse()
+    {
+        $user = User::factory()->create();
+        $verse = Verse::factory()->make();
+        $verse_id = 1;
+
+        $this->actingAs($user)
+            ->post(route('verses.create', [
+                'translation' => $verse->chapter->book->translation,
+                'book' => $verse->chapter->book,
+                'chapter' => $verse->chapter
+            ]), [
+                'number' => $verse->number,
+                'passage' => $verse->passage
+            ])
+            ->assertSessionHas('message', 'Verse created.');
+
+        $this->assertDatabaseHas(Table::$TABLE_VERSES, [
+            'chapter_id' => $verse->chapter_id,
+            'number' => $verse->number,
+            'passage' => $verse->passage,
+            'created_by' => $user->id,
+            'updated_by' => null
+        ]);
+
+        $translation = $verse->chapter->book->translation;
+        $book = $verse->chapter->book;
+        $chapter = $verse->chapter;
+        $this->assertDatabaseHas(Table::$TABLE_LOGS, [
+            'user_id' => $user->id,
+            'source' => Table::$TABLE_VERSES,
+            'source_id' => $verse_id,
+            'message' => "$user->name created verse $verse->number for $chapter->number, $book->name, $translation->abbr."
+        ]);
     }
 }
