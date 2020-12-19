@@ -122,8 +122,9 @@ class ManageBooksTest extends TestCase
             'number' => 1
         ]);
 
+        $route = route('books.store', ['translation' => $book->translation]);
         $this->actingAs($user)
-            ->post(route('books.store', ['translation' => $book->translation]), [
+            ->post($route, [
                 'name' => ''
             ])
             ->assertSessionHasErrors([
@@ -131,7 +132,7 @@ class ManageBooksTest extends TestCase
             ]);
 
         $this->actingAs($user)
-            ->post(route('books.store', ['translation' => $book->translation]), [
+            ->post($route, [
                 'name' => $book->name,
                 'abbr' => ''
             ])
@@ -140,7 +141,7 @@ class ManageBooksTest extends TestCase
             ]);
 
         $this->actingAs($user)
-            ->post(route('books.store', ['translation' => $book->translation]), [
+            ->post($route, [
                 'name' => $book->name,
                 'abbr' => $book->abbr,
                 'number' => ''
@@ -150,7 +151,7 @@ class ManageBooksTest extends TestCase
             ]);
 
         $this->actingAs($user)
-            ->post(route('books.store', ['translation' => $book->translation]), [
+            ->post($route, [
                 'name' => $book->name,
                 'abbr' => $book->abbr,
                 'number' => 'a'
@@ -160,7 +161,7 @@ class ManageBooksTest extends TestCase
             ]);
 
         $this->actingAs($user)
-            ->post(route('books.store', ['translation' => $book->translation]), [
+            ->post($route, [
                 'name' => $book->name,
                 'abbr' => $book->abbr,
                 'number' => 0
@@ -170,7 +171,7 @@ class ManageBooksTest extends TestCase
             ]);
 
         $this->actingAs($user)
-            ->post(route('books.store', ['translation' => $book->translation]), [
+            ->post($route, [
                 'name' => $book->name,
                 'abbr' => $book->abbr,
                 'number' => 67
@@ -180,7 +181,7 @@ class ManageBooksTest extends TestCase
             ]);
 
         $this->actingAs($user)
-            ->post(route('books.store', ['translation' => $book->translation]), [
+            ->post($route, [
                 'name' => $book->name,
                 'abbr' => $book->abbr,
                 'number' => $book->number,
@@ -191,7 +192,7 @@ class ManageBooksTest extends TestCase
             ]);
 
         $this->actingAs($user)
-            ->post(route('books.store', ['translation' => $book->translation]), [
+            ->post($route, [
                 'name' => $book->name,
                 'abbr' => $book->abbr,
                 'number' => $book->number,
@@ -202,7 +203,7 @@ class ManageBooksTest extends TestCase
             ]);
 
         $this->actingAs($user)
-            ->post(route('books.store', ['translation' => $book->translation]), [
+            ->post($route, [
                 'name' => $book->name,
                 'abbr' => $book->abbr,
                 'number' => $book->number,
@@ -219,7 +220,7 @@ class ManageBooksTest extends TestCase
             'number' => $book->number
         ]);
         $this->actingAs($user)
-            ->post(route('books.store', ['translation' => $book->translation]), [
+            ->post($route, [
                 'name' => $book->name,
                 'abbr' => $book->abbr,
                 'number' => $book->number,
@@ -230,7 +231,7 @@ class ManageBooksTest extends TestCase
             ]);
 
         $this->actingAs($user)
-            ->post(route('books.store', ['translation' => $book->translation]), [
+            ->post($route, [
                 'name' => $book->name,
                 'abbr' => $book->abbr,
                 'number' => $book->number,
@@ -241,7 +242,7 @@ class ManageBooksTest extends TestCase
             ]);
 
         $this->actingAs($user)
-            ->post(route('books.store', ['translation' => $book->translation]), [
+            ->post($route, [
                 'name' => $book->name,
                 'abbr' => $book->abbr,
                 'number' => $book->number,
@@ -300,8 +301,9 @@ class ManageBooksTest extends TestCase
         $user = User::factory()->create();
         $book = Book::factory()->create();
 
+        $route = route('books.update', ['translation' => $book->translation, 'book' => $book]);
         $this->actingAs($user)
-            ->patch(route('books.update', ['translation' => $book->translation, 'book' => $book]), [
+            ->patch($route, [
                 'name' => ''
             ])
             ->assertSessionHasErrors([
@@ -309,7 +311,7 @@ class ManageBooksTest extends TestCase
             ]);
 
         $this->actingAs($user)
-            ->patch(route('books.update', ['translation' => $book->translation, 'book' => $book]), [
+            ->patch($route, [
                 'name' => $book->name,
                 'abbr' => ''
             ])
@@ -318,7 +320,7 @@ class ManageBooksTest extends TestCase
             ]);
 
         $this->actingAs($user)
-            ->patch(route('books.update', ['translation' => $book->translation, 'book' => $book]), [
+            ->patch($route, [
                 'name' => $book->name,
                 'abbr' => $book->abbr,
                 'number' => ''
@@ -328,7 +330,7 @@ class ManageBooksTest extends TestCase
             ]);
 
         $this->actingAs($user)
-            ->patch(route('books.update', ['translation' => $book->translation, 'book' => $book]), [
+            ->patch($route, [
                 'name' => $book->name,
                 'abbr' => $book->abbr,
                 'number' => 'a'
@@ -338,7 +340,7 @@ class ManageBooksTest extends TestCase
             ]);
 
         $this->actingAs($user)
-            ->patch(route('books.update', ['translation' => $book->translation, 'book' => $book]), [
+            ->patch($route, [
                 'name' => $book->name,
                 'abbr' => $book->abbr,
                 'number' => 0
@@ -348,7 +350,7 @@ class ManageBooksTest extends TestCase
             ]);
 
         $this->actingAs($user)
-            ->patch(route('books.update', ['translation' => $book->translation, 'book' => $book]), [
+            ->patch($route, [
                 'name' => $book->name,
                 'abbr' => $book->abbr,
                 'number' => 67
@@ -358,7 +360,7 @@ class ManageBooksTest extends TestCase
             ]);
 
         $this->actingAs($user)
-            ->patch(route('books.update', ['translation' => $book->translation, 'book' => $book]), [
+            ->patch($route, [
                 'name' => $book->name,
                 'abbr' => $book->abbr,
                 'number' => $book->number,
@@ -369,7 +371,7 @@ class ManageBooksTest extends TestCase
             ]);
 
         $this->actingAs($user)
-            ->patch(route('books.update', ['translation' => $book->translation, 'book' => $book]), [
+            ->patch($route, [
                 'name' => $book->name,
                 'abbr' => $book->abbr,
                 'number' => $book->number,
@@ -380,7 +382,7 @@ class ManageBooksTest extends TestCase
             ]);
 
         $this->actingAs($user)
-            ->patch(route('books.update', ['translation' => $book->translation, 'book' => $book]), [
+            ->patch($route, [
                 'name' => $book->name,
                 'abbr' => $book->abbr,
                 'number' => $book->number,
@@ -397,7 +399,7 @@ class ManageBooksTest extends TestCase
             'number' => 2
         ]);
         $this->actingAs($user)
-            ->patch(route('books.update', ['translation' => $book->translation, 'book' => $book]), [
+            ->patch($route, [
                 'name' => $book2->name,
                 'abbr' => $book->abbr,
                 'number' => $book->number,
@@ -408,7 +410,7 @@ class ManageBooksTest extends TestCase
             ]);
 
         $this->actingAs($user)
-            ->patch(route('books.update', ['translation' => $book->translation, 'book' => $book]), [
+            ->patch($route, [
                 'name' => $book->name,
                 'abbr' => $book2->abbr,
                 'number' => $book->number,
@@ -419,7 +421,7 @@ class ManageBooksTest extends TestCase
             ]);
 
         $this->actingAs($user)
-            ->patch(route('books.update', ['translation' => $book->translation, 'book' => $book]), [
+            ->patch($route, [
                 'name' => $book->name,
                 'abbr' => $book->abbr,
                 'number' => $book2->number,

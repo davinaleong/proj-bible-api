@@ -123,8 +123,9 @@ class ManageChaptersTest extends TestCase
             'number' => 1
         ]);
 
+        $route = route('chapters.store', ['translation' => $chapter->book->translation, 'book' => $chapter->book]);
         $this->actingAs($user)
-            ->post(route('chapters.store', ['translation' => $chapter->book->translation, 'book' => $chapter->book]), [
+            ->post($route, [
                 'number' => ''
             ])
             ->assertSessionHasErrors([
@@ -132,7 +133,7 @@ class ManageChaptersTest extends TestCase
             ]);
 
         $this->actingAs($user)
-            ->post(route('chapters.store', ['translation' => $chapter->book->translation, 'book' => $chapter->book]), [
+            ->post($route, [
                 'number' => 'a'
             ])
             ->assertSessionHasErrors([
@@ -140,7 +141,7 @@ class ManageChaptersTest extends TestCase
             ]);
 
         $this->actingAs($user)
-            ->post(route('chapters.store', ['translation' => $chapter->book->translation, 'book' => $chapter->book]), [
+            ->post($route, [
                 'number' => '0'
             ])
             ->assertSessionHasErrors([
@@ -149,7 +150,7 @@ class ManageChaptersTest extends TestCase
 
         $book = $chapter->book;
         $this->actingAs($user)
-            ->post(route('chapters.store', ['translation' => $chapter->book->translation, 'book' => $chapter->book]), [
+            ->post($route, [
                 'number' => $book->chapter_limit + 1
             ])
             ->assertSessionHasErrors([
@@ -157,7 +158,7 @@ class ManageChaptersTest extends TestCase
             ]);
 
         $this->actingAs($user)
-            ->post(route('chapters.store', ['translation' => $chapter->book->translation, 'book' => $chapter->book]), [
+            ->post($route, [
                 'number' => $chapter->number,
                 'verse_limit' => ''
             ])
@@ -166,7 +167,7 @@ class ManageChaptersTest extends TestCase
             ]);
 
         $this->actingAs($user)
-            ->post(route('chapters.store', ['translation' => $chapter->book->translation, 'book' => $chapter->book]), [
+            ->post($route, [
                 'number' => $chapter->number,
                 'verse_limit' => 'a'
             ])
@@ -175,7 +176,7 @@ class ManageChaptersTest extends TestCase
             ]);
 
         $this->actingAs($user)
-            ->post(route('chapters.store', ['translation' => $chapter->book->translation, 'book' => $chapter->book]), [
+            ->post($route, [
                 'number' => $chapter->number,
                 'verse_limit' => 0
             ])
@@ -188,7 +189,7 @@ class ManageChaptersTest extends TestCase
             'number' => $chapter->number
         ]);
         $this->actingAs($user)
-            ->post(route('chapters.store', ['translation' => $chapter->book->translation, 'book' => $chapter->book]), [
+            ->post($route, [
                 'number' => $chapter->number,
                 'verse_limit' => 0
             ])
@@ -246,8 +247,9 @@ class ManageChaptersTest extends TestCase
             'number' => 1
         ]);
 
+        $route = route('chapters.update', ['translation' => $chapter->book->translation, 'book' => $chapter->book, 'chapter' => $chapter]);
         $this->actingAs($user)
-            ->patch(route('chapters.update', ['translation' => $chapter->book->translation, 'book' => $chapter->book, 'chapter' => $chapter]), [
+            ->patch($route, [
                 'number' => '',
                 'verse_limit' => $chapter->verse_limit
             ])
@@ -256,7 +258,7 @@ class ManageChaptersTest extends TestCase
             ]);
 
         $this->actingAs($user)
-            ->patch(route('chapters.update', ['translation' => $chapter->book->translation, 'book' => $chapter->book, 'chapter' => $chapter]), [
+            ->patch($route, [
                 'number' => 'a',
                 'verse_limit' => $chapter->verse_limit
             ])
@@ -265,7 +267,7 @@ class ManageChaptersTest extends TestCase
             ]);
 
         $this->actingAs($user)
-            ->patch(route('chapters.update', ['translation' => $chapter->book->translation, 'book' => $chapter->book, 'chapter' => $chapter]), [
+            ->patch($route, [
                 'number' => 0,
                 'verse_limit' => $chapter->verse_limit
             ])
@@ -274,7 +276,7 @@ class ManageChaptersTest extends TestCase
             ]);
 
         $this->actingAs($user)
-            ->patch(route('chapters.update', ['translation' => $chapter->book->translation, 'book' => $chapter->book, 'chapter' => $chapter]), [
+            ->patch($route, [
                 'number' => $chapter->number,
                 'verse_limit' => ''
             ])
@@ -283,7 +285,7 @@ class ManageChaptersTest extends TestCase
             ]);
 
         $this->actingAs($user)
-            ->patch(route('chapters.update', ['translation' => $chapter->book->translation, 'book' => $chapter->book, 'chapter' => $chapter]), [
+            ->patch($route, [
                 'number' => $chapter->number,
                 'verse_limit' => 'a'
             ])
@@ -292,7 +294,7 @@ class ManageChaptersTest extends TestCase
             ]);
 
         $this->actingAs($user)
-            ->patch(route('chapters.update', ['translation' => $chapter->book->translation, 'book' => $chapter->book, 'chapter' => $chapter]), [
+            ->patch($route, [
                 'number' => $chapter->number,
                 'verse_limit' => 0
             ])
@@ -305,7 +307,7 @@ class ManageChaptersTest extends TestCase
             'number' => 2
         ]);
         $this->actingAs($user)
-            ->patch(route('chapters.update', ['translation' => $chapter->book->translation, 'book' => $chapter->book, 'chapter' => $chapter]), [
+            ->patch($route, [
                 'number' => $chapter2->number,
                 'verse_limit' => $chapter->verse_limit
             ])

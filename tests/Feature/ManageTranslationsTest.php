@@ -112,8 +112,9 @@ class ManageTranslationsTest extends TestCase
         $user = User::factory()->create();
         $translation = Translation::factory()->make();
 
+        $route = route('translations.store');
         $this->actingAs($user)
-            ->post(route('translations.store'), [
+            ->post($route, [
                 'name' => ''
             ])
             ->assertSessionHasErrors([
@@ -121,7 +122,7 @@ class ManageTranslationsTest extends TestCase
             ]);
 
         $this->actingAs($user)
-            ->post(route('translations.store'), [
+            ->post($route, [
                 'name' => $translation->name,
                 'abbr' => ''
             ])
@@ -131,7 +132,7 @@ class ManageTranslationsTest extends TestCase
 
         $different_translation = Translation::factory()->create();
         $this->actingAs($user)
-            ->post(route('translations.store'), [
+            ->post($route, [
                 'name' => $translation->name,
                 'abbr' => $different_translation->abbr
             ])
@@ -140,7 +141,7 @@ class ManageTranslationsTest extends TestCase
             ]);
 
         $this->actingAs($user)
-            ->post(route('translations.store'), [
+            ->post($route, [
                 'name' => $translation->name,
                 'abbr' => $translation->abbr,
                 'copyright_id' => ''
@@ -150,7 +151,7 @@ class ManageTranslationsTest extends TestCase
             ]);
 
         $this->actingAs($user)
-            ->post(route('translations.store'), [
+            ->post($route, [
                 'name' => $translation->name,
                 'abbr' => $translation->abbr,
                 'copyright_id' => 3
@@ -201,8 +202,9 @@ class ManageTranslationsTest extends TestCase
         $user = User::factory()->create();
         $translation = Translation::factory()->create();
 
+        $route = route('translations.update', ['translation' => $translation]);
         $this->actingAs($user)
-            ->patch(route('translations.update', ['translation' => $translation]), [
+            ->patch($route, [
                 'name' => ''
             ])
             ->assertSessionHasErrors([
@@ -210,7 +212,7 @@ class ManageTranslationsTest extends TestCase
             ]);
 
         $this->actingAs($user)
-            ->patch(route('translations.update', ['translation' => $translation]), [
+            ->patch($route, [
                 'name' => $translation->name,
                 'abbr' => ''
             ])
@@ -220,7 +222,7 @@ class ManageTranslationsTest extends TestCase
 
         $different_translation = Translation::factory()->create();
         $this->actingAs($user)
-            ->patch(route('translations.update', ['translation' => $translation]), [
+            ->patch($route, [
                 'name' => $translation->name,
                 'abbr' => $different_translation->abbr
             ])
@@ -229,7 +231,7 @@ class ManageTranslationsTest extends TestCase
             ]);
 
         $this->actingAs($user)
-            ->patch(route('translations.update', ['translation' => $translation]), [
+            ->patch($route, [
                 'name' => $translation->name,
                 'abbr' => $translation->abbr,
                 'copyright_id' => ''
@@ -239,7 +241,7 @@ class ManageTranslationsTest extends TestCase
             ]);
 
         $this->actingAs($user)
-            ->patch(route('translations.update', ['translation' => $translation]), [
+            ->patch($route, [
                 'name' => $translation->name,
                 'abbr' => $translation->abbr,
                 'copyright_id' => 3
