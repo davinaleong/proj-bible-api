@@ -50,6 +50,6 @@ class VerseNumberExists implements Rule
      */
     public function message()
     {
-        return 'The validation error message.';
+        return 'The :attribute of the verse exists for the current chapter.';
     }
 }
