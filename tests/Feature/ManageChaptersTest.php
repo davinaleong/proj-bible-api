@@ -320,7 +320,6 @@ class ManageChaptersTest extends TestCase
     /** @test */
     public function user_can_delete_a_chapter()
     {
-        $this->withoutExceptionHandling();
         $user = User::factory()->create();
         $translation = Translation::factory()->create();
         $book = Book::factory()->create([

@@ -8,6 +8,7 @@ use App\Models\Log;
 use App\Models\Table;
 use App\Models\Translation;
 use App\Models\User;
+use App\Models\Verse;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
@@ -443,6 +444,9 @@ class ManageBooksTest extends TestCase
         $chapter = Chapter::factory()->create([
             'book_id' => $book->id
         ]);
+        $verse = Verse::factory()->create([
+            'chapter_id' => $chapter->id
+        ]);
 
         $this->actingAs($user)
             ->delete(route('books.destroy', ['translation' => $translation, 'book' => $book]))
@@ -450,9 +454,9 @@ class ManageBooksTest extends TestCase
             ->assertSessionHas('message', 'Book deleted.');
 
 
+        $this->assertDatabaseMissing(Table::$TABLE_VERSES, $verse->jsonSerialize());
         $this->assertDatabaseMissing(Table::$TABLE_CHAPTERS, $chapter->jsonSerialize());
         $this->assertDatabaseMissing(Table::$TABLE_BOOKS, $book->jsonSerialize());
-        //TODO: Assert deleted verses
 
         $this->assertDatabaseHas(Table::$TABLE_LOGS, [
             'user_id' => $user->id,

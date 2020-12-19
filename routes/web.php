@@ -71,8 +71,6 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function() {
     //#endregion
 
     //#region Verses
-    // TODO: Test manage verses
-    // TODO: Verse controller
     Route::get('/verses/{verse}', [VerseController::class, 'showVerse'])->name('verses.showVerse');
     Route::get('/translations/{translation}/books/{book}/chapters/{chapter}/create', [VerseController::class, 'create'])->name('verses.create');
     Route::post('/translations/{translation}/books/{book}/chapters/{chapter}', [VerseController::class, 'store'])->name('verses.store');
