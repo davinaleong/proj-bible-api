@@ -9,6 +9,7 @@ use App\Models\Log;
 use App\Models\Table;
 use App\Models\Translation;
 use App\Models\User;
+use App\Models\Verse;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
@@ -254,7 +255,6 @@ class ManageTranslationsTest extends TestCase
     /** @test */
     public function user_can_delete_a_translation()
     {
-        $this->withoutExceptionHandling();
         $user = User::factory()->create();
         $translation = Translation::factory()->create();
         $book = Book::factory()->create([
@@ -263,13 +263,16 @@ class ManageTranslationsTest extends TestCase
         $chapter = Chapter::factory()->create([
             'book_id' => $book->id
         ]);
+        $verse = Verse::factory()->create([
+            'chapter_id' => $chapter->id
+        ]);
 
         $this->actingAs($user)
             ->delete(route('translations.destroy', ['translation' => $translation]))
             ->assertRedirect(route('translations.index'))
             ->assertSessionHas('message', 'Translation deleted.');
 
-        //TODO: Assert deleted verses
+        $this->assertDatabaseMissing(Table::$TABLE_VERSES, $verse->jsonSerialize());
         $this->assertDatabaseMissing(Table::$TABLE_CHAPTERS, $chapter->jsonSerialize());
         $this->assertDatabaseMissing(Table::$TABLE_BOOKS, $book->jsonSerialize());
         $this->assertDatabaseMissing(Table::$TABLE_TRANSLATIONS, $translation->jsonSerialize());

@@ -113,8 +113,10 @@ class BookController extends Controller
             Verse::where([
                 'chapter_id' => $chapter->id
             ])->delete();
-            $chapter->delete();
         }
+        Chapter::where([
+            'book_id' => $book->id
+        ])->delete();
         $book->delete();
 
         return redirect()
