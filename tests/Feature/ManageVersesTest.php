@@ -136,4 +136,46 @@ class ManageVersesTest extends TestCase
             'message' => "$user->name created verse $verse->number for $chapter->number, $book->name, $translation->abbr."
         ]);
     }
+
+    /** @test */
+    public function create_verse_returns_error_when_data_criteria_not_met()
+    {
+        $user = User::factory()->create();
+        $verse = Verse::factory()->make();
+
+        $route = route('verses.store', [
+            'translation' => $verse->chapter->book->translation,
+            'book' => $verse->chapter->book,
+            'chapter' => $verse->chapter
+        ]);
+
+        $this->actingAs($user)
+            ->post($route, [
+                'number' => ''
+            ])
+            ->assertSessionHasErrors([
+                'number' => 'The number field is required.'
+            ]);
+
+        $this->actingAs($user)
+            ->post($route, [
+                'number' => $verse->number,
+                'passage' => ''
+            ])
+            ->assertSessionHasErrors([
+                'passage' => 'The passage field is required.'
+            ]);
+
+        Verse::factory()->create([
+            'chapter_id' => $verse->chapter_id,
+            'number' => $verse->number
+        ]);
+        $this->actingAs($user)
+            ->post($route, [
+                'number' => $verse->number
+            ])
+            ->assertSessionHasErrors([
+                'number' => 'The number of the verse exists for the current chapter.'
+            ]);
+    }
 }
