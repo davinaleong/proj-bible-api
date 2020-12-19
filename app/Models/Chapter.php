@@ -52,6 +52,11 @@ class Chapter extends Model
         return $this->belongsTo('App\Models\User', 'updated_by');
     }
 
+    public function verses()
+    {
+        return $this->hasMany('App\Models\Verse');
+    }
+
     public function getBookName()
     {
         return $this->book ? $this->book->name : '';
