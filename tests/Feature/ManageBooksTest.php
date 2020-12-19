@@ -101,7 +101,8 @@ class ManageBooksTest extends TestCase
             'name' => $book->name,
             'abbr' => $book->abbr,
             'chapter_limit' => $book->chapter_limit,
-            'created_by' => $user->id
+            'created_by' => $user->id,
+            'updated_by' => null
         ]);
 
         $abbr = $book->getTranslationAbbr();

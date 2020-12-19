@@ -85,7 +85,6 @@ class ManageChaptersTest extends TestCase
     /** @test */
     public function user_can_create_a_chapter()
     {
-        $this->withoutExceptionHandling();
         $user = User::factory()->create();
         $chapter = Chapter::factory()->make();
         $chapter_id = 1;
@@ -101,7 +100,9 @@ class ManageChaptersTest extends TestCase
         $this->assertDatabaseHas(Table::$TABLE_CHAPTERS, [
             'book_id' => $chapter->book_id,
             'number' => $chapter->number,
-            'verse_limit' => $chapter->verse_limit
+            'verse_limit' => $chapter->verse_limit,
+            'created_by' => $user->id,
+            'updated_by' => null
         ]);
 
         $translation = $chapter->book->translation;
