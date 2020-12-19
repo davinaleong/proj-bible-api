@@ -2,7 +2,10 @@
 
 namespace Tests\Feature;
 
+use App\Models\Book;
+use App\Models\Chapter;
 use App\Models\Table;
+use App\Models\Translation;
 use App\Models\User;
 use App\Models\Verse;
 use Facade\Ignition\Tabs\Tab;
@@ -269,5 +272,44 @@ class ManageVersesTest extends TestCase
             ->assertSessionHasErrors([
                 'number' => 'The number of the verse exists for the current chapter.'
             ]);
+    }
+
+    /** @test */
+    public function user_can_delete_a_verse()
+    {
+        $user = User::factory()->create();
+        $translation = Translation::factory()->create();
+        $book = Book::factory()->create([
+            'translation_id' => $translation
+        ]);
+        $chapter = Chapter::factory()->create([
+            'book_id' => $book
+        ]);
+        $verse = Verse::factory()->create([
+            'chapter_id' => $chapter
+        ]);
+
+        $this->actingAs($user)
+            ->delete(route('verses.destroy', [
+                'translation' => $translation,
+                'book' => $book,
+                'chapter' => $chapter,
+                'verse' => $verse
+            ]))
+            ->assertRedirect(route('chapters.show', [
+                'translation' => $translation,
+                'book' => $book,
+                'chapter' => $chapter
+            ]))
+            ->assertSessionHas('message', 'Verse deleted.');
+
+        $this->assertDatabaseMissing(Table::$TABLE_VERSES, $verse->jsonSerialize());
+
+        $this->assertDatabaseHas(Table::$TABLE_LOGS, [
+            'user_id' => $user->id,
+            'source' => Table::$TABLE_VERSES,
+            'source_id' => $verse->id,
+            'message' => "$user->name deleted verse $verse->number for $chapter->number, $book->name, $translation->abbr."
+        ]);
     }
 }

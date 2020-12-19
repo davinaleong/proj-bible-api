@@ -70,7 +70,14 @@ class VerseController extends Controller
 
     public function destroy(Translation $translation, Book $book, Chapter $chapter, Verse $verse)
     {
-        //
+        $verse->delete();
+        return redirect()
+            ->route('chapters.show', [
+                'translation' => $translation,
+                'book' => $book,
+                'chapter' => $chapter
+            ])
+            ->with('message', 'Verse deleted.');
     }
 
     private function rules(Chapter $chapter, Verse $verse=null)

@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Events\VerseCreated;
+use App\Events\VerseDeleted;
 use App\Events\VerseUpdated;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -19,7 +20,8 @@ class Verse extends Model
 
     protected $dispatchesEvents = [
         'created' => VerseCreated::class,
-        'updated' => VerseUpdated::class
+        'updated' => VerseUpdated::class,
+        'deleted' => VerseDeleted::class
     ];
 
     private $dateFormats = [
