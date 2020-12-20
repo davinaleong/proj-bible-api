@@ -6,11 +6,22 @@ use App\Models\Chapter;
 use App\Models\User;
 use App\Models\Verse;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Foundation\Testing\WithFaker;
+use Illuminate\Support\Str;
 use Tests\TestCase;
 
 class VerseTest extends TestCase
 {
-    use RefreshDatabase;
+    use RefreshDatabase, WithFaker;
+
+    /** @test */
+    public function truncate_passage()
+    {
+        $verse = Verse::factory()->create([
+            'passage' => $this->faker->words(51, true)
+        ]);
+        $this->assertEquals(Str::words($verse->passage, 50), $verse->truncatePassage());
+    }
 
     /** @test */
     public function has_a_creator()

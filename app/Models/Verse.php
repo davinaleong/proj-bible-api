@@ -8,6 +8,7 @@ use App\Events\VerseUpdated;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class Verse extends Model
 {
@@ -50,6 +51,11 @@ class Verse extends Model
     public function updater()
     {
         return $this->belongsTo('App\Models\User', 'updated_by');
+    }
+
+    public function truncatePassage()
+    {
+        return Str::words($this->passage, 50);
     }
 
     public function getChapterNumber()
