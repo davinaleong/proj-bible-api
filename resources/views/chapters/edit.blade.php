@@ -5,7 +5,7 @@
 
     <div class="card shadow">
         <div class="card-header">
-            <h1 class="card-title h5">Book: {{ $book->name }} Chapter: {{ $chapter->number }}</h1>
+            <h1 class="card-title h5">Book: {{ $book->name }} | Chapter: {{ $chapter->number }}</h1>
         </div>
         <div class="card-body">
             <form method="post" action="{{ route('chapters.update', ['translation' => $translation, 'book' => $book, 'chapter' => $chapter]) }}">
