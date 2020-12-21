@@ -2,10 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="aea7a033-8388-4a34-8811-e03be647dd13" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/resources/views/verses/edit.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/verses/show.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/VerseController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/VerseController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/chapters/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/chapters/create.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/chapters/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/chapters/edit.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/chapters/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/chapters/show.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/verses/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/verses/create.blade.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -36,8 +37,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/VerseController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="313">
-              <caret line="80" column="34" lean-forward="true" selection-start-line="80" selection-start-column="34" selection-end-line="80" selection-end-column="34" />
+            <state relative-caret-position="124">
+              <caret line="116" column="38" selection-start-line="116" selection-start-column="38" selection-end-line="116" selection-end-column="38" />
               <folding>
                 <element signature="e#40#60#0#PHP" expanded="true" />
               </folding>
@@ -47,14 +48,18 @@
       </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/verses/edit.blade.php">
-          <provider selected="true" editor-type-id="text-editor" />
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="147">
+              <caret line="7" column="122" selection-start-line="7" selection-start-column="122" selection-end-line="7" selection-end-column="122" />
+            </state>
+          </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/resources/views/verses/create.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="186">
-              <caret line="25" column="51" lean-forward="true" selection-start-line="25" selection-start-column="51" selection-end-line="25" selection-end-column="51" />
+            <state relative-caret-position="103">
+              <caret line="7" column="98" selection-start-line="7" selection-start-column="98" selection-end-line="7" selection-end-column="98" />
             </state>
           </provider>
         </entry>
@@ -123,9 +128,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/Listeners/LogBookUpdated.php" />
-        <option value="$PROJECT_DIR$/app/Listeners/LogChapterCreated.php" />
-        <option value="$PROJECT_DIR$/app/Listeners/LogChapterDeleted.php" />
         <option value="$PROJECT_DIR$/app/Listeners/LogChapterUpdated.php" />
         <option value="$PROJECT_DIR$/app/Listeners/LogCopyrightCreated.php" />
         <option value="$PROJECT_DIR$/app/Listeners/LogCopyrightDeleted.php" />
@@ -170,10 +172,13 @@
         <option value="$PROJECT_DIR$/app/Http/Controllers/BookController.php" />
         <option value="$PROJECT_DIR$/app/Models/Verse.php" />
         <option value="$PROJECT_DIR$/tests/Unit/VerseTest.php" />
-        <option value="$PROJECT_DIR$/resources/views/chapters/show.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/verses/create.blade.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/VerseController.php" />
         <option value="$PROJECT_DIR$/resources/views/verses/show.blade.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/VerseController.php" />
+        <option value="$PROJECT_DIR$/resources/views/chapters/show.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/verses/edit.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/chapters/edit.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/chapters/create.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/verses/create.blade.php" />
       </list>
     </option>
   </component>
@@ -458,7 +463,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="158584000" />
+    <option name="totallyTimeSpent" value="159068000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -511,20 +516,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/Listeners/LogTranslationDeleted.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="178">
-          <caret line="35" column="33" selection-start-line="35" selection-start-column="33" selection-end-line="35" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Listeners/LogTranslationUpdated.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="207">
-          <caret line="35" column="33" selection-start-line="35" selection-start-column="33" selection-end-line="35" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Listeners/LogUserCreated.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="106">
@@ -876,13 +867,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/chapters/show.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="113">
-          <caret line="28" column="121" selection-start-line="28" selection-start-column="121" selection-end-line="28" selection-end-column="121" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/routes/web.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="121">
@@ -909,21 +893,46 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/VerseController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="313">
-          <caret line="80" column="34" lean-forward="true" selection-start-line="80" selection-start-column="34" selection-end-line="80" selection-end-column="34" />
+        <state relative-caret-position="124">
+          <caret line="116" column="38" selection-start-line="116" selection-start-column="38" selection-end-line="116" selection-end-column="38" />
           <folding>
             <element signature="e#40#60#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/chapters/show.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="147">
+          <caret line="7" column="61" selection-start-line="7" selection-start-column="61" selection-end-line="7" selection-end-column="61" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/chapters/edit.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="147">
+          <caret line="7" column="64" selection-start-line="7" selection-start-column="64" selection-end-line="7" selection-end-column="64" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/chapters/create.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="147">
+          <caret line="7" column="64" selection-start-line="7" selection-start-column="64" selection-end-line="7" selection-end-column="64" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/verses/edit.blade.php">
-      <provider selected="true" editor-type-id="text-editor" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="147">
+          <caret line="7" column="122" selection-start-line="7" selection-start-column="122" selection-end-line="7" selection-end-column="122" />
+        </state>
+      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/verses/create.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="186">
-          <caret line="25" column="51" lean-forward="true" selection-start-line="25" selection-start-column="51" selection-end-line="25" selection-end-column="51" />
+        <state relative-caret-position="103">
+          <caret line="7" column="98" selection-start-line="7" selection-start-column="98" selection-end-line="7" selection-end-column="98" />
         </state>
       </provider>
     </entry>

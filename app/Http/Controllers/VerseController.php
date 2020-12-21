@@ -96,7 +96,33 @@ class VerseController extends Controller
 
     public function edit(Translation $translation, Book $book, Chapter $chapter, Verse $verse)
     {
-        //
+        return view('verses.edit', [
+            'breadcrumb' => Breadcrumb::items([
+                [
+                    'label' => 'Translations',
+                    'href' => route('translations.index')
+                ], [
+                    'label' => $translation->abbr,
+                    'href' => route('translations.show', ['translation' => $translation])
+                ], [
+                    'label' => $book->abbr,
+                    'href' => route('books.show', ['translation' => $translation, 'book' => $book])
+                ], [
+                    'label' => $chapter->number,
+                    'href' => route('chapters.show', ['translation' => $translation, 'book' => $book, 'chapter' => $chapter])
+                ], [
+                    'label' => $verse->number,
+                    'href' => route('verses.show', ['translation' => $translation, 'book' => $book, 'chapter' => $chapter, 'verse' => $verse])
+                ], [
+                    'label' => 'Edit',
+                    'active' => true
+                ]
+            ]),
+            'translation' => $translation,
+            'book' => $book,
+            'chapter' => $chapter,
+            'verse' => $verse
+        ]);
     }
 
     public function update(Translation $translation, Book $book, Chapter $chapter, Verse $verse)
