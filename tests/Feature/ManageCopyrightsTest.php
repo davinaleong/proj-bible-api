@@ -107,8 +107,9 @@ class ManageCopyrightsTest extends TestCase
         $user = User::factory()->create();
         $copyright = Copyright::factory()->make();
 
+        $route = route('copyrights.store');
         $this->actingAs($user)
-            ->post(route('copyrights.store'), [
+            ->post($route, [
                 'name' => ''
             ])
             ->assertSessionHasErrors([
@@ -116,7 +117,7 @@ class ManageCopyrightsTest extends TestCase
             ]);
 
         $this->actingAs($user)
-            ->post(route('copyrights.store'), [
+            ->post($route, [
                 'name' => $copyright->name,
                 'text' => ''
             ])
@@ -165,8 +166,9 @@ class ManageCopyrightsTest extends TestCase
         $copyright = Copyright::factory()->create();
         $updated_copyright = Copyright::factory()->make();
 
+        $route = route('copyrights.update', ['copyright' => $copyright]);
         $this->actingAs($user)
-            ->patch(route('copyrights.update', ['copyright' => $copyright]), [
+            ->patch($route, [
                 'name' => ''
             ])
             ->assertSessionHasErrors([
@@ -174,7 +176,7 @@ class ManageCopyrightsTest extends TestCase
             ]);
 
         $this->actingAs($user)
-            ->patch(route('copyrights.update', ['copyright' => $copyright]), [
+            ->patch($route, [
                 'name' => $updated_copyright->name,
                 'text' => ''
             ])

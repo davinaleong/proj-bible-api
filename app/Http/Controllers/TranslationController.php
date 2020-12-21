@@ -7,6 +7,7 @@ use App\Models\Breadcrumb;
 use App\Models\Chapter;
 use App\Models\Copyright;
 use App\Models\Translation;
+use App\Models\Verse;
 use Illuminate\Http\Request;
 
 class TranslationController extends Controller
@@ -106,10 +107,15 @@ class TranslationController extends Controller
 
     public function destroy(Translation $translation)
     {
-        $books = Book::where(['translation_id' => $translation->id])->get();
-        foreach($books as $book) {
-            //TODO: Delete verses
-            Chapter::where(['book_id' => $book->id])->delete();
+        foreach($translation->books as $book) {
+            foreach($book->chapters as $chapter) {
+                Verse::where([
+                    'chapter_id' => $chapter->id
+                ])->delete();
+            }
+            Chapter::where([
+                'book_id' => $book->id
+            ])->delete();
         }
         Book::where(['translation_id' => $translation->id])->delete();
         $translation->delete();

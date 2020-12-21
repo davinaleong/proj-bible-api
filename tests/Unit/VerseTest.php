@@ -2,58 +2,49 @@
 
 namespace Tests\Unit;
 
-use App\Models\Book;
 use App\Models\Chapter;
 use App\Models\User;
 use App\Models\Verse;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Foundation\Testing\WithFaker;
+use Illuminate\Support\Str;
 use Tests\TestCase;
 
-class ChapterTest extends TestCase
+class VerseTest extends TestCase
 {
-    use RefreshDatabase;
+    use RefreshDatabase, WithFaker;
+
+    /** @test */
+    public function truncate_passage()
+    {
+        $verse = Verse::factory()->create([
+            'passage' => $this->faker->words(51, true)
+        ]);
+        $this->assertEquals(Str::words($verse->passage, 50), $verse->truncatePassage());
+    }
 
     /** @test */
     public function has_a_creator()
     {
-        $user = User::factory()->create();
-        $chapter = Chapter::factory()->create([
-            'created_by' => $user->id
-        ]);
+        $verse = Verse::factory()->create();
 
-        $this->assertInstanceOf(User::class, $chapter->creator);
+        $this->assertInstanceOf(User::class, $verse->creator);
     }
 
     /** @test */
     public function has_an_updater()
     {
-        $user = User::factory()->create();
-        $chapter = Chapter::factory()->create([
-            'updated_by' => $user->id
-        ]);
+        $verse = Verse::factory()->create();
 
-        $this->assertInstanceOf(User::class, $chapter->updater);
+        $this->assertInstanceOf(User::class, $verse->updater);
     }
 
     /** @test */
-    public function has_a_book()
+    public function has_a_chapter()
     {
-        $book = Book::factory()->create();
-        $chapter = Chapter::factory()->create([
-            'book_id' => $book->id
-        ]);
+        $verse = Verse::factory()->create();
 
-        $this->assertInstanceOf(Book::class, $chapter->book);
-    }
-
-    /** @test */
-    public function has_verses()
-    {
-        $chapter = Chapter::factory()->create();
-        Verse::factory()->create([
-            'chapter_id' => $chapter
-        ]);
-        $this->assertInstanceOf(Verse::class, $chapter->verses[0]);
+        $this->assertInstanceOf(Chapter::class, $verse->chapter);
     }
 
     /** @test */
@@ -99,26 +90,26 @@ class ChapterTest extends TestCase
     }
 
     /** @test */
-    public function get_book_name()
+    public function get_chapter_number()
     {
-        $book = Book::factory()->create();
-        $chapter = Chapter::factory()->create([
-            'book_id' => $book->id
+        $chapter = Chapter::factory()->create();
+        $verse = Verse::factory()->create([
+            'chapter_id' => $chapter->id
         ]);
 
-        $this->assertEquals($book->name, $chapter->getBookName());
+        $this->assertEquals($chapter->number, $verse->getChapterNumber());
     }
 
     /** @test */
-    public function get_chapter_returns_chapter_of_book_and_number()
+    public function get_verse_returns_verse_of_chapter_and_number()
     {
-        $book = Book::factory()->create();
-        $chapter = Chapter::factory()->create([
-            'book_id' => $book->id,
+        $chapter = Chapter::factory()->create();
+        $verse = Verse::factory()->create([
+            'chapter_id' => $chapter->id,
             'number' => 1
         ]);
 
-        $this->assertEquals($chapter->id, Chapter::getChapter($book, $chapter->number)->id);
+        $this->assertEquals($verse->id, Verse::getVerse($chapter, $verse->number)->id);
     }
 
     /** @test */
