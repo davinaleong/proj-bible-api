@@ -55,9 +55,32 @@ class VerseController extends Controller
             ->with('message', 'Verse created.');
     }
 
-    public function show(Translation $translation, Book $book, Chapter $chapter)
+    public function show(Translation $translation, Book $book, Chapter $chapter, Verse $verse)
     {
-        //
+        return view('verses.show', [
+            'breadcrumb' => Breadcrumb::items([
+                [
+                    'label' => 'Translations',
+                    'href' => route('translations.index')
+                ], [
+                    'label' => $translation->abbr,
+                    'href' => route('translations.show', ['translation' => $translation])
+                ], [
+                    'label' => $book->abbr,
+                    'href' => route('books.show', ['translation' => $translation, 'book' => $book])
+                ], [
+                    'label' => $chapter->number,
+                    'href' => route('chapters.show', ['translation' => $translation, 'book' => $book, 'chapter' => $chapter])
+                ], [
+                    'label' => $verse->number,
+                    'active' => true
+                ]
+            ]),
+            'translation' => $translation,
+            'book' => $book,
+            'chapter' => $chapter,
+            'verse' => $verse
+        ]);
     }
 
     public function showVerse(Verse $verse)
