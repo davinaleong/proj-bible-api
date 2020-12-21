@@ -18,7 +18,7 @@
                     <label for="number">Number <span class="text-danger">*</span></label>
                     <input type="text" name="number" class="form-control" value="{{ old('number') }}" required>
                     <p class="form-text text-muted">
-                        <small>Determines the order of the verse.</small>
+                        <small>Determines the order of the verse. For Translations with multiple verses, use hyphen. (E.g. 1-2)</small>
                     </p>
                 </div>
                 <div class="form-group">
