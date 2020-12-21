@@ -6,6 +6,7 @@ use App\Models\Book;
 use App\Models\Breadcrumb;
 use App\Models\Chapter;
 use App\Models\Translation;
+use App\Models\Verse;
 use App\Rules\BookAbbrExists;
 use App\Rules\BookNameExists;
 use App\Rules\BookNumberExists;
@@ -108,8 +109,14 @@ class BookController extends Controller
 
     public function destroy(Translation $translation, Book $book)
     {
-        //TODO: Delete verses
-        Chapter::where(['book_id' => $book->id])->delete();
+        foreach($book->chapters as $chapter) {
+            Verse::where([
+                'chapter_id' => $chapter->id
+            ])->delete();
+        }
+        Chapter::where([
+            'book_id' => $book->id
+        ])->delete();
         $book->delete();
 
         return redirect()

@@ -6,6 +6,7 @@ use App\Http\Controllers\CopyrightController;
 use App\Http\Controllers\TranslationController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\ChapterController;
+use App\Http\Controllers\VerseController;
 
 /*
 |--------------------------------------------------------------------------
@@ -67,5 +68,16 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function() {
     Route::get('/translations/{translation}/books/{book}/chapters/{chapter}/edit', [ChapterController::class, 'edit'])->name('chapters.edit');
     Route::patch('/translations/{translation}/books/{book}/chapters/{chapter}', [ChapterController::class, 'update'])->name('chapters.update');
     Route::delete('/translations/{translation}/books/{book}/chapters/{chapter}', [ChapterController::class, 'destroy'])->name('chapters.destroy');
+    //#endregion
+
+    //#region Verses
+    Route::get('/verses/{verse}', [VerseController::class, 'showVerse'])->name('verses.showVerse');
+    Route::get('/translations/{translation}/books/{book}/chapters/{chapter}/create', [VerseController::class, 'create'])->name('verses.create');
+    Route::post('/translations/{translation}/books/{book}/chapters/{chapter}', [VerseController::class, 'store'])->name('verses.store');
+    Route::get('/translations/{translation}/books/{book}/chapters/{chapter}/verses/{verse}', [VerseController::class, 'show'])->name('verses.show');
+    Route::get('/translations/{translation}/books/{book}/chapters/{chapter}/verses/{verse}/edit', [VerseController::class, 'edit'])->name('verses.edit');
+    Route::patch('/translations/{translation}/books/{book}/chapters/{chapter}/verses/{verse}', [VerseController::class, 'update'])->name('verses.update');
+    Route::delete('/translations/{translation}/books/{book}/chapters/{chapter}/verses/{verse}', [VerseController::class, 'destroy'])->name('verses.destroy');
+    // TODO: Verse views
     //#endregion
 });

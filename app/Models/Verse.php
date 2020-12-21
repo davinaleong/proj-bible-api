@@ -2,14 +2,15 @@
 
 namespace App\Models;
 
-use App\Events\ChapterCreated;
-use App\Events\ChapterDeleted;
-use App\Events\ChapterUpdated;
+use App\Events\VerseCreated;
+use App\Events\VerseDeleted;
+use App\Events\VerseUpdated;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
-class Chapter extends Model
+class Verse extends Model
 {
     use HasFactory;
 
@@ -19,9 +20,9 @@ class Chapter extends Model
     ];
 
     protected $dispatchesEvents = [
-        'created' => ChapterCreated::class,
-        'updated' => ChapterUpdated::class,
-        'deleted' => ChapterDeleted::class
+        'created' => VerseCreated::class,
+        'updated' => VerseUpdated::class,
+        'deleted' => VerseDeleted::class
     ];
 
     private $dateFormats = [
@@ -29,17 +30,17 @@ class Chapter extends Model
         'show' => 'H:i:s d-m-Y'
     ];
 
-    public static function getChapter(Book $book, int $number)
+    public static function getVerse(Chapter $chapter, string $number)
     {
-        return Chapter::where([
-            'book_id' => $book->id,
+        return Verse::where([
+            'chapter_id' => $chapter->id,
             'number' => $number
         ])->first();
     }
 
-    public function book()
+    public function chapter()
     {
-        return $this->belongsTo('App\Models\Book');
+        return $this->belongsTo('App\Models\Chapter');
     }
 
     public function creator()
@@ -52,14 +53,14 @@ class Chapter extends Model
         return $this->belongsTo('App\Models\User', 'updated_by');
     }
 
-    public function verses()
+    public function truncatePassage()
     {
-        return $this->hasMany('App\Models\Verse');
+        return Str::words($this->passage, 50);
     }
 
-    public function getBookName()
+    public function getChapterNumber()
     {
-        return $this->book ? $this->book->name : '';
+        return $this->chapter ? $this->chapter->number : '';
     }
 
     public function getCreatorName()

@@ -6,6 +6,7 @@ use App\Models\Book;
 use App\Models\Breadcrumb;
 use App\Models\Chapter;
 use App\Models\Translation;
+use App\Models\Verse;
 use App\Rules\ChapterNumberExists;
 use Illuminate\Http\Request;
 
@@ -119,7 +120,9 @@ class ChapterController extends Controller
 
     public function destroy(Translation $translation, Book $book, Chapter $chapter)
     {
-        //TODO: Delete verses
+        Verse::where([
+            'chapter_id' => $chapter->id
+        ])->delete();
         $chapter->delete();
 
         return redirect()
