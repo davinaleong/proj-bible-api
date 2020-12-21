@@ -32,7 +32,7 @@
                 </div>
                 <div class="form-group">
                     <label for="passage">Passage <span class="text-danger">*</span></label>
-                    <textarea name="passage" class="form-control">{{ old('passage') ?? $verse->passage }}</textarea>
+                    <textarea name="passage" class="form-control" rows="4">{{ old('passage') ?? $verse->passage }}</textarea>
                 </div>
 
                 <p class="text-danger">* required</p>

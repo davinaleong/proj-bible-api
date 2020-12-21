@@ -2,12 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="aea7a033-8388-4a34-8811-e03be647dd13" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/VerseController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/VerseController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/chapters/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/chapters/create.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/chapters/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/chapters/edit.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/chapters/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/chapters/show.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/verses/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/verses/create.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/verses/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/verses/edit.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/verses/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/verses/show.blade.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -47,11 +44,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/verses/edit.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="12" column="30" selection-start-line="12" selection-start-column="30" selection-end-line="12" selection-end-column="30" />
+            <state relative-caret-position="121">
+              <caret line="34" column="73" selection-start-line="34" selection-start-column="73" selection-end-line="34" selection-end-column="73" />
             </state>
           </provider>
         </entry>
@@ -59,8 +56,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/verses/create.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="103">
-              <caret line="7" column="98" selection-start-line="7" selection-start-column="98" selection-end-line="7" selection-end-column="98" />
+            <state relative-caret-position="209">
+              <caret line="25" column="73" selection-start-line="25" selection-start-column="73" selection-end-line="25" selection-end-column="73" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/resources/views/verses/show.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="147">
+              <caret line="7" column="95" selection-start-line="7" selection-start-column="95" selection-end-line="7" selection-end-column="95" />
             </state>
           </provider>
         </entry>
@@ -69,7 +75,7 @@
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ChapterController.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="1">
-              <caret line="62" column="25" lean-forward="true" selection-start-line="62" selection-start-column="25" selection-end-line="62" selection-end-column="25" />
+              <caret line="62" column="25" selection-start-line="62" selection-start-column="25" selection-end-line="62" selection-end-column="25" />
             </state>
           </provider>
         </entry>
@@ -173,13 +179,13 @@
         <option value="$PROJECT_DIR$/app/Http/Controllers/BookController.php" />
         <option value="$PROJECT_DIR$/app/Models/Verse.php" />
         <option value="$PROJECT_DIR$/tests/Unit/VerseTest.php" />
-        <option value="$PROJECT_DIR$/resources/views/verses/show.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/chapters/show.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/chapters/edit.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/chapters/create.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/verses/create.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/VerseController.php" />
         <option value="$PROJECT_DIR$/resources/views/verses/edit.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/verses/create.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/verses/show.blade.php" />
       </list>
     </option>
   </component>
@@ -348,13 +354,6 @@
               <item name="bible-api" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="chapters" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="bible-api" type="b2602c69:ProjectViewProjectNode" />
-              <item name="bible-api" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
               <item name="verses" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
@@ -464,7 +463,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="159147000" />
+    <option name="totallyTimeSpent" value="159400000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -881,14 +880,7 @@
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ChapterController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1">
-          <caret line="62" column="25" lean-forward="true" selection-start-line="62" selection-start-column="25" selection-end-line="62" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/verses/show.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="248">
-          <caret line="23" lean-forward="true" selection-start-line="23" selection-end-line="23" />
+          <caret line="62" column="25" selection-start-line="62" selection-start-column="25" selection-end-line="62" selection-end-column="25" />
         </state>
       </provider>
     </entry>
@@ -913,13 +905,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/verses/create.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="103">
-          <caret line="7" column="98" selection-start-line="7" selection-start-column="98" selection-end-line="7" selection-end-column="98" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/VerseController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="141">
@@ -932,8 +917,22 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/verses/edit.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="12" column="30" selection-start-line="12" selection-start-column="30" selection-end-line="12" selection-end-column="30" />
+        <state relative-caret-position="121">
+          <caret line="34" column="73" selection-start-line="34" selection-start-column="73" selection-end-line="34" selection-end-column="73" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/verses/create.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="209">
+          <caret line="25" column="73" selection-start-line="25" selection-start-column="73" selection-end-line="25" selection-end-column="73" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/verses/show.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="147">
+          <caret line="7" column="95" selection-start-line="7" selection-start-column="95" selection-end-line="7" selection-end-column="95" />
         </state>
       </provider>
     </entry>
