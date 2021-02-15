@@ -53,11 +53,24 @@
 
         <div class="row">
             <div class="col-3">
-                //
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#translations">Translations</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#books">Books</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#chapters">Chapters</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#verses">Verses</a>
+                    </li>
+                </ul>
             </div>
             <!-- ./col-3 -->
             <div class="col-9">
-                //
+                <p>Coming soon.</p>
             </div>
             <!-- ./col-9 -->
         </div>
