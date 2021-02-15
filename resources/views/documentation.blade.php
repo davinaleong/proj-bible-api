@@ -51,26 +51,17 @@
             </div>
         </nav>
 
-        <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center sm:pt-0">
-            @if (Route::has('login'))
-                <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
-                    @auth
-                        <a href="{{ url('/dashboard') }}" class="text-sm text-gray-700 underline">Dashboard</a>
-                    @else
-                        <a href="{{ route('login') }}" class="text-sm text-gray-700 underline">Login</a>
-                    @endif
-                </div>
-            @endif
-
-            <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
-                <div class="flex justify-center pt-8 sm:justify-start sm:pt-0">
-                    <img src="{{ asset('img/bible_api-text.svg') }}" alt="Bible API text logo">
-                </div>
-
-                <h1>Documentation</h1>
-                <p>Coming soon!</p>
+        <div class="row">
+            <div class="col-3">
+                //
             </div>
+            <!-- ./col-3 -->
+            <div class="col-9">
+                //
+            </div>
+            <!-- ./col-9 -->
         </div>
+        <!-- ./row -->
 
         <!-- JQuery -->
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
