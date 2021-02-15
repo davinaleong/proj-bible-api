@@ -59,7 +59,7 @@
             </div>
         </nav>
 
-        <div class="row">
+        <div class="row mt-3">
             <div class="col-3">
                 <ul class="nav flex-column">
                     <li class="nav-item">
@@ -78,7 +78,9 @@
             </div>
             <!-- ./col-3 -->
             <div class="col-9" id="top">
-                <p>Coming soon.</p>
+                <div class="mb-3"><img src="{{ asset('img/bible_api-text.svg') }}" alt="bible api logo text" height="80"></div>
+                <h1>Documentation</h1>
+                <p>Coming soon...</p>
             </div>
             <!-- ./col-9 -->
         </div>
