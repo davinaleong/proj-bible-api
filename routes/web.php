@@ -20,7 +20,7 @@ use App\Http\Controllers\VerseController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('documentation');
 });
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function() {
