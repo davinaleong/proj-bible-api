@@ -66,13 +66,13 @@
                         <a class="nav-link" href="#translations">Translations</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="#books">Books</a>
+                        <a class="nav-link" href="#books">Books</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="#chapters">Chapters</a>
+                        <a class="nav-link" href="#chapters">Chapters</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="#verses">Verses</a>
+                        <a class="nav-link" href="#verses">Verses</a>
                     </li>
                 </ul>
             </div>
