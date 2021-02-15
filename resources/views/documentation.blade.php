@@ -22,7 +22,35 @@
         <!-- Bootstrap Styles -->
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
     </head>
-    <body class="antialiased">
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <span class="navbar-brand">
+                <img src="{{ asset('img/bible_api.svg') }}" alt="bible api logo" width="32"> Bible API
+            </span>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{{ route('documentation') }}">
+                            Documentation <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        @if (Route::has('login'))
+                            @auth
+                                <a href="{{ route('dashboard') }}" class="nav-link">Dashboard</a>
+                            @else
+                                <a href="{{ route('login') }}" class="nav-link">Login</a>
+                            @endif
+                        @endif
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
         <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center sm:pt-0">
             @if (Route::has('login'))
                 <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
