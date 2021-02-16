@@ -40,7 +40,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label>Updated</label>
+                    <label>Updated At</label>
                     <p class="form-control-plaintext">{{ $copyright->getUpdatedAt() }}</p>
                 </div>
 
