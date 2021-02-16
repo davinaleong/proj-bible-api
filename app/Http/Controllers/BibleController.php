@@ -13,4 +13,11 @@ class BibleController extends Controller
             'translations' => Translation::with('copyright')->get()
         ];
     }
+
+    public function translation(string $abbr)
+    {
+        return [
+            'translation' => Translation::with('copyright')->where('abbr', $abbr)->first()
+        ];
+    }
 }

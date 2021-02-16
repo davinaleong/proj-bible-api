@@ -24,9 +24,26 @@ class ManageBibleTest extends TestCase
             ]);
 
 
-        $this->getJson('api/translations')
+        $this->getJson("api/translations")
             ->assertExactJson([
                 'translations' => $translations->load('copyright')->jsonSerialize()
+            ]);
+    }
+
+    /** @test */
+    public function get_one_translation_with_copyright()
+    {
+        $copyright = Copyright::factory()
+            ->create();
+        $translation = Translation::factory()
+            ->create([
+                'copyright_id' => $copyright->id
+            ]);
+
+
+        $this->getJson("api/translations/$translation->abbr")
+            ->assertExactJson([
+                'translation' => $translation->load('copyright')->jsonSerialize()
             ]);
     }
 }

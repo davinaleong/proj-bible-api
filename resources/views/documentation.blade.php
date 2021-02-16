@@ -100,9 +100,18 @@
 }</code></pre>
 
                 <p><strong>Get one translation</strong></p>
-                <p>Endpoint: <code>GET api/translations/{translation}</code></p>
+                <p>Endpoint: <code>GET https://bibleapi/api/translations/{abbr}</code></p>
                 <p>Response:</p>
-                <pre><code></code></pre>
+                <pre><code>{
+    "translation": {
+        "name": "King James Version",
+        "abbr": "KJV",
+        "copyright": {
+            "name": "Public Domain",
+            "text": "Public Domain"
+        }
+    }
+}</code></pre>
                 <hr>
 
             </div>
