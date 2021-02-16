@@ -18,6 +18,14 @@ class Copyright extends Model
         'updated_at'
     ];
 
+    protected $hidden = [
+        'id',
+        'created_at',
+        'updated_at',
+        'created_by',
+        'updated_by'
+    ];
+
     protected $dispatchesEvents = [
         'created' => CopyrightCreated::class,
         'updated' => CopyrightUpdated::class,
