@@ -79,8 +79,21 @@
             <!-- ./col-3 -->
             <div class="col-9" id="top">
                 <div class="mb-3"><img src="{{ asset('img/bible_api-text.svg') }}" alt="bible api logo text" height="80"></div>
-                <h1>Documentation</h1>
-                <p>Coming soon...</p>
+                <h1 class="mb-3">Documentation</h1>
+
+                <h2 id="translations">Translations</h2>
+
+                <p><strong>Get all translations</strong></p>
+                <p>Endpoint: <code>GET api/translations</code></p>
+                <p>Response:</p>
+                <pre><code></code></pre>
+
+                <p><strong>Get one translation</strong></p>
+                <p>Endpoint: <code>GET api/translations/{translation}</code></p>
+                <p>Response:</p>
+                <pre><code></code></pre>
+                <hr>
+
             </div>
             <!-- ./col-9 -->
         </div>
