@@ -61,13 +61,10 @@
 
         <div class="container mt-3">
             <div class="mb-3"><img src="{{ asset('img/bible_api-text.svg') }}" alt="bible api logo text" height="80"></div>
-            <h1 class="mb-3">Documentation</h1>
 
-            <h2 id="translations">Translations</h2>
-
-            <p><strong>Get all translations</strong></p>
+            <h1 class="h4">Get all translations</h1>
             <p>Endpoint: <code>GET https://bibleapi/api/translations</code></p>
-            <p>Response:</p>
+            <p>Sample response:</p>
             <pre><code>{
     "translations": [
         {
@@ -80,10 +77,11 @@
         }
     ]
 }</code></pre>
+            <hr>
 
-            <p><strong>Get one translation</strong></p>
+            <h1 class="h4">Get one translation</h1>
             <p>Endpoint: <code>GET https://bibleapi/api/translations/{abbr}</code></p>
-            <p>Response:</p>
+            <p>Sample response:</p>
             <pre><code>{
     "translation": {
         "name": "King James Version",
