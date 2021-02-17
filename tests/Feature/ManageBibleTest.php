@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Models\Book;
 use App\Models\Copyright;
 use App\Models\Translation;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -13,7 +14,7 @@ class ManageBibleTest extends TestCase
     use RefreshDatabase;
 
     /** @test */
-    public function able_to_get_translations_with_copyright()
+    public function can_get_translations_with_copyright()
     {
         $copyright = Copyright::factory()
             ->create();
@@ -31,7 +32,7 @@ class ManageBibleTest extends TestCase
     }
 
     /** @test */
-    public function get_one_translation_with_copyright()
+    public function can_get_one_translation_with_copyright()
     {
         $copyright = Copyright::factory()
             ->create();
@@ -44,6 +45,33 @@ class ManageBibleTest extends TestCase
         $this->getJson("api/translations/$translation->abbr")
             ->assertExactJson([
                 'translation' => $translation->load('copyright')->jsonSerialize()
+            ]);
+    }
+
+    /** @test */
+    public function can_get_all_books_of_a_translation()
+    {
+        $translation = Translation::factory()->create();
+        $books = [
+            Book::factory()
+                ->create([
+                    'number' => 2,
+                    'translation_id' => $translation->id
+                ]),
+            Book::factory()
+                ->create([
+                    'number' => 1,
+                    'translation_id' => $translation->id
+                ])
+        ];
+
+        $this->getJson("api/translations/{$translation->abbr}/books")
+            ->assertExactJson([
+                'translation' => $translation->load('copyright')->jsonSerialize(),
+                'books' => [
+                    $books[1]->jsonSerialize(),
+                    $books[0]->jsonSerialize()
+                ]
             ]);
     }
 }

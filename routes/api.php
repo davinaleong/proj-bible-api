@@ -18,4 +18,5 @@ use App\Http\Controllers\BibleController;
 Route::group(['middleware' => 'api'], function() {
     Route::get('/translations', [BibleController::class, 'translations'])->name('translations');
     Route::get('/translations/{abbr}', [BibleController::class, 'translation'])->name('translation');
+    Route::get('/translations/{abbr}/books', [BibleController::class, 'books'])->name('books');
 });
