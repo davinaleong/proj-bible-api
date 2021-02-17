@@ -124,7 +124,7 @@
             <hr>
 
             <footer>
-                <p class="text-center text-muted"><small>{{ config('app.name') }} &copy; Davina Leong, 2020-{{ now()->format('Y') }}</small></p>
+                <p class="text-center text-muted"><small>@include('partials.copyright')</small></p>
             </footer>
         </div>
         <!-- ./container -->
