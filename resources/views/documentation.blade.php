@@ -119,6 +119,7 @@
         }
     ]
 }</code></pre>
+            <p>Note: <code>number</code> determines the order of the book.</p>
             <hr>
         </div>
         <!-- ./container -->
