@@ -33,8 +33,13 @@
             </div>
 
             <div class="flex items-center justify-end mt-4">
+                @if (Route::has('dashboard'))
+                    <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('dashboard') }}">
+                        {{ __('Home') }}
+                    </a>
+                @endif
                 @if (Route::has('password.request'))
-                    <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('password.request') }}">
+                    <a class="underline text-sm text-gray-600 hover:text-gray-900 ml-2" href="{{ route('password.request') }}">
                         {{ __('Forgot your password?') }}
                     </a>
                 @endif
