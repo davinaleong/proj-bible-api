@@ -93,7 +93,35 @@
     }
 }</code></pre>
             <hr>
+
+            <h1 class="h4">Get all books of a translation</h1>
+            <p>Endpoint: <code>GET https://bibleapi/api/translations/{abbr}/books</code></p>
+            <p>Sample response:</p>
+            <pre><code>{
+    "translation": {
+        "name": "King James Version",
+        "abbr": "KJV",
+        "copyright": {
+            "name": "Public Domain",
+            "text": "Public Domain"
+        }
+    },
+    "books": [
+        {
+            "name": "Psalm",
+            "abbr": "Psa",
+            "number": 19
+        },
+        {
+            "name": "Proverbs",
+            "abbr": "Prov",
+            "number": 20
+        }
+    ]
+}</code></pre>
+            <hr>
         </div>
+        <!-- ./container -->
 
         <a href="#top" class="btn btn-outline-secondary btn-top">Top</a>
 
