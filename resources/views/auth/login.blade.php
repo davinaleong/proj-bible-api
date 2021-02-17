@@ -34,7 +34,7 @@
 
             <div class="flex items-center justify-end mt-4">
                 @if (Route::has('dashboard'))
-                    <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('dashboard') }}">
+                    <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('documentation') }}">
                         {{ __('Home') }}
                     </a>
                 @endif
