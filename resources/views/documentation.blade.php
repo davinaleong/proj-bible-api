@@ -61,6 +61,7 @@
 
         <div class="container mt-3">
             <div class="mb-3"><img src="{{ asset('img/bible_api-text.svg') }}" alt="bible api logo text" height="80"></div>
+            <p>By developers for developers</p>
 
             <h1 class="h4">Get all translations</h1>
             <p>Endpoint: <code>GET https://bibleapi/api/translations</code></p>
@@ -121,6 +122,10 @@
 }</code></pre>
             <p>Note: <code>number</code> determines the order of the book.</p>
             <hr>
+
+            <footer>
+                <p class="text-center text-muted"><small>Bible API &copy; 2020-{{ now()->format('Y') }}, Davina Leong.</small></p>
+            </footer>
         </div>
         <!-- ./container -->
 
