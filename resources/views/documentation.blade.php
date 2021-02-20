@@ -164,10 +164,37 @@
     "chapters": [
         {
             "number": 1
+        },
+        {
+            "number": 2
         }
     ]
 }</code></pre>
-            <p>Note: <code>number</code> determines the order of the book.</p>
+            <p>Note: <code>number</code> determines the order of the book and chapters.</p>
+            <hr>
+
+            <h1 class="h4">Get a single chapter of a book via its number.</h1>
+            <p>Endpoint: <code>GET https://bibleapi/api/translations/{abbr}/books/{name}/chapters/{number}</code></p>
+            <p>Sample response:</p>
+            <pre><code>{
+    "translation": {
+        "name": "King James Version",
+        "abbr": "KJV",
+        "copyright": {
+            "name": "Public Domain",
+            "text": "Public Domain"
+        }
+    },
+    "book": {
+        "name": "Proverbs",
+        "abbr": "Prov",
+        "number": 20
+    },
+    "chapter": {
+        "number": 1
+    }
+}</code></pre>
+            <p>Note: <code>number</code> determines the order of the book and chapter.</p>
             <hr>
 
             <footer>
