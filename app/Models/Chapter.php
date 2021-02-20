@@ -32,7 +32,9 @@ class Chapter extends Model
         'id' => 'integer',
         'book_id' => 'integer',
         'number' => 'integer',
-        'verse_limit' => 'integer'
+        'verse_limit' => 'integer',
+        'created_by' => 'integer',
+        'updated_by' => 'integer'
     ];
 
     protected $dispatchesEvents = [

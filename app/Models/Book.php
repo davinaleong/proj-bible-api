@@ -29,7 +29,10 @@ class Book extends Model
     ];
 
     protected $casts = [
-        'number' => 'integer'
+        'id' => 'integer',
+        'number' => 'integer',
+        'created_by' => 'integer',
+        'updated_by' => 'integer'
     ];
 
     protected $dispatchesEvents = [

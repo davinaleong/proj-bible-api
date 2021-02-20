@@ -27,6 +27,11 @@ class Copyright extends Model
         'updated_by'
     ];
 
+    protected $casts = [
+        'created_by' => 'integer',
+        'updated_by' => 'integer'
+    ];
+
     protected $dispatchesEvents = [
         'created' => CopyrightCreated::class,
         'updated' => CopyrightUpdated::class,

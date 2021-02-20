@@ -24,9 +24,16 @@ class BookAbbrExistsTest extends TestCase
     /** @test */
     public function rule_passes_when_book_of_different_translation_exists()
     {
-        $translations = Translation::factory()->count(2)->create();
+        $translations = [
+            Translation::factory()->create([
+                'abbr' => 'T'
+            ]),
+            Translation::factory()->create([
+                'abbr' => 'T2'
+            ])
+        ];
         $book = Book::factory()->create([
-            'translation_id' => $translations[1],
+            'translation_id' => $translations[1]->id,
             'abbr' => 'Bk'
         ]);
         $rule = new BookAbbrExists($translations[0]);
@@ -48,12 +55,10 @@ class BookAbbrExistsTest extends TestCase
     /** @test */
     public function rule_passes_when_book_is_the_same_id()
     {
-        $translation = Translation::factory()->create();
         $book = Book::factory()->create([
-            'translation_id' => $translation,
             'abbr' => 'Bk'
         ]);
-        $rule = new BookAbbrExists($translation, $book);
+        $rule = new BookAbbrExists($book->translation, $book);
         $this->assertTrue($rule->passes('name', $book->abbr));
     }
 }
