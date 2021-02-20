@@ -72,7 +72,6 @@
             "name": "King James Version",
             "abbr": "KJV",
             "copyright": {
-                "name": "Public Domain",
                 "text": "Public Domain"
             }
         }
@@ -88,7 +87,6 @@
         "name": "King James Version",
         "abbr": "KJV",
         "copyright": {
-            "name": "Public Domain",
             "text": "Public Domain"
         }
     }
@@ -103,7 +101,6 @@
         "name": "King James Version",
         "abbr": "KJV",
         "copyright": {
-            "name": "Public Domain",
             "text": "Public Domain"
         }
     },
@@ -131,7 +128,6 @@
         "name": "King James Version",
         "abbr": "KJV",
         "copyright": {
-            "name": "Public Domain",
             "text": "Public Domain"
         }
     },
@@ -152,7 +148,6 @@
         "name": "King James Version",
         "abbr": "KJV",
         "copyright": {
-            "name": "Public Domain",
             "text": "Public Domain"
         }
     },
@@ -181,7 +176,6 @@
         "name": "King James Version",
         "abbr": "KJV",
         "copyright": {
-            "name": "Public Domain",
             "text": "Public Domain"
         }
     },
