@@ -29,13 +29,10 @@ class BibleController extends Controller
         $translation = Translation::with('copyright')
             ->where('abbr', $abbr)
             ->first();
-        $books = Book::where('translation_id', $translation->id)
-            ->orderBy('number')
-            ->get();
 
         return [
             'translation' => $translation,
-            'books' => $books
+            'books' => $translation->books()->orderBy('number')->get()
         ];
     }
 
@@ -44,13 +41,10 @@ class BibleController extends Controller
         $translation = Translation::with('copyright')
             ->where('abbr', $abbr)
             ->first();
-        $book = Book::where('translation_id', $translation->id)
-            ->where('name', $name)
-            ->first();
 
         return [
             'translation' => $translation,
-            'book' => $book
+            'book' => $translation->books()->where('name', $name)->first()
         ];
     }
 
