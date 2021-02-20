@@ -8,28 +8,49 @@ use Illuminate\Http\Request;
 
 class BibleController extends Controller
 {
-    public function translations()
+    public function translations() : array
     {
         return [
             'translations' => Translation::with('copyright')->get()
         ];
     }
 
-    public function translation(string $abbr)
+    public function translation(string $abbr) : array
     {
         return [
-            'translation' => Translation::with('copyright')->where('abbr', $abbr)->first()
+            'translation' => Translation::with('copyright')
+                ->where('abbr', $abbr)
+                ->first()
         ];
     }
 
-    public function books(string $abbr)
+    public function books(string $abbr) : array
     {
-        $translation = Translation::with('copyright')->where('abbr', $abbr)->first();
-        $books = Book::where('translation_id', $translation->id)->orderBy('number')->get();
+        $translation = Translation::with('copyright')
+            ->where('abbr', $abbr)
+            ->first();
+        $books = Book::where('translation_id', $translation->id)
+            ->orderBy('number')
+            ->get();
 
         return [
             'translation' => $translation,
             'books' => $books
+        ];
+    }
+
+    public function book(string $abbr, string $name) : array
+    {
+        $translation = Translation::with('copyright')
+            ->where('abbr', $abbr)
+            ->first();
+        $book = Book::where('translation_id', $translation->id)
+            ->where('name', $name)
+            ->first();
+
+        return [
+            'translation' => $translation,
+            'book' => $book
         ];
     }
 }

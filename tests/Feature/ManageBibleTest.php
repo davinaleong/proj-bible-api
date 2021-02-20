@@ -74,4 +74,20 @@ class ManageBibleTest extends TestCase
                 ]
             ]);
     }
+
+    /** @test */
+    public function can_get_a_book_from_a_translation()
+    {
+        $translation = Translation::factory()->create();
+        $book = Book::factory()
+            ->create([
+                'translation_id' => $translation->id
+            ]);
+
+        $this->getJson("api/translations/{$translation->abbr}/books/{$book->name}")
+            ->assertExactJson([
+                'translation' => $translation->load('copyright')->jsonSerialize(),
+                'book' => $book->jsonSerialize()
+            ]);
+    }
 }
