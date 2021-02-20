@@ -24,7 +24,7 @@ class VerseLimitCheckTest extends TestCase
     public function rule_passes_if_value_is_less_or_equal_to_verse_limit()
     {
         $chapter = Chapter::factory()->create([
-            'verse_limit' => 2
+            'verse_limit' => 1
         ]);
         $rule = new VerseLimitCheck($chapter);
 

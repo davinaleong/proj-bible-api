@@ -39,6 +39,6 @@ class VerseLimitCheck implements Rule
      */
     public function message()
     {
-        return 'The :attribute must be less than or equal :value.';
+        return 'The :attribute field must be less than or equal to ' . $this->chapter->verse_limit . '.';
     }
 }
