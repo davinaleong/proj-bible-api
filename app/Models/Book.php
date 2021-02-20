@@ -18,6 +18,20 @@ class Book extends Model
         'updated_at'
     ];
 
+    protected $hidden = [
+        'id',
+        'translation_id',
+        'chapter_limit',
+        'created_at',
+        'updated_at',
+        'created_by',
+        'updated_by'
+    ];
+
+    protected $casts = [
+        'number' => 'integer'
+    ];
+
     protected $dispatchesEvents = [
         'created' => BookCreated::class,
         'updated' => BookUpdated::class,
