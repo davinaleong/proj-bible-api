@@ -63,4 +63,20 @@ class BibleController extends Controller
             'chapters' => $book->chapters()->orderBy('number')->get()
         ];
     }
+
+    public function chapter(string $abbr, string $name, int $number) : array
+    {
+        $translation = Translation::with('copyright')
+            ->where('abbr', $abbr)
+            ->first();
+        $book = Book::where('translation_id', $translation->id)
+            ->where('name', $name)
+            ->first();
+
+        return [
+            'translation' => $translation,
+            'book' => $book,
+            'chapter' => $book->chapters()->where('number', $number)->first()
+        ];
+    }
 }

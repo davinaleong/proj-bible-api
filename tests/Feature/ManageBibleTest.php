@@ -95,7 +95,7 @@ class ManageBibleTest extends TestCase
     }
 
     /** @test */
-    public function get_all_chapters_of_a_book()
+    public function can_get_all_chapters_of_a_book()
     {
         $translation = Translation::factory()
             ->create();
@@ -124,6 +124,29 @@ class ManageBibleTest extends TestCase
                     $chapters[1]->jsonSerialize(),
                     $chapters[0]->jsonSerialize()
                 ]
+            ]);
+    }
+
+    /** @test */
+    public function can_get_a_chapter_of_a_book()
+    {
+        $translation = Translation::factory()
+            ->create();
+        $book = Book::factory()
+            ->create([
+                'translation_id' => $translation->id
+            ]);
+        $chapter = Chapter::factory()
+            ->create([
+                'book_id' => $book->id,
+                'number' => 1
+            ]);
+
+        $this->getJson("api/translations/$translation->abbr/books/$book->name/chapters/$chapter->number")
+            ->assertExactJson([
+                'translation' => $translation->load('copyright')->jsonSerialize(),
+                'book' => $book->jsonSerialize(),
+                'chapter' => $chapter->jsonSerialize()
             ]);
     }
 }

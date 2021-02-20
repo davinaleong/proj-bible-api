@@ -21,4 +21,5 @@ Route::group(['middleware' => 'api'], function() {
     Route::get('/translations/{abbr}/books', [BibleController::class, 'books'])->name('books');
     Route::get('/translations/{abbr}/books/{book}', [BibleController::class, 'book'])->name('book');
     Route::get('/translations/{abbr}/books/{book}/chapters', [BibleController::class, 'chapters'])->name('chapters');
+    Route::get('/translations/{abbr}/books/{book}/chapters/{number}', [BibleController::class, 'chapter'])->name('chapter');
 });
