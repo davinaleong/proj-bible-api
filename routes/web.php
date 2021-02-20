@@ -78,6 +78,5 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function() {
     Route::get('/translations/{translation}/books/{book}/chapters/{chapter}/verses/{verse}/edit', [VerseController::class, 'edit'])->name('verses.edit');
     Route::patch('/translations/{translation}/books/{book}/chapters/{chapter}/verses/{verse}', [VerseController::class, 'update'])->name('verses.update');
     Route::delete('/translations/{translation}/books/{book}/chapters/{chapter}/verses/{verse}', [VerseController::class, 'destroy'])->name('verses.destroy');
-    // TODO: Verse views
     //#endregion
 });

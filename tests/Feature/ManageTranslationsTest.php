@@ -272,10 +272,18 @@ class ManageTranslationsTest extends TestCase
             ->assertRedirect(route('translations.index'))
             ->assertSessionHas('message', 'Translation deleted.');
 
-        $this->assertDatabaseMissing(Table::$TABLE_VERSES, $verse->jsonSerialize());
-        $this->assertDatabaseMissing(Table::$TABLE_CHAPTERS, $chapter->jsonSerialize());
-        $this->assertDatabaseMissing(Table::$TABLE_BOOKS, $book->jsonSerialize());
-        $this->assertDatabaseMissing(Table::$TABLE_TRANSLATIONS, $translation->jsonSerialize());
+        $this->assertDatabaseMissing(Table::$TABLE_VERSES, [
+            'id' => $verse->id
+        ]);
+        $this->assertDatabaseMissing(Table::$TABLE_CHAPTERS, [
+            'id' => $chapter->id
+        ]);
+        $this->assertDatabaseMissing(Table::$TABLE_BOOKS, [
+            'id' => $book->id
+        ]);
+        $this->assertDatabaseMissing(Table::$TABLE_TRANSLATIONS, [
+            'id' => $translation->id
+        ]);
 
         $this->assertDatabaseHas(Table::$TABLE_LOGS, [
             'user_id' => $user->id,
