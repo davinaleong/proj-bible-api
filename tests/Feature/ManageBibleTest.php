@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use App\Models\Book;
+use App\Models\Chapter;
 use App\Models\Copyright;
 use App\Models\Translation;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -14,7 +15,7 @@ class ManageBibleTest extends TestCase
     use RefreshDatabase;
 
     /** @test */
-    public function can_get_translations_with_copyright()
+    public function can_get_all_translations_with_copyright()
     {
         $copyright = Copyright::factory()
             ->create();
@@ -51,7 +52,8 @@ class ManageBibleTest extends TestCase
     /** @test */
     public function can_get_all_books_of_a_translation()
     {
-        $translation = Translation::factory()->create();
+        $translation = Translation::factory()
+            ->create();
         $books = [
             Book::factory()
                 ->create([
@@ -78,7 +80,8 @@ class ManageBibleTest extends TestCase
     /** @test */
     public function can_get_a_book_from_a_translation()
     {
-        $translation = Translation::factory()->create();
+        $translation = Translation::factory()
+            ->create();
         $book = Book::factory()
             ->create([
                 'translation_id' => $translation->id
@@ -88,6 +91,39 @@ class ManageBibleTest extends TestCase
             ->assertExactJson([
                 'translation' => $translation->load('copyright')->jsonSerialize(),
                 'book' => $book->jsonSerialize()
+            ]);
+    }
+
+    /** @test */
+    public function get_all_chapters_of_a_book()
+    {
+        $translation = Translation::factory()
+            ->create();
+        $book = Book::factory()
+            ->create([
+                'translation_id' => $translation->id
+            ]);
+        $chapters = [
+            Chapter::factory()
+                ->create([
+                    'book_id' => $book->id,
+                    'number' => 2
+                ]),
+            Chapter::factory()
+                ->create([
+                    'book_id' => $book->id,
+                    'number' => 1
+                ])
+        ];
+
+        $this->getJson("api/translations/$translation->abbr/books/$book->name/chapters")
+            ->assertExactJson([
+                'translation' => $translation->load('copyright')->jsonSerialize(),
+                'book' => $book->jsonSerialize(),
+                'chapters' => [
+                    $chapters[1]->jsonSerialize(),
+                    $chapters[0]->jsonSerialize()
+                ]
             ]);
     }
 }
