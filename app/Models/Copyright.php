@@ -20,6 +20,7 @@ class Copyright extends Model
 
     protected $hidden = [
         'id',
+        'name',
         'created_at',
         'updated_at',
         'created_by',

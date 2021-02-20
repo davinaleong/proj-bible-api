@@ -18,6 +18,23 @@ class Chapter extends Model
         'updated_at'
     ];
 
+    protected $hidden = [
+        'id',
+        'book_id',
+        'verse_limit',
+        'created_at',
+        'updated_at',
+        'created_by',
+        'updated_by'
+    ];
+
+    protected $casts = [
+        'id' => 'integer',
+        'book_id' => 'integer',
+        'number' => 'integer',
+        'verse_limit' => 'integer'
+    ];
+
     protected $dispatchesEvents = [
         'created' => ChapterCreated::class,
         'updated' => ChapterUpdated::class,
