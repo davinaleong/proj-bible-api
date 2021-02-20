@@ -29,17 +29,26 @@ class BibleController extends Controller
         $translation = Translation::with('copyright')
             ->where('abbr', $abbr)
             ->first();
-        $books = Book::where('translation_id', $translation->id)
-            ->orderBy('number')
-            ->get();
 
         return [
             'translation' => $translation,
-            'books' => $books
+            'books' => $translation->books()->orderBy('number')->get()
         ];
     }
 
     public function book(string $abbr, string $name) : array
+    {
+        $translation = Translation::with('copyright')
+            ->where('abbr', $abbr)
+            ->first();
+
+        return [
+            'translation' => $translation,
+            'book' => $translation->books()->where('name', $name)->first()
+        ];
+    }
+
+    public function chapters(string $abbr, string $name) : array
     {
         $translation = Translation::with('copyright')
             ->where('abbr', $abbr)
@@ -50,7 +59,24 @@ class BibleController extends Controller
 
         return [
             'translation' => $translation,
-            'book' => $book
+            'book' => $book,
+            'chapters' => $book->chapters()->orderBy('number')->get()
+        ];
+    }
+
+    public function chapter(string $abbr, string $name, int $number) : array
+    {
+        $translation = Translation::with('copyright')
+            ->where('abbr', $abbr)
+            ->first();
+        $book = Book::where('translation_id', $translation->id)
+            ->where('name', $name)
+            ->first();
+
+        return [
+            'translation' => $translation,
+            'book' => $book,
+            'chapter' => $book->chapters()->where('number', $number)->first()
         ];
     }
 }
