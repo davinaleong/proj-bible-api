@@ -27,6 +27,12 @@ class Translation extends Model
         'updated_by'
     ];
 
+    protected $casts = [
+        'id' => 'integer',
+        'created_by' => 'integer',
+        'updated_by' => 'integer'
+    ];
+
     protected $dispatchesEvents = [
         'created' => TranslationCreated::class,
         'updated' => TranslationUpdated::class,

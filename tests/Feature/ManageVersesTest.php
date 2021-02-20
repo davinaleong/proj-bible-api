@@ -145,12 +145,18 @@ class ManageVersesTest extends TestCase
     public function create_verse_returns_error_when_data_criteria_not_met()
     {
         $user = User::factory()->create();
-        $verse = Verse::factory()->make();
+        $chapter = Chapter::factory()->create([
+            'verse_limit' => 1
+        ]);
+        $verse = Verse::factory()->make([
+            'number' => 1,
+            'chapter_id' => $chapter->id
+        ]);
 
         $route = route('verses.store', [
-            'translation' => $verse->chapter->book->translation,
-            'book' => $verse->chapter->book,
-            'chapter' => $verse->chapter
+            'translation' => $chapter->book->translation,
+            'book' => $chapter->book,
+            'chapter' => $chapter
         ]);
 
         $this->actingAs($user)
@@ -159,6 +165,22 @@ class ManageVersesTest extends TestCase
             ])
             ->assertSessionHasErrors([
                 'number' => 'The number field is required.'
+            ]);
+
+        $this->actingAs($user)
+            ->post($route, [
+                'number' => 1
+            ])
+            ->assertSessionHasErrors([
+                'number' => 'The number must be a string.'
+            ]);
+
+        $this->actingAs($user)
+            ->post($route, [
+                'number' => '2'
+            ])
+            ->assertSessionHasErrors([
+                'number' => "The number field must be less than or equal to $chapter->verse_limit."
             ]);
 
         $this->actingAs($user)
@@ -235,20 +257,43 @@ class ManageVersesTest extends TestCase
     public function update_verse_returns_error_when_data_criteria_not_met()
     {
         $user = User::factory()->create();
-        $verse = Verse::factory()->create();
+        $chapter = Chapter::factory()->create([
+            'verse_limit' => 1
+        ]);
+        $verse = Verse::factory()->create([
+            'chapter_id' => $chapter,
+            'number' => '1'
+        ]);
 
         $route = route('verses.update', [
-            'translation' => $verse->chapter->book->translation,
-            'book' => $verse->chapter->book,
-            'chapter' => $verse->chapter,
+            'translation' => $chapter->book->translation,
+            'book' => $chapter->book,
+            'chapter' => $chapter,
             'verse' => $verse
         ]);
+
         $this->actingAs($user)
             ->patch($route, [
                 'number' => ''
             ])
             ->assertSessionHasErrors([
                 'number' => 'The number field is required.'
+            ]);
+
+        $this->actingAs($user)
+            ->patch($route, [
+                'number' => 1
+            ])
+            ->assertSessionHasErrors([
+                'number' => 'The number must be a string.'
+            ]);
+
+        $this->actingAs($user)
+            ->patch($route, [
+                'number' => '2'
+            ])
+            ->assertSessionHasErrors([
+                'number' => "The number field must be less than or equal to $chapter->verse_limit."
             ]);
 
         $this->actingAs($user)

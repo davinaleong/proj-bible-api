@@ -341,8 +341,12 @@ class ManageChaptersTest extends TestCase
             ])
             ->assertRedirect(route('books.show', ['translation' => $translation, 'book' => $book]));
 
-        $this->assertDatabaseMissing(Table::$TABLE_VERSES, $verse->jsonSerialize());
-        $this->assertDatabaseMissing(Table::$TABLE_CHAPTERS, $chapter->jsonSerialize());
+        $this->assertDatabaseMissing(Table::$TABLE_VERSES, [
+            'id' => $verse->id
+        ]);
+        $this->assertDatabaseMissing(Table::$TABLE_CHAPTERS, [
+            'id' => $chapter->id
+        ]);
 
         $this->assertDatabaseHas(Table::$TABLE_LOGS, [
             'user_id' => $user->id,
@@ -350,7 +354,5 @@ class ManageChaptersTest extends TestCase
             'source_id' => 1,
             'message' => "$user->name deleted chapter $chapter->number for $book->name, $translation->abbr."
         ]);
-
-        //TODO: Assert deleted verse log
     }
 }

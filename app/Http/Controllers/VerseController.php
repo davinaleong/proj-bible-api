@@ -7,6 +7,7 @@ use App\Models\Breadcrumb;
 use App\Models\Chapter;
 use App\Models\Translation;
 use App\Models\Verse;
+use App\Rules\VerseLimitCheck;
 use App\Rules\VerseNumberExists;
 use Illuminate\Http\Request;
 
@@ -155,7 +156,7 @@ class VerseController extends Controller
     private function rules(Chapter $chapter, Verse $verse=null)
     {
         return [
-            'number' => ['required', 'string', new VerseNumberExists($chapter, $verse)],
+            'number' => ['required', 'string', new VerseLimitCheck($chapter), new VerseNumberExists($chapter, $verse)],
             'passage' => 'required|string'
         ];
     }
