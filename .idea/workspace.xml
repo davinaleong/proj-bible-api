@@ -2,11 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="aea7a033-8388-4a34-8811-e03be647dd13" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/bible-api.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/bible-api.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/BibleController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/BibleController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Feature/ManageBibleTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/ManageBibleTest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/documentation.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/documentation.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -399,7 +396,7 @@
       <workItem from="1605511943902" duration="478000" />
       <workItem from="1605516203803" duration="675000" />
       <workItem from="1606007257681" duration="26182000" />
-      <workItem from="1613801467360" duration="829000" />
+      <workItem from="1613801467360" duration="1215000" />
     </task>
     <servers />
   </component>

@@ -123,6 +123,27 @@
             <p>Note: <code>number</code> determines the order of the book.</p>
             <hr>
 
+            <h1 class="h4">Get single book of a translation via its name.</h1>
+            <p>Endpoint: <code>GET https://bibleapi/api/translations/{abbr}/books/{name}</code></p>
+            <p>Sample response:</p>
+            <pre><code>{
+    "translation": {
+        "name": "King James Version",
+        "abbr": "KJV",
+        "copyright": {
+            "name": "Public Domain",
+            "text": "Public Domain"
+        }
+    },
+    "book": {
+        "name": "Psalm",
+        "abbr": "Psa",
+        "number": 19
+    }
+}</code></pre>
+            <p>Note: <code>number</code> determines the order of the book.</p>
+            <hr>
+
             <footer>
                 <p class="text-center text-muted"><small>@include('partials.copyright')</small></p>
             </footer>
